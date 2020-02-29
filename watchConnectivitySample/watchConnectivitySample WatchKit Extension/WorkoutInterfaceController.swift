@@ -309,6 +309,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HH:mm:ss"
                 self.dateString = formatter.string(from: date)
+                self.hourLabel.setText(self.dateString)
                 do{
                     if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
                         fileUpdater.seekToEndOfFile()
