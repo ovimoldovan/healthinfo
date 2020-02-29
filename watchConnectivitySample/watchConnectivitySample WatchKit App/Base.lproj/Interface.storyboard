@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
+    </dependencies>
+    <scenes>
+        <!--Workout Interface Controller-->
+        <scene sceneID="Axr-ic-WeG">
+            <objects>
+                <controller id="occ-3m-HBW" customClass="WorkoutInterfaceController" customModule="watchConnectivitySample_WatchKit_Extension">
+                    <items>
+                        <label height="20" alignment="left" text="bpm" id="WUE-12-FEP"/>
+                        <timer alignment="left" id="HDp-GN-Z2W"/>
+                        <label alignment="left" text="steps" id="NkD-iM-Ubm"/>
+                        <label alignment="left" text="distance" id="a1E-a3-lfr"/>
+                        <label alignment="left" text="gps" id="lRy-h3-cWy"/>
+                        <label alignment="left" text="status" id="bP8-IK-QVJ"/>
+                        <button width="1" alignment="left" title="Start logging" id="Nkg-cj-PNb">
+                            <connections>
+                                <action selector="startLogging" destination="occ-3m-HBW" id="N4F-6f-sEH"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="End logging" id="lsH-R3-FI4">
+                            <connections>
+                                <action selector="endLogging" destination="occ-3m-HBW" id="YQ4-zm-WBB"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Send logging" id="Odn-cw-Td5">
+                            <connections>
+                                <action selector="sendLogging" destination="occ-3m-HBW" id="KDB-md-SRe"/>
+                            </connections>
+                        </button>
+                        <label alignment="left" text="hour" id="ABb-aB-7nJ"/>
+                    </items>
+                    <connections>
+                        <outlet property="distanceLabel" destination="a1E-a3-lfr" id="pNe-8j-4xm"/>
+                        <outlet property="gpsLabel" destination="lRy-h3-cWy" id="j3T-sB-im2"/>
+                        <outlet property="heartRateLabel" destination="WUE-12-FEP" id="xt8-4O-5I3"/>
+                        <outlet property="hourLabel" destination="ABb-aB-7nJ" id="MOc-OX-NpM"/>
+                        <outlet property="statusLabel" destination="bP8-IK-QVJ" id="LrF-8K-5kL"/>
+                        <outlet property="stepsLabel" destination="NkD-iM-Ubm" id="mzs-qK-gHR"/>
+                        <outlet property="timer" destination="HDp-GN-Z2W" id="n7o-vJ-78M"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="214.46153846153848" y="6.9743589743589745"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchConnectivitySample_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="Welcoming page" id="UBP-5B-BeI"/>
+                    </items>
+                    <connections>
+                        <outlet property="label" destination="UBP-5B-BeI" id="6tf-ek-6oq"/>
+                        <segue destination="occ-3m-HBW" kind="relationship" relationship="nextPage" id="imX-A6-osg"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="watchConnectivitySample_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="watchConnectivitySample_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+    </scenes>
+</document>
