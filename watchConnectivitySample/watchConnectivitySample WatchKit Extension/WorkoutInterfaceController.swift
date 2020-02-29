@@ -10,6 +10,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     @IBOutlet var hourLabel: WKInterfaceLabel!
     
     var filePath = InterfaceController.returnDocumentsDirectoryUrl().appendingPathComponent("output.txt")
+    
     //Location related
     let locationManager = CLLocationManager()
     var gpsCoords: String = ""
@@ -27,20 +28,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         self.gpsCoords = String(currentLocation.coordinate.latitude) + " " + String(currentLocation.coordinate.longitude)
         gpsLabel.setText(gpsCoords)
         print(gpsCoords)
-        
-        
-        /* Showing the location on the map
- 
-        let locatieAux = CLLocation(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
-        
-        let mapLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(locatieAux.coordinate.latitude, locatieAux.coordinate.longitude)
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        let region = MKCoordinateRegion(center: mapLocation, span: span)
-        
-        self.mapView.setRegion(region)
-        self.mapView.addAnnotation(mapLocation, with: .red)
-         
-        */
+
         
     }
     
@@ -94,7 +82,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     }
     @IBAction func endLogging() {
         pauseWorkout()
-        //timer.stop()
+        
         setDurationTimerDate(.paused)
         statusLabel.setText("Status: stopped")
         status = "stopped"
@@ -189,16 +177,14 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
 
     }
     
-    // Track elapsed time.
+    
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
         // Retreive the workout event.
         guard let workoutEventType = workoutBuilder.workoutEvents.last?.type else { return }
-        
-        // Update the timer based on the event received.
         switch workoutEventType {
-        case .pause: // The user paused the workout.
+        case .pause:
             setDurationTimerDate(.paused)
-        case .resume: // The user resumed the workout.
+        case .resume:
             setDurationTimerDate(.running)
         default:
             return
@@ -207,20 +193,13 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     }
     
     func setDurationTimerDate(_ sessionState: HKWorkoutSessionState) {
-        /// Obtain the elapsed time from the workout builder.
-        /// - Tag: ObtainElapsedTime
         let timerDate = Date(timeInterval: -self.builder.elapsedTime, since: Date())
-               
         
-        // Dispatch to main, because we are updating the interface.
         DispatchQueue.main.async {
             self.timer.setDate(timerDate)
         }
         
-        // Dispatch to main, because we are updating the interface.
         DispatchQueue.main.async {
-            /// Update the timer based on the state we are in.
-            /// - Tag: UpdateTimer
             sessionState == .running ? self.timer.start() : self.timer.stop()
         }
     }
@@ -230,16 +209,14 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
             guard let quantityType = type as? HKQuantityType else {
                 return
             }
-            
-            /// - Tag: GetStatistics
+
             let statistics = workoutBuilder.statistics(for: quantityType)
             let label = labelForQuantityType(quantityType)
-            
+
             updateLabel(label, withStatistics: statistics)
         }
     }
     
-    // MARK: - State Control
     func pauseWorkout() {
         workoutSession.pause()
     }
@@ -252,7 +229,6 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         workoutSession.end()
         builder.endCollection(withEnd: Date()) { (success, error) in
             self.builder.finishWorkout { (workout, error) in
-                // Dispatch to main, because we are updating the interface.
                 DispatchQueue.main.async() {
                     self.dismiss()
                 }
@@ -272,7 +248,6 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         setupMenuItemsForWorkoutSessionState(.running)
     }
     
-    /// Set up the contextual menu based on the workout session state.
     func setupMenuItemsForWorkoutSessionState(_ state: HKWorkoutSessionState) {
         clearAllMenuItems()
         if state == .running {
@@ -304,7 +279,6 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         from fromState: HKWorkoutSessionState,
         date: Date
     ) {
-        // Dispatch to main, because we are updating the interface.
         DispatchQueue.main.async {
             self.setupMenuItemsForWorkoutSessionState(toState)
         }
@@ -319,10 +293,6 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         switch type {
         case HKQuantityType.quantityType(forIdentifier: .heartRate):
             return heartRateLabel
-//        case HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned):
-//            return activeCaloriesLabel
-//        case HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning):
-//            return distanceLabel
         default:
             return nil
         }
@@ -334,7 +304,6 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         }
         
         do {
-            //try "0".write(to: self.filePath, atomically: true, encoding: String.Encoding.utf8)
             if self.status=="running"{
                 let date = Date()
                 let formatter = DateFormatter()
@@ -389,14 +358,10 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                 HKQuantityType.workoutType()
             ]
             
-            // The quantity types to read from the health store.
             let typesToRead: Set = [
                 HKQuantityType.quantityType(forIdentifier: .heartRate)!
-//                HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
-//                HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
             ]
             
-            // Request authorization for those quantity types.
             healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
                 //TODO
                 //Error handling

@@ -18,16 +18,14 @@ class ViewController: UIViewController {
     
     @IBAction func tapShowData(_ sender: Any) {
         do {
-            //let text2 = try String(contentsOf: URL(fileURLWithPath: fileURLstring), encoding: .utf8)
             print(fileContents)
             fileContentsLabel.text = fileContents
         }
-        catch {/* error handling here */}
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()        // Do any additional setup after loading the view.
-        self.configureWatchKitSesstion()//4
+        super.viewDidLoad()
+        self.configureWatchKitSesstion()
     }
     
     func configureWatchKitSesstion() {
@@ -40,11 +38,6 @@ class ViewController: UIViewController {
     }
     //5
     @IBAction func tapSendData(_ sender: Any) {
-//        if let validSession = self.session {
-//            let data: [String: Any] = ["iPhone": "Data from iPhone" as Any] // Create your Dictionay as per uses
-//            validSession.transferUserInfo(data)
-//        }
-        // Create the Array which includes the files you want to share
         
         do{
             try self.fileContents.write(to: self.filePath, atomically: true, encoding: String.Encoding.utf8)
@@ -54,14 +47,8 @@ class ViewController: UIViewController {
         
         
         var filesToShare = [Any]()
-
-        // Add the path of the file to the Array
         filesToShare.append(filePath)
-
-        // Make the activityViewContoller which shows the share-view
         let activityViewController = UIActivityViewController(activityItems: filesToShare, applicationActivities: nil)
-
-        // Show the share-view
         self.present(activityViewController, animated: true, completion: nil)
         
     }
@@ -72,7 +59,7 @@ class ViewController: UIViewController {
     }
 }
 
-// WCSession delegate functions
+
 extension ViewController: WCSessionDelegate {
     
     func sessionDidBecomeInactive(_ session: WCSession) {
