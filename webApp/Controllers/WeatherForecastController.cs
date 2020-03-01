@@ -9,7 +9,7 @@ namespace webApp.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("weatherApi/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
