@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             session.activate()
         }
     }
-    //5
+    
     @IBAction func tapSendData(_ sender: Any) {
         
         do{

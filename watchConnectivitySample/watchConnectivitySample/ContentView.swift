@@ -7,10 +7,26 @@
 //
 
 import SwiftUI
+import WatchConnectivity
+
+var status: String = "not received"
+
+let viewController = ViewController()
+
+var filePath = returnDocumentsDirectoryUrl().appendingPathComponent("output.txt")
+var fileContents: String = "empty"
+
 
 struct ContentView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text(status)
+            Button(action: {
+                print("button tapped")
+            }){
+                Text("press")
+            }
+        }
     }
 }
 
@@ -19,3 +35,14 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+func tapShowData() {
+    print(fileContents)
+    //fileContentsLabel.text = fileContents
+}
+
+func returnDocumentsDirectoryUrl() -> URL {
+    let urlPaths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return urlPaths[0]
+}
+

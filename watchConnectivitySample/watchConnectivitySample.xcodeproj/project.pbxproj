@@ -25,6 +25,7 @@
 		8CB6A4F123DE333B00A14F9D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6A4F023DE333B00A14F9D /* ExtensionDelegate.swift */; };
 		8CB6A4F323DE333B00A14F9D /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB6A4F223DE333B00A14F9D /* NotificationController.swift */; };
 		8CB6A4F523DE333C00A14F9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CB6A4F423DE333C00A14F9D /* Assets.xcassets */; };
+		8CDA0A1E240C576500D3D134 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA0A1D240C576500D3D134 /* ContentView.swift */; };
 		8CF7C25F23F48B0A00D22847 /* WorkoutInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7C25E23F48B0A00D22847 /* WorkoutInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,7 @@
 		8CB6A50B23DE42E200A14F9D /* watchConnectivitySample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchConnectivitySample.entitlements; sourceTree = "<group>"; };
 		8CB6A50C23DE432D00A14F9D /* watchConnectivitySample WatchKit App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "watchConnectivitySample WatchKit App.entitlements"; sourceTree = "<group>"; };
 		8CB6A50D23DE43C500A14F9D /* watchConnectivitySample WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "watchConnectivitySample WatchKit Extension.entitlements"; sourceTree = "<group>"; };
+		8CDA0A1D240C576500D3D134 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8CF7C25E23F48B0A00D22847 /* WorkoutInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 				8CB6A4B323DE333600A14F9D /* AppDelegate.swift */,
 				8CB6A4B523DE333600A14F9D /* SceneDelegate.swift */,
 				8CB6A4B723DE333600A14F9D /* ViewController.swift */,
+				8CDA0A1D240C576500D3D134 /* ContentView.swift */,
 				8CB6A4B923DE333600A14F9D /* Main.storyboard */,
 				8CB6A4BC23DE333900A14F9D /* Assets.xcassets */,
 				8CB6A4BE23DE333900A14F9D /* LaunchScreen.storyboard */,
@@ -439,6 +442,7 @@
 			files = (
 				8CB6A4B823DE333600A14F9D /* ViewController.swift in Sources */,
 				8CB6A4B423DE333600A14F9D /* AppDelegate.swift in Sources */,
+				8CDA0A1E240C576500D3D134 /* ContentView.swift in Sources */,
 				8CB6A4B623DE333600A14F9D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
