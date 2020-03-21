@@ -1,7 +1,7 @@
 import UIKit
 import WatchConnectivity
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ObservableObject {
     
     var filePath = returnDocumentsDirectoryUrl().appendingPathComponent("output.txt")
 
@@ -10,9 +10,9 @@ class ViewController: UIViewController {
 
     var fileURL = URL(fileURLWithPath: "")
     var fileURLstring: String = ""
-    var status: String = ""
+    @Published var status: String = ""
     
-    var fileContents: String = "AAA"
+    @Published var fileContents: String = "AAA"
     
     @IBOutlet var fileContentsLabel: UITextView!
     
@@ -21,6 +21,10 @@ class ViewController: UIViewController {
             print(fileContents)
             fileContentsLabel.text = fileContents
         }
+    }
+    
+    public func getStatus() -> String{
+        return status;
     }
     
     override func viewDidLoad() {
