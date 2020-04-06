@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Startup.cs">
+    <Files>
+      <File FileName="watchInfoWebApp/Startup.cs" Line="32" Column="59" />
+      <File FileName="watchInfoWebApp/Program.cs" />
+      <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" />
+      <File FileName="watchInfoWebApp/Models/DataItem.cs" />
+      <File FileName="watchInfoWebApp/Models/User.cs" />
+      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" />
+      <File FileName="watchInfoWebApp/ViewModels/RegisterViewModel.cs" />
+      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="watchInfoWebApp" expanded="True">
+            <Node name="watchInfoWebApp" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="UserController.cs" selected="True" />
+              </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="ViewModels" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

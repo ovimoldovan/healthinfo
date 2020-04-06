@@ -60,8 +60,14 @@ struct ContentView: View {
                 Text("Share file")
             }
             
-            Text("File contents: " + self.fileContents)
+            NavigationLink(destination: Login()){
+                Text("Login")
+                .bold()
+            }
             
+            List{
+                Text("File contents: " + self.fileContents)
+            }
             
         }
             

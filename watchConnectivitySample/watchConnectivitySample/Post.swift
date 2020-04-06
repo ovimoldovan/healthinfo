@@ -9,10 +9,33 @@
 import SwiftUI
 
 struct Post: View {
-    @State var name = ""
+    @State var bpm = ""
+    let url = URL(string: "http://192.168.0.111:5000/Api/DataItem")
     var body: some View {
         Form{
-        TextField("Name",text: $name)
+            TextField("BPM",text: $bpm)
+            Button(action: {
+                var request = URLRequest(url: self.url!)
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+                request.httpMethod = "POST"
+                
+                let json = [
+                    "heartBpm": (self.bpm as NSString).integerValue,
+                ]
+                
+                if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
+                    URLSession.shared.uploadTask(with: request, from: jsonData){ data, response, error in
+                        print("print action")
+                        if let httpResponse = response as? HTTPURLResponse{
+                            print(httpResponse.statusCode)
+                            print(httpResponse.allHeaderFields)
+                        }
+                    }.resume()
+                }
+            }){
+                Text("Send")
+            }
         }
         .navigationBarTitle("Post")
     }
