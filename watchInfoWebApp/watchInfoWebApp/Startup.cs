@@ -101,6 +101,7 @@ namespace watchInfoWebApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
@@ -124,7 +125,6 @@ namespace watchInfoWebApp
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-            app.UseAuthentication();
 
         }
     }
