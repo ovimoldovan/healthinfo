@@ -1,59 +1,75 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using watchInfoWebApp.Data;
 using watchInfoWebApp.Models;
+using watchInfoWebApp.Services;
 using watchInfoWebApp.ViewModels;
 
 namespace watchInfoWebApp.Controllers
 {
-        [ApiController]
-        [Route("Api/[controller]")]
-        public class UserController : ControllerBase
+    [Authorize]
+    [ApiController]
+    [Route("Api/[controller]")]
+    public class UserController : ControllerBase
+    {
+        private readonly ApplicationDbContext _context;
+
+        private readonly ILogger<UserController> _logger;
+
+        private IConfiguration _config;
+        private IUserService _userService;
+
+        public UserController(ILogger<UserController> logger, ApplicationDbContext context, IConfiguration config, IUserService userService)
         {
-            private readonly ApplicationDbContext _context;
-
-            private readonly ILogger<UserController> _logger;
-
-            public UserController(ILogger<UserController> logger, ApplicationDbContext context)
+            _logger = logger;
+            _context = context;
+            if (_context.Users.Count() == 0)
             {
-                _logger = logger;
-                _context = context;
-                if (_context.Users.Count() == 0)
-                {
-                    _context.Users.Add(new User { Username = "admin", Password = "admin" });
-                    _context.SaveChanges();
-                }
+                _context.Users.Add(new User { Username = "admin", Password = "admin" });
+                _context.SaveChanges();
+            }
+            _config = config;
+            _userService = userService;
+        }
+
+
+        [HttpPost("register")]
+        public async Task<ActionResult<User>> CreateUser(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetUser), new { username = user.Username }, user);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(long id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
             }
 
-
-            [HttpPost]
-            public async Task<ActionResult<User>> CreateUser(User user)
-            {
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-
-                return CreatedAtAction(nameof(GetUser), new { username = user.Username }, user);
-            }
-
-            [HttpGet("{id}")]
-            public async Task<ActionResult<User>> GetUser(long id)
-            {
-                var user = await _context.Users.FindAsync(id);
-
-                if (user == null)
-                {
-                    return NotFound();
-                }
-
-                return user;
-            }
+            return user;
+        }
 
 
-        [HttpPost("login")]
+        [HttpPost("getNameFromUserAndPass")]
         public async Task<IActionResult> GetUserLogin(User request)
         {
             var foundUser = await _context.Users.FirstOrDefaultAsync(user => user.Username == request.Username && user.Password == request.Password);
@@ -71,5 +87,24 @@ namespace watchInfoWebApp.Controllers
 
             return Ok(loginViewModel);
         }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<IActionResult> Authenticate([FromBody]User userParam)
+        {
+            var user = await _userService.Authenticate(userParam.Username, userParam.Password);
+
+            if (user == null)
+                return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var users = await _userService.GetAll();
+            return Ok(users);
         }
     }
+}

@@ -20,6 +20,7 @@ export class NavMenu extends Component {
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
       collapsed: true,
+      user: null,
     };
   }
 
@@ -29,7 +30,13 @@ export class NavMenu extends Component {
     });
   }
 
+  componentDidMount() {
+    this.setState({ user: JSON.parse(localStorage.getItem("user")) });
+  }
+
   render() {
+    const user = this.state;
+    console.log(user);
     return (
       <header>
         <Navbar
@@ -64,7 +71,7 @@ export class NavMenu extends Component {
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/login">
-                    Login
+                    {user == null ? "Logout" : "Login"}
                   </NavLink>
                 </NavItem>
               </ul>

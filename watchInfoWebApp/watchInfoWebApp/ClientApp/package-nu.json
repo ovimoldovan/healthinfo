@@ -35,9 +35,9 @@
     "extends": "react-app"
   },
   "scripts": {
-    "start": "rimraf ./build && react-scripts start",
-    "build": "react-scripts build",
-    "test": "cross-env CI=true react-scripts test --env=jsdom",
+    "start": "rimraf ./build && react-app-rewired start --scripts-version react-scripts",
+    "build": "react-app-rewired build --scripts-version react-scripts",
+    "test": "cross-env CI=true react-app-rewired test --env=jsdom --scripts-version react-scripts",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/"
   },
@@ -52,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "config": {
+    "apiUrl": "http://localhost:11940"
   }
 }

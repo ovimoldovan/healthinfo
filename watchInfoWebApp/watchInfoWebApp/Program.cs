@@ -16,7 +16,7 @@ namespace watchInfoWebApp
                 {
                     webBuilder.UseStartup<Startup>();
                     //webBuilder.UseUrls("http://localhost:5000", "http://192.168.0.111:5000");
-                    webBuilder.UseUrls("http://localhost:")
+                    //webBuilder.UseUrls("http://localhost:")
                 });
     }
 }
