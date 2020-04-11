@@ -28,5 +28,17 @@ namespace watchInfoWebApp.Tools
 
             return claimRole;
         }
+        public string ProjectId(IEnumerable<Claim> claims)
+        {
+            if (claims == null)
+                return "";
+
+            var claimProject = claims
+                .First(claim => claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid").Value;
+
+            return claimProject;
+        }
+
+        
     }
 }

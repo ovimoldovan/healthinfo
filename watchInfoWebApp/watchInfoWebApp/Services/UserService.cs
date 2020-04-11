@@ -43,7 +43,7 @@ namespace watchInfoWebApp.Services
                 if (user == null)
                     return null;
 
-                var userData = new User { Id = user.Id, Username = user.Username, Name = user.Name };
+                var userData = new User { Id = user.Id, Username = user.Username, Name = user.Name, ProjectId = user.ProjectId, Role = user.Role };
 
                 var token = GenerateJSONWebToken(userData);
 
@@ -70,7 +70,9 @@ namespace watchInfoWebApp.Services
             {
                 Subject = new ClaimsIdentity(new Claim[] {
                     new Claim(ClaimTypes.NameIdentifier, userInfo.Id.ToString()),
-                    new Claim(ClaimTypes.Name, userInfo.Username)
+                    new Claim(ClaimTypes.Name, userInfo.Username),
+                    new Claim(ClaimTypes.Role, userInfo.Role ?? "User"),
+                    new Claim(ClaimTypes.GroupSid, userInfo.ProjectId.ToString())
                 }),
                 Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = credentials
@@ -80,36 +82,8 @@ namespace watchInfoWebApp.Services
             return tokenHandler.WriteToken(token);
         }
 
-        /*
-         *             var handler = new JwtSecurityTokenHandler();
-
-            ClaimsIdentity identity = new ClaimsIdentity
-            (
-                new GenericIdentity(userInfo.Username, "Token"),
-                new[]
-                {
-                    new Claim("ID", userInfo.Id.ToString())
-                }
-            );
-
-            var keyByteArray = Encoding.ASCII.GetBytes("securityStringHatzJohnuleJohnutzule");
-
-            var signingKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(keyByteArray);
-            var securityToken = handler.CreateToken(new SecurityTokenDescriptor
-            {
-                Issuer = "Issuer",
-                Audience = "Audience",
-                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
-                Subject = identity,
-                Expires = DateTime.Now.Add(TimeSpan.FromDays(1)),
-                NotBefore = DateTime.Now
-            });
-            return handler.WriteToken(securityToken);
-            */
-
         public async Task<IEnumerable<User>> GetAll()
         {
-            // return users without passwords
             return await Task.Run(() => _users.Select(x => {
                 x.Password = null;
                 return x;

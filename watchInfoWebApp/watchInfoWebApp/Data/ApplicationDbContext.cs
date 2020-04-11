@@ -8,6 +8,7 @@ namespace watchInfoWebApp.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<DataItem> DataItems { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
                    => options.UseSqlite("Data Source=watchInfo.db");

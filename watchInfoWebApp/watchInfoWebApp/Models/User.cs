@@ -13,5 +13,9 @@ namespace watchInfoWebApp.Models
         public string Name { get; set; }
 
         public List<DataItem> DataItems { get; set; }
+
+        public int ProjectId { get; set; }
+
+        public string Role { get; set; }
     }
 }

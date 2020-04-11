@@ -81,6 +81,18 @@ namespace watchInfoWebApp.Controllers
             
             return healthDataItems;
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("getAllData")]
+        public async Task<ActionResult<List<DataItem>>> GetAllDataItems()
+        {
+            var healthDataItems = new List<DataItem>();
+            //var userId = claimsGetter.UserId(User?.Claims);
+
+            healthDataItems = await _context.DataItems.ToListAsync();
+
+            return healthDataItems;
+        }
     }
 }
 

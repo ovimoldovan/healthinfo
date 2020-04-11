@@ -50,6 +50,23 @@ namespace watchInfoWebApp.Migrations
                     b.ToTable("DataItems");
                 });
 
+            modelBuilder.Entity("watchInfoWebApp.Models.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Projects");
+                });
+
             modelBuilder.Entity("watchInfoWebApp.Models.User", b =>
                 {
                     b.Property<long>("Id")
@@ -60,6 +77,12 @@ namespace watchInfoWebApp.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Role")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")
