@@ -1,23 +1,33 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Startup.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/Home.js">
     <Files>
       <File FileName="watchInfoWebApp/Startup.cs" Line="32" Column="59" />
-      <File FileName="watchInfoWebApp/Program.cs" />
+      <File FileName="watchInfoWebApp/Program.cs" Line="18" Column="21" />
       <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" />
       <File FileName="watchInfoWebApp/Models/DataItem.cs" />
       <File FileName="watchInfoWebApp/Models/User.cs" />
       <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" />
       <File FileName="watchInfoWebApp/ViewModels/RegisterViewModel.cs" />
       <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" />
+      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" Line="16" Column="38" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" Line="35" Column="40" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="watchInfoWebApp" expanded="True">
             <Node name="watchInfoWebApp" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="UserController.cs" selected="True" />
+              <Node name="ClientApp" expanded="True">
+                <Node name="src" expanded="True">
+                  <Node name="components" expanded="True">
+                    <Node name="Home.js" selected="True" />
+                  </Node>
+                  <Node name="services" expanded="True" />
+                </Node>
               </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />

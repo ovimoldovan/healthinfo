@@ -21,7 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //guard let _ = (scene as? UIWindowScene) else { return }
         
         let viewController = WatchConnectivityProvider()
-        let contentView = ContentView().environmentObject(viewController)
+        let userSettings = UserSettings()
+        let contentView = ContentView()
+            .environmentObject(viewController)
+            .environmentObject(userSettings)
+        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)

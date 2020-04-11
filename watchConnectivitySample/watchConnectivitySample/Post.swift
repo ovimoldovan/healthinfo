@@ -10,14 +10,17 @@ import SwiftUI
 
 struct Post: View {
     @State var bpm = ""
+    @State var token = ""
     let url = URL(string: "http://192.168.0.111:5000/Api/DataItem")
     var body: some View {
         Form{
+            TextField("token",text: $token)
             TextField("BPM",text: $bpm)
             Button(action: {
                 var request = URLRequest(url: self.url!)
                 request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
                 request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+                request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
                 request.httpMethod = "POST"
                 
                 let json = [

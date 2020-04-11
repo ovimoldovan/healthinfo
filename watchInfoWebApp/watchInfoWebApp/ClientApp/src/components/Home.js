@@ -34,7 +34,13 @@ export class Home extends Component {
           <ul>
             {dataItems.map((dataItems, index) => (
               <li key={dataItems.id}>
-                {"BPM: " + dataItems.heartBpm + " at " + dataItems.sentDate}
+                    <ul>
+                        <li> {"BPM: " + dataItems.heartBpm} </li>
+                        <li> {"Date: " + dataItems.sentDate} </li>
+                        <li> {"Position: " + dataItems.gpsCoordinates} </li>
+                        <li> {"Steps: " + dataItems.steps} </li>
+                        <li> {"Distance: " + dataItems.distance} </li>
+                    </ul>
               </li>
             ))}
           </ul>

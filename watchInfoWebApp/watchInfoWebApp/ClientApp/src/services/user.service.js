@@ -13,7 +13,7 @@ function login(username, password) {
     body: JSON.stringify({ username, password }),
   };
 
-  return fetch(`http://localhost:11940/Api/User/login`, requestOptions)
+  return fetch(`http://localhost:5000/Api/User/login`, requestOptions)
     .then(handleResponse)
     .then((user) => {
       // login successful if there's a user in the response
@@ -42,7 +42,7 @@ function getAll() {
 
   console.log(authHeader());
 
-  return fetch(`http://localhost:11940/Api/DataItem/`, requestOptions).then(
+  return fetch(`http://localhost:5000/Api/DataItem/`, requestOptions).then(
     handleResponse
   );
 }

@@ -11,6 +11,8 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     
     var filePath = InterfaceController.returnDocumentsDirectoryUrl().appendingPathComponent("output.txt")
     
+    let url = URL(string: "http://192.168.0.111:5000/Api/DataItem")
+    
     //Location related
     let locationManager = CLLocationManager()
     var gpsCoords: String = ""
@@ -50,6 +52,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     private var distance: String = "0"
     private var steps: String = "0"
     @IBOutlet weak var distanceLabel: WKInterfaceLabel!
+    var token: String = ""
     
     
     @IBAction func startLogging() {
@@ -326,6 +329,30 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                         fileUpdater.closeFile()
                     }
                     print(String(lastHeartRate) + ", " + dateString)
+                    
+                    //SENDING DATA TO SERVER
+                    var request = URLRequest(url: self.url!)
+                    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+                    request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
+                    request.httpMethod = "POST"
+                    
+                    let json = [
+                        "heartBpm": lastHeartRate as NSNumber,
+                        "gpsCoordinates": (self.gpsCoords) as NSString,
+                        "steps": (steps as NSString).integerValue as NSNumber,
+                        "distance": (distance as NSString).integerValue as NSNumber
+                        ] as [String : Any]
+                    
+                    if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
+                        URLSession.shared.uploadTask(with: request, from: jsonData){ data, response, error in
+                            print("print action")
+                            if let httpResponse = response as? HTTPURLResponse{
+                                print(httpResponse.statusCode)
+                                print(httpResponse.allHeaderFields)
+                            }
+                        }.resume()
+                    }
                 }
             }
         }
@@ -398,7 +425,18 @@ class WorkoutSessionContext {
 extension WorkoutInterfaceController: WCSessionDelegate {
 
 func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    
 }
+func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+    print("received message: \(message)")
+    DispatchQueue.main.async { //6
+      if let value = message["Bearer "] as? String {
+        //self.label.text = value
+        print(value)
+        self.token = value
+      }
+    }
+  }
 }
 
 

@@ -10,15 +10,22 @@ import SwiftUI
 import WatchConnectivity
 
 
+class UserSettings: ObservableObject {
+    @Published var token = ""
+}
+
 var fileContents: String = "empty"
 
 
 struct ContentView: View {
     //@State var status: String = "not received"
     @EnvironmentObject var wcProvider: WatchConnectivityProvider
+    @EnvironmentObject var userSettings: UserSettings
     
     @State var status = "not received"
     @State var fileContents = "empty file"
+    @State var name = "anonymous"
+    //@State var token = "token"
     
     
     @State private var showShareSheet = false
@@ -27,7 +34,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
         VStack{
+            Text("Logged in as: " + self.name)
             Text("Status: " + self.status)
+            Text("Token: " + self.userSettings.token)
             
             NavigationLink(destination: Post())
             {
@@ -60,9 +69,15 @@ struct ContentView: View {
                 Text("Share file")
             }
             
-            NavigationLink(destination: Login()){
+            NavigationLink(destination: Login().environmentObject(self.userSettings)){
                 Text("Login")
                 .bold()
+            }
+            Button(action:{
+                self.wcProvider.token = self.userSettings.token
+                self.wcProvider.sendTokenToWatch()
+            }){
+                Text("send token to watch")
             }
             
             List{
@@ -121,6 +136,7 @@ final class WatchConnectivityProvider: NSObject, WCSessionDelegate, ObservableOb
     var session: WCSession!
     @Published public var status: String = ""
     @Published public var fileContents: String = ""
+    @Published public var token: String = ""
     public var fileURLstring: String = ""
  
     init(session: WCSession = .default) {
@@ -136,6 +152,11 @@ final class WatchConnectivityProvider: NSObject, WCSessionDelegate, ObservableOb
             session.delegate = self
             session.activate()
         }
+    }
+    
+    func sendTokenToWatch(){
+        let data: [String: Any] = ["Bearer ": self.token as Any]
+        session.sendMessage(data, replyHandler: nil, errorHandler: nil)
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
