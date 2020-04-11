@@ -9,8 +9,8 @@ using watchInfoWebApp.Data;
 namespace watchInfoWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200322212413_InitialMigration4")]
-    partial class InitialMigration4
+    [Migration("20200411123527_AddDateToDataItem")]
+    partial class AddDateToDataItem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,15 +33,21 @@ namespace watchInfoWebApp.Migrations
                     b.Property<int>("HeartBpm")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("SentDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Steps")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("UserId1")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("DataItems");
                 });
@@ -68,9 +74,9 @@ namespace watchInfoWebApp.Migrations
 
             modelBuilder.Entity("watchInfoWebApp.Models.DataItem", b =>
                 {
-                    b.HasOne("watchInfoWebApp.Models.User", "User")
+                    b.HasOne("watchInfoWebApp.Models.User", null)
                         .WithMany("DataItems")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

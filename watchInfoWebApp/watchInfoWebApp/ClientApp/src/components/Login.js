@@ -50,12 +50,7 @@ export class Login extends Component {
   render() {
     const { username, password, submitted, loading, error } = this.state;
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <div className="alert alert-info">
-          Username: test
-          <br />
-          Password: test
-        </div>
+      <div className="col-md-12 col-md-offset-3">
         <h2>Login</h2>
         <form name="form" onSubmit={this.handleSubmit}>
           <div

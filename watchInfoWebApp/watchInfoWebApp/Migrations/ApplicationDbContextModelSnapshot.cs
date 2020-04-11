@@ -31,15 +31,21 @@ namespace watchInfoWebApp.Migrations
                     b.Property<int>("HeartBpm")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("SentDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Steps")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("UserId1")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("DataItems");
                 });
@@ -66,9 +72,9 @@ namespace watchInfoWebApp.Migrations
 
             modelBuilder.Entity("watchInfoWebApp.Models.DataItem", b =>
                 {
-                    b.HasOne("watchInfoWebApp.Models.User", "User")
+                    b.HasOne("watchInfoWebApp.Models.User", null)
                         .WithMany("DataItems")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

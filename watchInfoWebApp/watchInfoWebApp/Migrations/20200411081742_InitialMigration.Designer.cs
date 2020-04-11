@@ -9,8 +9,8 @@ using watchInfoWebApp.Data;
 namespace watchInfoWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200322190353_InitialMigration3")]
-    partial class InitialMigration3
+    [Migration("20200411081742_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,12 +36,15 @@ namespace watchInfoWebApp.Migrations
                     b.Property<int>("Steps")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("UserId")
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("UserId1")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("DataItems");
                 });
@@ -51,6 +54,9 @@ namespace watchInfoWebApp.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
@@ -65,9 +71,9 @@ namespace watchInfoWebApp.Migrations
 
             modelBuilder.Entity("watchInfoWebApp.Models.DataItem", b =>
                 {
-                    b.HasOne("watchInfoWebApp.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.HasOne("watchInfoWebApp.Models.User", null)
+                        .WithMany("DataItems")
+                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,6 +7,7 @@ import { Counter } from "./components/Counter";
 import { Login } from "./components/Login";
 import { userService } from "./services/user.service";
 import { PrivateRoute } from "./components/PrivateRoute";
+import { PostItemData } from "./components/PostItemData";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -15,6 +16,7 @@ export default class App extends Component {
     return (
       <Layout>
         <PrivateRoute exact path="/" component={Home} />
+        <Route path="/PostItemData" component={PostItemData} />
         <Route path="/login" component={Login} />
       </Layout>
     );

@@ -42,7 +42,7 @@ function getAll() {
 
   console.log(authHeader());
 
-  return fetch(`http://localhost:11940/Api/User/`, requestOptions).then(
+  return fetch(`http://localhost:11940/Api/DataItem/`, requestOptions).then(
     handleResponse
   );
 }

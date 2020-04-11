@@ -70,6 +70,11 @@ export class NavMenu extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/PostItemData">
+                    Post Item
+                  </NavLink>
+                </NavItem>
+                <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/login">
                     {user == null ? "Logout" : "Login"}
                   </NavLink>
