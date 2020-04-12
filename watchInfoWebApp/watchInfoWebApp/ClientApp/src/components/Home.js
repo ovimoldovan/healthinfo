@@ -24,7 +24,6 @@ export class Home extends Component {
 
   render() {
     const { user, dataItems } = this.state;
-    console.log(user);
     return (
       <div className="col-md-6 col-md-offset-3">
         <h1>Hi, {user.name}!</h1>
@@ -34,13 +33,13 @@ export class Home extends Component {
           <ul>
             {dataItems.map((dataItems, index) => (
               <li key={dataItems.id}>
-                    <ul>
-                        <li> {"BPM: " + dataItems.heartBpm} </li>
-                        <li> {"Date: " + dataItems.sentDate} </li>
-                        <li> {"Position: " + dataItems.gpsCoordinates} </li>
-                        <li> {"Steps: " + dataItems.steps} </li>
-                        <li> {"Distance: " + dataItems.distance} </li>
-                    </ul>
+                <ul>
+                  <li> {"BPM: " + dataItems.heartBpm} </li>
+                  <li> {"Date: " + dataItems.sentDate} </li>
+                  <li> {"Position: " + dataItems.gpsCoordinates} </li>
+                  <li> {"Steps: " + dataItems.steps} </li>
+                  <li> {"Distance: " + dataItems.distance} </li>
+                </ul>
               </li>
             ))}
           </ul>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
@@ -28,15 +29,15 @@ namespace watchInfoWebApp.Tools
 
             return claimRole;
         }
-        public string ProjectId(IEnumerable<Claim> claims)
+        public int ProjectId(IEnumerable<Claim> claims)
         {
             if (claims == null)
-                return "";
+                return 0;
 
             var claimProject = claims
                 .First(claim => claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid").Value;
 
-            return claimProject;
+            return Int32.Parse(claimProject);
         }
 
         

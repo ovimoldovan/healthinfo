@@ -31,7 +31,6 @@ namespace watchInfoWebApp.Controllers
                 _context.DataItems.Add(new DataItem
                 {
                     HeartBpm = 80,
-                    //User = context.Users.FirstOrDefault( x => x.Id == 1)
                 });
                 _context.SaveChanges();
             }

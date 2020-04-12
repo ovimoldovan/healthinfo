@@ -16,6 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using watchInfoWebApp.Data;
 using watchInfoWebApp.Models;
 using watchInfoWebApp.Services;
+using watchInfoWebApp.Tools;
 using watchInfoWebApp.ViewModels;
 
 namespace watchInfoWebApp.Controllers
@@ -31,6 +32,8 @@ namespace watchInfoWebApp.Controllers
 
         private IConfiguration _config;
         private IUserService _userService;
+
+        private ClaimsGetter claimsGetter = new ClaimsGetter();
 
         public UserController(ILogger<UserController> logger, ApplicationDbContext context, IConfiguration config, IUserService userService)
         {
@@ -105,6 +108,17 @@ namespace watchInfoWebApp.Controllers
         {
             var users = await _userService.GetAll();
             return Ok(users);
+        }
+
+        [HttpPut("changeProject/{newProjectId}")]
+        public async Task<IActionResult> ChangeMyProject(int newProjectId)
+        {
+            var oldProjectId = claimsGetter.ProjectId(User?.Claims);
+            var userId = claimsGetter.UserId(User?.Claims);
+            var user = await _context.Users.SingleAsync(x => x.Id == userId);
+            user.ProjectId = newProjectId;
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }

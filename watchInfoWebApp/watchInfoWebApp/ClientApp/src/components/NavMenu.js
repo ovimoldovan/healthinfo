@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
+import { userService } from "../services/user.service";
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -20,8 +21,9 @@ export class NavMenu extends Component {
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
       collapsed: true,
-      user: null,
+      user: {},
     };
+    this.update = this.update.bind(this);
   }
 
   toggleNavbar() {
@@ -31,12 +33,25 @@ export class NavMenu extends Component {
   }
 
   componentDidMount() {
-    this.setState({ user: JSON.parse(localStorage.getItem("user")) });
+    this.setState({
+      user: JSON.parse(localStorage.getItem("user")),
+    });
+  }
+
+  update() {
+    this.setState({
+      user: JSON.parse(localStorage.getItem("user")),
+    });
+  }
+
+  logout() {
+    localStorage.removeItem("user");
   }
 
   render() {
-    const user = this.state;
-    console.log(user);
+    const userStatus = this.state;
+    var isAuth;
+    console.log(userStatus);
     return (
       <header>
         <Navbar
@@ -60,8 +75,12 @@ export class NavMenu extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/counter">
-                    Counter
+                  <NavLink tag={Link} className="text-dark" to="/AdminPanel">
+                    {userStatus.user != null
+                      ? userStatus.user.role == "Admin"
+                        ? "Admin Panel"
+                        : null
+                      : null}
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -75,8 +94,13 @@ export class NavMenu extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/login">
-                    {user == null ? "Logout" : "Login"}
+                  <NavLink
+                    tag={Link}
+                    className="text-dark"
+                    to="/login"
+                    onClick={() => this.update()}
+                  >
+                    {localStorage.getItem("user") ? "Logout" : "Login"}
                   </NavLink>
                 </NavItem>
               </ul>

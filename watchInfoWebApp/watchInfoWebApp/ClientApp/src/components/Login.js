@@ -30,7 +30,6 @@ export class Login extends Component {
     this.setState({ submitted: true });
     const { username, password, returnUrl } = this.state;
     console.log(username, password);
-    // stop here if form is invalid
     if (!(username && password)) {
       return;
     }

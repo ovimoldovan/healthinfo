@@ -39,7 +39,6 @@ namespace watchInfoWebApp.Services
             {
                 var user = await Task.Run(() => _users.SingleOrDefault(x => x.Username == username && x.Password == password));
 
-                // return null if user not found
                 if (user == null)
                     return null;
 
@@ -51,7 +50,8 @@ namespace watchInfoWebApp.Services
                 {
                     Token = token,
                     Username = user.Username,
-                    Name = user.Name
+                    Name = user.Name,
+                    Role = user.Role                    
                 };
             }
             catch

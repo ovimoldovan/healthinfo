@@ -4,6 +4,8 @@ export const userService = {
   login,
   logout,
   getAll,
+  getAllProjects,
+  getCurrentProject,
 };
 
 function login(username, password) {
@@ -13,13 +15,11 @@ function login(username, password) {
     body: JSON.stringify({ username, password }),
   };
 
-  return fetch(`http://localhost:5000/Api/User/login`, requestOptions)
+  return fetch(`http://localhost:11940/Api/User/login`, requestOptions)
     .then(handleResponse)
     .then((user) => {
-      // login successful if there's a user in the response
       if (user) {
-        // store user details and basic auth credentials in local storage
-        // to keep user logged in between page refreshes
+        user.loggedIn = true;
         user.authdata = window.btoa(username + ":" + password);
         localStorage.setItem("user", JSON.stringify(user));
         console.log(user);
@@ -30,7 +30,6 @@ function login(username, password) {
 }
 
 function logout() {
-  // remove user from local storage to log user out
   localStorage.removeItem("user");
 }
 
@@ -40,11 +39,33 @@ function getAll() {
     headers: authHeader(),
   };
 
-  console.log(authHeader());
-
-  return fetch(`http://localhost:5000/Api/DataItem/`, requestOptions).then(
+  return fetch(`http://localhost:11940/Api/DataItem/`, requestOptions).then(
     handleResponse
   );
+}
+
+function getAllProjects() {
+  const requestOptions = {
+    method: "GET",
+    headers: authHeader(),
+  };
+
+  return fetch(
+    `http://localhost:11940/Api/Project/getAllData`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function getCurrentProject() {
+  const requestOptions = {
+    method: "GET",
+    headers: authHeader(),
+  };
+
+  return fetch(
+    `http://localhost:11940/Api/Project/currentProject`,
+    requestOptions
+  ).then(handleResponse);
 }
 
 function handleResponse(response) {
