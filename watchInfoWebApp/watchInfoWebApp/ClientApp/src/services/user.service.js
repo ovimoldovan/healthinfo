@@ -6,6 +6,7 @@ export const userService = {
   getAll,
   getAllProjects,
   getCurrentProject,
+  getCurrentDataItem,
 };
 
 function login(username, password) {
@@ -39,9 +40,7 @@ function getAll() {
     headers: authHeader(),
   };
 
-  return fetch(`Api/DataItem/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`Api/DataItem/`, requestOptions).then(handleResponse);
 }
 
 function getAllProjects() {
@@ -50,10 +49,7 @@ function getAllProjects() {
     headers: authHeader(),
   };
 
-  return fetch(
-    `Api/Project/getAllData`,
-    requestOptions
-  ).then(handleResponse);
+  return fetch(`Api/Project/getAllData`, requestOptions).then(handleResponse);
 }
 
 function getCurrentProject() {
@@ -62,10 +58,18 @@ function getCurrentProject() {
     headers: authHeader(),
   };
 
-  return fetch(
-    `Api/Project/currentProject`,
-    requestOptions
-  ).then(handleResponse);
+  return fetch(`Api/Project/currentProject`, requestOptions).then(
+    handleResponse
+  );
+}
+
+function getCurrentDataItem(id) {
+  const requestOptions = {
+    method: "GET",
+    headers: authHeader(),
+  };
+
+  return fetch(`Api/DataItem/` + id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

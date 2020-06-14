@@ -7,6 +7,7 @@ import { AdminPanel } from "./components/AdminPanel";
 import { Login } from "./components/Login";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { PostItemData } from "./components/PostItemData";
+import { PositionData } from "./components/PositionData";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -17,6 +18,7 @@ export default class App extends Component {
         <PrivateRoute exact path="/" component={Home} />
         <Route path="/AdminPanel" component={AdminPanel} />
         <Route path="/Fetch-Data" component={FetchData} />
+        <Route path="/Position-Data" component={PositionData} />
         <Route path="/PostItemData" component={PostItemData} />
         <Route path="/login" component={Login} />
       </Layout>

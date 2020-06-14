@@ -90,7 +90,12 @@ export class NavMenu extends Component {
                 </NavItem>
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/PostItemData">
-                    Post Item
+                    {userStatus.user != null ? "Post Item" : null}
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/Position-Data">
+                    {userStatus.user != null ? "Position Map" : null}
                   </NavLink>
                 </NavItem>
                 <NavItem>

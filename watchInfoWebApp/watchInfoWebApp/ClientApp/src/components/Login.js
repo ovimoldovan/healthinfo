@@ -26,7 +26,7 @@ export class Login extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    //e.preventDefault();
     this.setState({ submitted: true });
     const { username, password, returnUrl } = this.state;
     console.log(username, password);
