@@ -40,10 +40,7 @@ export class AdminPanel extends Component {
 
     console.log(requestOptions);
 
-    return fetch(
-      `http://localhost:11940/Api/Project/newProject`,
-      requestOptions
-    ).then(
+    return fetch(`Api/Project/newProject`, requestOptions).then(
       userService
         .getAllProjects()
         .then((projects) => this.setState({ projects }))
@@ -67,10 +64,7 @@ export class AdminPanel extends Component {
 
     console.log(requestOptions);
 
-    return fetch(
-      `http://localhost:11940/Api/User/changeProject/` + projectId,
-      requestOptions
-    ).then(
+    return fetch(`Api/User/changeProject/` + projectId, requestOptions).then(
       userService
         .getCurrentProject()
         .then((project) =>

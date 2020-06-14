@@ -1,33 +1,24 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/Home.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Controllers/GeneralController.cs">
     <Files>
       <File FileName="watchInfoWebApp/Startup.cs" Line="32" Column="59" />
-      <File FileName="watchInfoWebApp/Program.cs" Line="18" Column="21" />
-      <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" />
-      <File FileName="watchInfoWebApp/Models/DataItem.cs" />
-      <File FileName="watchInfoWebApp/Models/User.cs" />
-      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" />
-      <File FileName="watchInfoWebApp/ViewModels/RegisterViewModel.cs" />
-      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" />
-      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" Line="16" Column="38" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" Line="35" Column="40" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="18" Column="32" />
+      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" />
+      <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="watchInfoWebApp" expanded="True">
             <Node name="watchInfoWebApp" expanded="True">
-              <Node name="ClientApp" expanded="True">
-                <Node name="src" expanded="True">
-                  <Node name="components" expanded="True">
-                    <Node name="Home.js" selected="True" />
-                  </Node>
-                  <Node name="services" expanded="True" />
-                </Node>
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
               </Node>
-              <Node name="Controllers" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="GeneralController.cs" selected="True" />
+              </Node>
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
@@ -40,7 +31,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

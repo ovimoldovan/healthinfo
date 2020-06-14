@@ -1,59 +1,47 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export class FetchData extends Component {
   static displayName = FetchData.name;
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { hour: [], loading: true };
   }
 
   componentDidMount() {
-    this.populateWeatherData();
+    this.populateHourData();
   }
 
-  static renderForecastsTable(forecasts) {
-    return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    );
+  static renderHour(hour) {
+    return <p>{hour}</p>;
   }
 
   render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+    var contents = this.state.loading ? (
+      <p>
+        <em>Loading...</em>
+      </p>
+    ) : (
+      FetchData.renderHour(this.state.hour)
+    );
+
+    var dateContents = new Date(this.state.hour).toDateString();
+    var hourContents = new Date(this.state.hour).toLocaleTimeString();
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
-        {contents}
+        <h1 id="tabelLabel">Server date</h1>
+        <p>Fetching the server current date.</p>
+        {dateContents}
+        <br />
+        {hourContents}
       </div>
     );
   }
 
-  async populateWeatherData() {
-    const response = await fetch('weatherforecast');
+  async populateHourData() {
+    const response = await fetch("Api/General/hour");
     const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
+    this.setState({ hour: data, loading: false });
   }
 }

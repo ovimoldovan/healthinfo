@@ -32,7 +32,7 @@ export class PostItemData extends Component {
 
     console.log(requestOptions);
 
-    return fetch(`http://localhost:11940/Api/DataItem`, requestOptions);
+    return fetch(`Api/DataItem`, requestOptions);
   }
 
   render() {

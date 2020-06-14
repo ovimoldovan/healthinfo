@@ -15,7 +15,7 @@ function login(username, password) {
     body: JSON.stringify({ username, password }),
   };
 
-  return fetch(`http://localhost:11940/Api/User/login`, requestOptions)
+  return fetch(`Api/User/login`, requestOptions)
     .then(handleResponse)
     .then((user) => {
       if (user) {
@@ -39,7 +39,7 @@ function getAll() {
     headers: authHeader(),
   };
 
-  return fetch(`http://localhost:11940/Api/DataItem/`, requestOptions).then(
+  return fetch(`Api/DataItem/`, requestOptions).then(
     handleResponse
   );
 }
@@ -51,7 +51,7 @@ function getAllProjects() {
   };
 
   return fetch(
-    `http://localhost:11940/Api/Project/getAllData`,
+    `Api/Project/getAllData`,
     requestOptions
   ).then(handleResponse);
 }
@@ -63,7 +63,7 @@ function getCurrentProject() {
   };
 
   return fetch(
-    `http://localhost:11940/Api/Project/currentProject`,
+    `Api/Project/currentProject`,
     requestOptions
   ).then(handleResponse);
 }
