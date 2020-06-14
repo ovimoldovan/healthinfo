@@ -148,6 +148,8 @@ export class AdminPanel extends Component {
             Submit{" "}
           </button>
         </form>
+
+        <h6> See items per project </h6>
       </div>
     );
   }

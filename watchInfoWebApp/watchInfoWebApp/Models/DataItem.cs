@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+
 namespace watchInfoWebApp.Models
 {
     public class DataItem
@@ -10,5 +12,8 @@ namespace watchInfoWebApp.Models
         public int Steps { get; set; }
         public double Distance { get; set; }
         public DateTime SentDate { get; set; }
+        public string Device { get; set; }
+        [DefaultValue(0)]
+        public int ProjectId { get; set; }
     }
 }

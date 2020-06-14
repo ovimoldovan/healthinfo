@@ -1,14 +1,24 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Controllers/DataItemController.cs">
     <Files>
-      <File FileName="watchInfoWebApp/Startup.cs" Line="32" Column="59" />
-      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="18" Column="32" />
+      <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="9" Column="40" IsPinned="True" />
+      <File FileName="watchInfoWebApp/Startup.cs" />
+      <File FileName="watchInfoWebApp/Controllers/UserController.cs" />
       <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" />
-      <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" Line="14" Column="13" />
-      <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" Line="50" Column="1" />
-      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="60" Column="56" />
+      <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" />
+      <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" />
+      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="108" Column="43" />
+      <File FileName="watchInfoWebApp/Migrations/20200614164133_UpdateToDataItem.cs" />
+      <File FileName="watchInfoWebApp/Models/Project.cs" />
+      <File FileName="watchInfoWebApp/Models/User.cs" />
+      <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" />
+      <File FileName="watchInfoWebApp/Migrations/20200411081742_InitialMigration.cs" />
+      <File FileName="watchInfoWebApp/Migrations/20200411123527_AddDateToDataItem.cs" />
+      <File FileName="watchInfoWebApp/Migrations/20200411221338_AddProjects.cs" />
+      <File FileName="watchInfoWebApp/Migrations/20200412105431_ProjectCreatedBy.cs" />
+      <File FileName="watchInfoWebApp/Migrations/ApplicationDbContextModelSnapshot.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

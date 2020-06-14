@@ -92,6 +92,53 @@ namespace watchInfoWebApp.Controllers
 
             return healthDataItems;
         }
+
+        [HttpGet("getProjectData/{id}")]
+        public async Task<ActionResult<List<DataItemJoinDto>>> GetProjectDataItem(long id)
+        {
+            //var healthDataItems = new List<DataItem>();
+
+            //var healthDataItems = _context.DataItems
+            //    .FromSqlRaw("SELECT DataItems.Id, HeartBpm, Device, Distance, Steps, SentDate, GpsCoordinates, UserId, UserId1, ProjectId FROM DataItems JOIN Projects ON DataItems.ProjectId = Projects.Id WHERE DataItems.ProjectId = {0}", id)
+            //    .AsNoTracking()
+            //    .ToList();
+
+            var healthDataItems = from dataItem in _context.DataItems
+                                  join project in _context.Projects
+                                    on dataItem.ProjectId equals project.Id into DataItemJoinDto
+                                    from defaultValue in DataItemJoinDto.DefaultIfEmpty()
+                                  where dataItem.ProjectId == id
+                                 select new DataItemJoinDto
+                                 {
+                                     Id = dataItem.Id,
+                                     UserId = dataItem.UserId,
+                                     HeartBpm = dataItem.HeartBpm,
+                                     GpsCoordinates = dataItem.GpsCoordinates,
+                                     Steps = dataItem.Steps,
+                                     Distance = dataItem.Distance,
+                                     SentDate = dataItem.SentDate,
+                                     ProjectId = dataItem.ProjectId,
+                                     ProjectName = defaultValue.Name
+                                 };
+
+
+            return await healthDataItems.ToListAsync();
+        }
+    }
+
+    public class DataItemJoinDto
+    {
+        public long Id { get; set; }
+        public int UserId { get; set; }
+        public int HeartBpm { get; set; }
+        public string GpsCoordinates { get; set; }
+        public int Steps { get; set; }
+        public double Distance { get; set; }
+        public DateTime SentDate { get; set; }
+        public string Device { get; set; }
+        public int ProjectId { get; set; }
+        public string ProjectName { get; set; }
+
     }
 }
 
