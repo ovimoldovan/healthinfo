@@ -7,6 +7,9 @@ export const userService = {
   getAllProjects,
   getCurrentProject,
   getCurrentDataItem,
+  getProjectDataById,
+  deleteDataItemById,
+  getProjectDataWithUserById,
 };
 
 function login(username, password) {
@@ -61,6 +64,38 @@ function getCurrentProject() {
   return fetch(`Api/Project/currentProject`, requestOptions).then(
     handleResponse
   );
+}
+
+function getProjectDataById(id) {
+  const requestOptions = {
+    method: "GET",
+    headers: authHeader(),
+  };
+
+  return fetch(`Api/DataItem/getProjectData/` + id, requestOptions).then(
+    handleResponse
+  );
+}
+
+function getProjectDataWithUserById(id) {
+  const requestOptions = {
+    method: "GET",
+    headers: authHeader(),
+  };
+
+  return fetch(
+    `Api/DataItem/getProjectDataWithUser/` + id,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function deleteDataItemById(id) {
+  const requestOptions = {
+    method: "DELETE",
+    headers: authHeader(),
+  };
+
+  return fetch(`Api/DataItem/` + id, requestOptions).then(handleResponse);
 }
 
 function getCurrentDataItem(id) {

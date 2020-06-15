@@ -42,8 +42,10 @@ namespace watchInfoWebApp.Controllers
         {
 
             var userId = claimsGetter.UserId(User?.Claims);
+            var projectId = _context.Users.Where(x => x.Id == userId).Select(x => x.ProjectId).FirstOrDefault();
             healthDataItem.UserId = userId;
             healthDataItem.SentDate = DateTime.Now;
+            healthDataItem.ProjectId = projectId;
             _context.DataItems.Add(healthDataItem);
             await _context.SaveChangesAsync();
 
@@ -79,6 +81,26 @@ namespace watchInfoWebApp.Controllers
             healthDataItems = await _context.DataItems.Where(x => x.UserId == userId).ToListAsync();
             
             return healthDataItems;
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<DataItem>>> DeleteMyDataItem(long id)
+        {
+            var healthDataItem = new DataItem();
+            var userId = claimsGetter.UserId(User?.Claims);
+            var userRole = claimsGetter.UserRole(User?.Claims);
+
+            //The user can delete only his data unless he is admin
+            healthDataItem = await _context.DataItems.Where(x => x.Id == id && (x.UserId == userId || userRole == "Admin")).FirstOrDefaultAsync();
+
+            if(healthDataItem != null)
+            {
+                _context.DataItems.Remove(healthDataItem);
+                await _context.SaveChangesAsync();
+            }
+
+            return NoContent();
         }
 
         [Authorize(Roles = "Admin")]
@@ -124,7 +146,33 @@ namespace watchInfoWebApp.Controllers
 
             return await healthDataItems.ToListAsync();
         }
+
+        [HttpGet("getProjectDataWithUser/{id}")]
+        public async Task<ActionResult<DataItemWithUserDto>> GetProjectDataItemWithUser(long id)
+        {
+
+            var healthDataItems = from dataItem in _context.DataItems
+                                  join user in _context.Users
+                                    on dataItem.UserId equals user.Id into DataItemWithUserDto
+                                  from defaultValue in DataItemWithUserDto.DefaultIfEmpty()
+                                  where dataItem.Id == id
+                                  select new DataItemWithUserDto
+                                  {
+                                      Id = dataItem.Id,
+                                      UserId = dataItem.UserId,
+                                      HeartBpm = dataItem.HeartBpm,
+                                      GpsCoordinates = dataItem.GpsCoordinates,
+                                      Steps = dataItem.Steps,
+                                      Distance = dataItem.Distance,
+                                      SentDate = dataItem.SentDate,
+                                      Name = defaultValue.Name
+                                  };
+
+
+            return await healthDataItems.FirstOrDefaultAsync();
+        }
     }
+
 
     public class DataItemJoinDto
     {
@@ -139,6 +187,19 @@ namespace watchInfoWebApp.Controllers
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
 
+    }
+
+    public class DataItemWithUserDto
+    {
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public int UserId { get; set; }
+        public int HeartBpm { get; set; }
+        public string GpsCoordinates { get; set; }
+        public int Steps { get; set; }
+        public double Distance { get; set; }
+        public DateTime SentDate { get; set; }
+        public string Device { get; set; }
     }
 }
 

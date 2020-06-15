@@ -29,6 +29,17 @@ export class Home extends Component {
     return dayString + " " + hourString;
   }
 
+  deleteDataItem(id) {
+    var dataItems = this.state.dataItems.filter((item) => item.id !== id);
+
+    this.setState({ dataItems });
+
+    userService.deleteDataItemById(id);
+    /*.then(
+        userService.getAll().then((dataItems) => this.setState({ dataItems }))
+      ); */
+  }
+
   render() {
     const { user, dataItems } = this.state;
     return (
@@ -46,6 +57,7 @@ export class Home extends Component {
                 <th>Steps</th>
                 <th>Distance</th>
                 <th>Device</th>
+                <th>Controls</th>
               </tr>
             </thead>
             <tbody>
@@ -57,6 +69,14 @@ export class Home extends Component {
                   <td>{dataItems.steps}</td>
                   <td>{dataItems.distance}</td>
                   <td>{dataItems.device}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => this.deleteDataItem(dataItems.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -4,11 +4,54 @@ a {
 }
 
 code {
-  color: #E01A76;
+  color: #e01a76;
 }
 
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.grayOne {
+  margin: 10px;
+  padding: 30px;
+  background-color: #dddddd;
+  border: 5px solid #777777;
+  border-radius: 10px;
+}
+.grayTwo {
+  margin: 10px;
+  padding: 30px;
+  background-color: #eeeeee;
+  border: 5px solid #555555;
+  border-radius: 10px;
+}
+
+.projectButton {
+  color: white;
+  background-color: #1b6ec2;
+  border-radius: 25px;
+}
+
+.adminTable {
+  height: 500px;
+  overflow: auto;
+}
+
+button {
+  margin: 5px;
+}
+
+input {
+  margin: 5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 5px;
 }
