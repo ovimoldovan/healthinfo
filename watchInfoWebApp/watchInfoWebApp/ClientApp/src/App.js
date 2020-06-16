@@ -9,6 +9,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { PostItemData } from "./components/PostItemData";
 import { PositionData } from "./components/PositionData";
 import { Register } from "./components/Register";
+import { About } from "./components/About";
 import "./mainStyle.css";
 
 export default class App extends Component {
@@ -24,6 +25,7 @@ export default class App extends Component {
         <Route path="/PostItemData" component={PostItemData} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        <Route path="/about" component={About} />
       </Layout>
     );
   }

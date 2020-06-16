@@ -87,46 +87,57 @@ export class Register extends Component {
     const { username, password, name, errors, status } = this.state;
     return (
       <div>
-        <h1>Register</h1>
+        <center>
+          <div className="col-md-6" style={{ marginTop: 50 }}>
+            <h1 style={{ marginBottom: 15 }}>Register</h1>
+            <form name="form" onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <input
+                  type="email"
+                  className="form-control"
+                  name="username"
+                  value={username}
+                  onChange={this.handleChange}
+                  placeholder="Username or email"
+                />
+                <span style={{ color: "red" }}>{errors["username"]}</span>
+              </div>
 
-        <form name="form" onSubmit={this.handleSubmit}>
-          <input
-            type="email"
-            className="form-control"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-            placeholder="Username or email"
-          />
-          <span style={{ color: "red" }}>{errors["username"]}</span>
-          <input
-            type="password"
-            className="form-control"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-            placeholder="Password"
-          />
-          <span style={{ color: "red" }}>{errors["password"]}</span>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-            placeholder="Name"
-          />
-          <span style={{ color: "red" }}>{errors["name"]}</span>
-          <br />
-          <input
-            type="submit"
-            onClick={this.handleSubmit}
-            value="Send"
-            className="btn btn-primary"
-            disabled={!this.state.validForm}
-          />
-        </form>
-        <span style={{ color: "green" }}> {status}</span>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  value={password}
+                  onChange={this.handleChange}
+                  placeholder="Password"
+                />
+                <span style={{ color: "red" }}>{errors["password"]}</span>
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  value={name}
+                  onChange={this.handleChange}
+                  placeholder="Name"
+                />
+                <span style={{ color: "red" }}>{errors["name"]}</span>
+              </div>
+              <br />
+              <input
+                type="submit"
+                onClick={this.handleSubmit}
+                value="Send"
+                className="btn btn-primary"
+                disabled={!this.state.validForm}
+              />
+            </form>
+            <span style={{ color: "green" }}> {status}</span>
+          </div>
+        </center>
       </div>
     );
   }

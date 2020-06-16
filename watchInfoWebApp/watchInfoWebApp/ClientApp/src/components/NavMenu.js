@@ -118,6 +118,11 @@ export class NavMenu extends Component {
                     {localStorage.getItem("user") ? null : "Register"}
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} className="text-dark" to="/about">
+                    About
+                  </NavLink>
+                </NavItem>
               </ul>
             </Collapse>
           </Container>

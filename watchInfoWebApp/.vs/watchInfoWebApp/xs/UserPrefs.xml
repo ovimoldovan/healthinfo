@@ -9,7 +9,7 @@
       <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" />
       <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" />
       <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" />
-      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="92" Column="67" />
+      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="92" Column="64" />
       <File FileName="watchInfoWebApp/Migrations/20200614164133_UpdateToDataItem.cs" />
       <File FileName="watchInfoWebApp/Models/Project.cs" />
       <File FileName="watchInfoWebApp/Models/User.cs" />

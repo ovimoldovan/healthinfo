@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { userService } from "../services/user.service";
-
+import { Glyphicon } from "react-bootstrap";
 export class Home extends Component {
   static displayName = Home.name;
 
@@ -51,7 +51,9 @@ export class Home extends Component {
           <table className="table table-striped" aria-labelledby="tabelLabel">
             <thead>
               <tr>
-                <th>BPM</th>
+                <th>
+                  BPM <span className="glyphicon glyphicon-heart"></span>
+                </th>
                 <th>Date</th>
                 <th>Position</th>
                 <th>Steps</th>
@@ -82,9 +84,7 @@ export class Home extends Component {
             </tbody>
           </table>
         )}
-        <p>
-          <Link to="/login">Logout</Link>
-        </p>
+        <p>© 2020 Ovidiu Moldovan</p>
       </div>
     );
   }

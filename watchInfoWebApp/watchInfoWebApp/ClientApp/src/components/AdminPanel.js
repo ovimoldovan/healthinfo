@@ -230,7 +230,7 @@ export class AdminPanel extends Component {
         </div>
         <div className="grayOne col-md-12">
           <h4>Current project: {project.name + ", id: " + project.id}</h4>
-          <button onClick={this.toggleUpdate}> Refresh</button>
+
           <form name="form2" onSubmit={this.handleSubmitProject}>
             <input
               type="text"
@@ -248,9 +248,8 @@ export class AdminPanel extends Component {
               Change project{" "}
             </button>
           </form>
-
-          <h6> See items per project </h6>
         </div>
+        <p>© 2020 Ovidiu Moldovan</p>
       </div>
     );
   }
