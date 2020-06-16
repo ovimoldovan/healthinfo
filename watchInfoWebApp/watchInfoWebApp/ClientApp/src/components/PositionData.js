@@ -85,8 +85,6 @@ export class PositionData extends Component {
               <h4>My data:</h4>
               {dataItems.loading && <em>Loading data...</em>}
               {
-                /*gpsDataSplit[0] != null &&  */
-
                 <Map
                   center={
                     gpsDataSplit[0] != null

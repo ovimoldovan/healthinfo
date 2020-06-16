@@ -41,6 +41,7 @@ export class Login extends Component {
           from: { pathname: "/" },
         };
         this.props.history.push(from);
+        window.location.reload();
       },
       (error) => this.setState({ error, loading: false })
     );

@@ -34,7 +34,14 @@ function login(username, password) {
 }
 
 function logout() {
+  var refresh = false;
+  if (localStorage.getItem("user")) {
+    refresh = true;
+  }
   localStorage.removeItem("user");
+  if (refresh) {
+    window.location.reload();
+  }
 }
 
 function getAll() {

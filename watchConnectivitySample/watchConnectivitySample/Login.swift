@@ -22,12 +22,12 @@ struct Login: View {
     @State var username = ""
     @State var password = ""
     @State var name = "not logged in"
-    let url = URL(string: "http://192.168.0.111:5000/Api/User/login")
+    let url = URL(string: "http://192.168.0.105:5000/Api/User/login")
     var body: some View {
         NavigationView{
             Form{
                 TextField("Username", text: $username)
-                TextField("Password", text: $password)
+                SecureField("Password", text: $password)
                 Button(action: {
                     let loginRequest = [
                         "username" : self.username,

@@ -21,32 +21,34 @@ export class Register extends Component {
     const { name, value } = e.target;
     this.setState((state) => {
       state[name] = value;
-
+      var validUsername;
+      var validPassword;
+      var validName;
       if (state.username == "") {
         state.errors["username"] = "Email can not be null.";
-        state.validForm = false;
+        validUsername = false;
       } else {
         state.errors["username"] = undefined;
-        state.validForm = true;
+        validUsername = true;
       }
 
       if (state.password == "" || state.password.length < 5) {
         state.errors["password"] =
           "The password has to have at least 5 characters.";
-        state.validForm = false;
+        validPassword = false;
       } else {
         state.errors["password"] = undefined;
-        state.validForm = true;
+        validPassword = true;
       }
 
       if (state.name == "") {
         state.errors["name"] = "Name can not be null.";
-        state.validForm = false;
+        validName = false;
       } else {
         state.errors["name"] = undefined;
-        state.validForm = true;
+        validName = true;
       }
-
+      state.validForm = validUsername && validPassword && validName;
       state.status = "";
       return state;
     });
@@ -96,7 +98,7 @@ export class Register extends Component {
             onChange={this.handleChange}
             placeholder="Username or email"
           />
-          <span style={{ color: "red" }}>{errors["email"]}</span>
+          <span style={{ color: "red" }}>{errors["username"]}</span>
           <input
             type="password"
             className="form-control"
