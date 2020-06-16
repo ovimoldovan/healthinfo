@@ -8,6 +8,7 @@ import { Login } from "./components/Login";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { PostItemData } from "./components/PostItemData";
 import { PositionData } from "./components/PositionData";
+import { Register } from "./components/Register";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -21,6 +22,7 @@ export default class App extends Component {
         <Route path="/Position-Data" component={PositionData} />
         <Route path="/PostItemData" component={PostItemData} />
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </Layout>
     );
   }

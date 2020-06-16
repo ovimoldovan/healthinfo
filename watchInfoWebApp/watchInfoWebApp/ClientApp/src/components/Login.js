@@ -26,10 +26,10 @@ export class Login extends Component {
   }
 
   handleSubmit(e) {
-    //e.preventDefault();
+    e.preventDefault();
     this.setState({ submitted: true });
     const { username, password, returnUrl } = this.state;
-    console.log(username, password);
+    //console.log(username, password);
     if (!(username && password)) {
       return;
     }
@@ -66,7 +66,7 @@ export class Login extends Component {
               onChange={this.handleChange}
             />
             {submitted && !username && (
-              <div className="help-block">Username is required</div>
+              <div style={{ color: "red" }}>Username is required</div>
             )}
           </div>
           <div
@@ -83,7 +83,7 @@ export class Login extends Component {
               onChange={this.handleChange}
             />
             {submitted && !password && (
-              <div className="help-block">Password is required</div>
+              <div style={{ color: "red" }}>Password is required</div>
             )}
           </div>
           <div className="form-group">

@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,17 +36,35 @@ namespace watchInfoWebApp.Controllers
             _context = context;
             if (_context.Users.Count() == 0)
             {
-                _context.Users.Add(new User { Username = "admin", Password = "admin" });
+                _context.Users.Add(new User { Username = "admin", Password =  ComputeSha256Hash("admin") });
                 _context.SaveChanges();
             }
             _config = config;
             _userService = userService;
         }
 
+        public static string ComputeSha256Hash(string rawData)
+        {
+            if (string.IsNullOrWhiteSpace(rawData)) throw new ArgumentNullException("The row data cannot be empty.");
 
+            using (SHA256 sha256Hash = SHA256.Create())
+            { 
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    builder.Append(bytes[i].ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
+            user.Password = ComputeSha256Hash(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -87,7 +108,7 @@ namespace watchInfoWebApp.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Authenticate([FromBody]User userParam)
         {
-            var user = await _userService.Authenticate(userParam.Username, userParam.Password);
+            var user = await _userService.Authenticate(userParam.Username, ComputeSha256Hash(userParam.Password));
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });

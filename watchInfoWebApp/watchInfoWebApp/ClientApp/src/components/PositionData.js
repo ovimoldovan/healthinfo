@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { userService } from "../services/user.service";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import MapComponent from "./MapComponent";
 import Map from "pigeon-maps";
 import Marker from "pigeon-marker";
-import Overlay from "pigeon-overlay";
 
 export class PositionData extends Component {
   static displayName = PositionData.name;

@@ -108,6 +108,16 @@ export class NavMenu extends Component {
                     {localStorage.getItem("user") ? "Logout" : "Login"}
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink
+                    tag={Link}
+                    className="text-dark"
+                    to="/register"
+                    onClick={() => this.update()}
+                  >
+                    {localStorage.getItem("user") ? null : "Register"}
+                  </NavLink>
+                </NavItem>
               </ul>
             </Collapse>
           </Container>

@@ -203,16 +203,14 @@ export class AdminPanel extends Component {
                     <tbody>
                       {dataItems.map((dataItems, index) => (
                         <OverlayTrigger
-                          trigger="hover"
+                          trigger="click"
                           placement="top"
                           overlay={popover}
                           rootClose="mousedown"
                         >
                           <tr
                             key={dataItems.id}
-                            onMouseEnter={() =>
-                              this.selectDataItem(dataItems.id)
-                            }
+                            onClick={() => this.selectDataItem(dataItems.id)}
                           >
                             <td>{dataItems.heartBpm}</td>
                             <td>{this.formatDate(dataItems.sentDate)}</td>
