@@ -139,6 +139,7 @@ namespace watchInfoWebApp.Controllers
                                      Steps = dataItem.Steps,
                                      Distance = dataItem.Distance,
                                      SentDate = dataItem.SentDate,
+                                     Device = dataItem.Device,
                                      ProjectId = dataItem.ProjectId,
                                      ProjectName = defaultValue.Name
                                  };
@@ -165,6 +166,7 @@ namespace watchInfoWebApp.Controllers
                                       Steps = dataItem.Steps,
                                       Distance = dataItem.Distance,
                                       SentDate = dataItem.SentDate,
+                                      Device = dataItem.Device,
                                       Name = defaultValue.Name
                                   };
 

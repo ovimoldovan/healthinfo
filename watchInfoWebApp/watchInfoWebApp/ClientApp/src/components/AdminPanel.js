@@ -165,7 +165,7 @@ export class AdminPanel extends Component {
             <tr>
               <td>
                 <div className="adminTable col-md-12">
-                  <h3>List of projects</h3>
+                  <h4>List of projects</h4>
                   {projects.loading && <em>Loading data...</em>}
                   {projects.length && (
                     <ul>

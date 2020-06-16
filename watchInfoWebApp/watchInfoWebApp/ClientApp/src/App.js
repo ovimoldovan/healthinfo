@@ -9,6 +9,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { PostItemData } from "./components/PostItemData";
 import { PositionData } from "./components/PositionData";
 import { Register } from "./components/Register";
+import "./mainStyle.css";
 
 export default class App extends Component {
   static displayName = App.name;
