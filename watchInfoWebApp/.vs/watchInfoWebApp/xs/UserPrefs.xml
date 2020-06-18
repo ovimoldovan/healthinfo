@@ -2,23 +2,10 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Controllers/DataItemController.cs">
     <Files>
       <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="9" Column="40" IsPinned="True" />
-      <File FileName="watchInfoWebApp/Startup.cs" />
       <File FileName="watchInfoWebApp/Controllers/UserController.cs" />
-      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" />
       <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" />
       <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" />
-      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="92" Column="64" />
-      <File FileName="watchInfoWebApp/Migrations/20200614164133_UpdateToDataItem.cs" />
-      <File FileName="watchInfoWebApp/Models/Project.cs" />
-      <File FileName="watchInfoWebApp/Models/User.cs" />
-      <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" />
-      <File FileName="watchInfoWebApp/Migrations/20200411081742_InitialMigration.cs" />
-      <File FileName="watchInfoWebApp/Migrations/20200411123527_AddDateToDataItem.cs" />
-      <File FileName="watchInfoWebApp/Migrations/20200411221338_AddProjects.cs" />
-      <File FileName="watchInfoWebApp/Migrations/20200412105431_ProjectCreatedBy.cs" />
-      <File FileName="watchInfoWebApp/Migrations/ApplicationDbContextModelSnapshot.cs" />
+      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="138" Column="79" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -27,6 +14,12 @@
             <Node name="watchInfoWebApp" expanded="True">
               <Node name="Dependencies" expanded="True">
                 <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="ClientApp" expanded="True">
+                <Node name="src" expanded="True">
+                  <Node name="components" expanded="True" />
+                  <Node name="services" expanded="True" />
+                </Node>
               </Node>
               <Node name="Controllers" expanded="True">
                 <Node name="DataItemController.cs" selected="True" />

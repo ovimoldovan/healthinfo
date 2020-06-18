@@ -20,19 +20,19 @@ export class About extends Component {
         <p>
           This page shows the progress of the applications on the iPhone, the
           Apple Watch and the ESP32.
-          <table>
+          <table className="col-md-12">
             <tr>
               <td>
                 {" "}
-                <img src={phoneImage} width="200" />
+                <img src={phoneImage} width="300" />
               </td>
               <td>
                 {" "}
-                <img src={watchImage} width="200" />
+                <img src={watchImage} width="300" />
               </td>{" "}
               <td>
                 {" "}
-                <img src={espImage} width="200" />
+                <img src={espImage} width="300" />
               </td>
             </tr>
           </table>
