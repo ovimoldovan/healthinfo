@@ -17,9 +17,14 @@
 int BPM;
 float Temp;
 float insideTemp = 22;
-double Latitute, Longitude;
+float Latitude, Longitude;
 String CurrentDate;
-String authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJhZG1pbiIsInJvbGUiOiJBZG1pbiIsImdyb3Vwc2lkIjoiMiIsIm5iZiI6MTU5MjU2Mjg1NSwiZXhwIjoxNTkyNjQ5MjU1LCJpYXQiOjE1OTI1NjI4NTV9.mWJCroqh09xXb6uvPJIL-X9mZUszwV6L8If8d0Zw1UA";
+String authToken = "";
+String cityName = "Cluj-Napoca";
+
+//Obviously not a secure way
+String user = "espUser2";
+String password = "espuser2";
 
 WiFiMulti wifiMulti;
 
@@ -33,7 +38,7 @@ void setup() {
     delay(1000);
   }
 
-  wifiMulti.addAP("Martin Router King (2.4GHz)", "kebfr85256");
+  wifiMulti.addAP("Martin Router King (2.4GHz)", "kebfr85256"); //if you ever come by my house this is the wifi password
 
   //Display Setup
   Heltec.begin(true, false, true);
@@ -68,7 +73,6 @@ void getCurrentDate(){
 void getCurrentWeather(){
   HTTPClient httpWeather;
   String apiKey = "f65d02a4bdad0702b4c84d294712d3a7";
-  String cityName = "Cluj-Napoca";
 
   httpWeather.begin("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey);
 
@@ -83,6 +87,10 @@ void getCurrentWeather(){
 
     float weatherTemperature = doc["main"]["temp"].as<float>();
     Temp = weatherTemperature;
+    Latitude = doc["coord"]["lat"].as<float>();
+    Longitude = doc["coord"]["lon"].as<float>();
+    serialCon.println(String(Latitude));
+    serialCon.println(String(Longitude));
     }
     else{
       serialCon.println(httpCode);
@@ -114,40 +122,31 @@ void getCurrentBPM(){
 
 void authenticate(){
   HTTPClient http;
-  
-  //Obviously not a secure way
-  String user = "admin";
-  String password = "admin";
 
-  http.begin("http://192.168.0.105/Api/User/login");
+  http.begin("http://192.168.0.105:5000/Api/User/login");
   http.addHeader("Content-Type", "application/json");
-  //http.setAuthorization("admin", "admin");
-  http.addHeader("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJhZG1pbiIsInJvbGUiOiJBZG1pbiIsImdyb3Vwc2lkIjoiMiIsIm5iZiI6MTU5MjU2Mjg1NSwiZXhwIjoxNTkyNjQ5MjU1LCJpYXQiOjE1OTI1NjI4NTV9.mWJCroqh09xXb6uvPJIL-X9mZUszwV6L8If8d0Zw1UA");
-
-  int httpCode = http.GET();
-  if (httpCode == HTTP_CODE_OK) {
-    String payload = http.getString();
-    serialCon.println(payload);
-
-    const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
-    DynamicJsonDocument doc(capacity);
-    deserializeJson(doc, payload);
-  }
-  else{
-    serialCon.println(httpCode);
-  }
-
-  int httpResponseCode = http.POST("POSTING from ESP32"); //Send the actual POST request
+  
+ 
+  //int httpResponseCode = http.POST("{\"username\": \""+ user+"\", \"password\":"+password+"\"}"); //Send the actual POST request
+  int httpResponseCode = http.POST("{\"username\": \"espUser2\", \"password\":\"espuser2\"}"); 
 if(httpResponseCode>0){
   
     String response = http.getString();  //Get the response to the request
   
     Serial.println(httpResponseCode);   //Print return code
     Serial.println(response);           //Print request answer
+
+    
+    const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
+    DynamicJsonDocument doc(capacity);
+    deserializeJson(doc, response);
+
+    authToken = doc["token"].as<String>();
+    
   
 }else{
   
-    Serial.print("Error on sending POST: ");
+    Serial.print("AUTH ERROR: ");
     Serial.println(httpResponseCode);
   
 }
@@ -163,13 +162,13 @@ void postData(){
   //http.setAuthorization("admin", "admin");
   http.addHeader("Authorization", "Bearer " + authToken);
 
-  int httpResponseCode = http.POST("{\"heartBpm\":80}"); //Send the actual POST request
+  int httpResponseCode = http.POST("{\"heartBpm\":" + String(BPM) + ",\"gpsCoordinates\": \"" + String(Latitude) + " " + String(Longitude) + "\", \"device\": \"ESP32\"}"); 
 if(httpResponseCode>0){
   
-    String response = http.getString();  //Get the response to the request
+    String response = http.getString();  
   
-    Serial.println(httpResponseCode);   //Print return code
-    Serial.println(response);           //Print request answer
+    Serial.println(httpResponseCode);   
+    Serial.println(response);           
   
 }else{
   
@@ -186,10 +185,8 @@ void loop() {
   //WIFI
   if ((wifiMulti.run() == WL_CONNECTED)) {
 
-    //if(authToken="") authenticate();
+    if(authToken == "") authenticate();
 
-    postData();
-    
     getCurrentDate();
     getCurrentWeather();
     getInsideTemp();
@@ -198,6 +195,8 @@ void loop() {
     displayHour(CurrentDate);
     displayTemp(Temp);
     displayBPM();
+
+    if(authToken != "") postData();
 
     delay(5000);
     Heltec.display -> clear();

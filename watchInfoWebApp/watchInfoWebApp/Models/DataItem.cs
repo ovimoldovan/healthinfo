@@ -11,6 +11,7 @@ namespace watchInfoWebApp.Models
         public string GpsCoordinates { get; set; }
         public int Steps { get; set; }
         public double Distance { get; set; }
+        public double Temperature { get; set; }
         public DateTime SentDate { get; set; }
         public string Device { get; set; }
         [DefaultValue(0)]
