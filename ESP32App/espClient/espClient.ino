@@ -131,10 +131,10 @@ void authenticate(){
   int httpResponseCode = http.POST("{\"username\": \"espUser2\", \"password\":\"espuser2\"}"); 
 if(httpResponseCode>0){
   
-    String response = http.getString();  //Get the response to the request
+    String response = http.getString();  
   
-    Serial.println(httpResponseCode);   //Print return code
-    Serial.println(response);           //Print request answer
+    Serial.println(httpResponseCode);   
+    Serial.println(response);           
 
     
     const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
@@ -162,7 +162,7 @@ void postData(){
   //http.setAuthorization("admin", "admin");
   http.addHeader("Authorization", "Bearer " + authToken);
 
-  int httpResponseCode = http.POST("{\"heartBpm\":" + String(BPM) + ",\"gpsCoordinates\": \"" + String(Latitude) + " " + String(Longitude) + "\", \"device\": \"ESP32\"}"); 
+  int httpResponseCode = http.POST("{\"heartBpm\":" + String(BPM) + ",\"gpsCoordinates\": \"" + String(Latitude) + " " + String(Longitude) + "\", \"temperature\": " +  String(insideTemp) + ", \"device\": \"ESP32\"}"); 
 if(httpResponseCode>0){
   
     String response = http.getString();  

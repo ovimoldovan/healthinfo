@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/Login.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/Home.js">
     <Files>
-      <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="9" Column="40" IsPinned="True" />
+      <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="14" Column="46" IsPinned="True" />
       <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="65" Column="56" />
       <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" />
       <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" />
@@ -9,7 +9,9 @@
       <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" Line="49" Column="30" />
       <File FileName="watchInfoWebApp/Models/User.cs" Line="14" Column="45" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/Register.js" Line="136" Column="30" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="44" Column="12" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/AdminPanel.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,7 +24,7 @@
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
                   <Node name="components" expanded="True">
-                    <Node name="Login.js" selected="True" />
+                    <Node name="Home.js" selected="True" />
                   </Node>
                   <Node name="services" expanded="True" />
                 </Node>

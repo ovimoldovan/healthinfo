@@ -58,6 +58,7 @@ export class Home extends Component {
                 <th>Position</th>
                 <th>Steps</th>
                 <th>Distance</th>
+                <th>Temperature </th>
                 <th>Device</th>
                 <th>Controls</th>
               </tr>
@@ -70,6 +71,7 @@ export class Home extends Component {
                   <td>{dataItems.gpsCoordinates}</td>
                   <td>{dataItems.steps}</td>
                   <td>{dataItems.distance}</td>
+                  <td>{dataItems.temperature}</td>
                   <td>{dataItems.device}</td>
                   <td>
                     <button
