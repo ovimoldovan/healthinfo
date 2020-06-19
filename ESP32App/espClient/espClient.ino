@@ -19,6 +19,7 @@ float Temp;
 float insideTemp = 22;
 double Latitute, Longitude;
 String CurrentDate;
+String authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJhZG1pbiIsInJvbGUiOiJBZG1pbiIsImdyb3Vwc2lkIjoiMiIsIm5iZiI6MTU5MjU2Mjg1NSwiZXhwIjoxNTkyNjQ5MjU1LCJpYXQiOjE1OTI1NjI4NTV9.mWJCroqh09xXb6uvPJIL-X9mZUszwV6L8If8d0Zw1UA";
 
 WiFiMulti wifiMulti;
 
@@ -111,9 +112,84 @@ void getCurrentBPM(){
   }
 }
 
+void authenticate(){
+  HTTPClient http;
+  
+  //Obviously not a secure way
+  String user = "admin";
+  String password = "admin";
+
+  http.begin("http://192.168.0.105/Api/User/login");
+  http.addHeader("Content-Type", "application/json");
+  //http.setAuthorization("admin", "admin");
+  http.addHeader("Authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJhZG1pbiIsInJvbGUiOiJBZG1pbiIsImdyb3Vwc2lkIjoiMiIsIm5iZiI6MTU5MjU2Mjg1NSwiZXhwIjoxNTkyNjQ5MjU1LCJpYXQiOjE1OTI1NjI4NTV9.mWJCroqh09xXb6uvPJIL-X9mZUszwV6L8If8d0Zw1UA");
+
+  int httpCode = http.GET();
+  if (httpCode == HTTP_CODE_OK) {
+    String payload = http.getString();
+    serialCon.println(payload);
+
+    const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
+    DynamicJsonDocument doc(capacity);
+    deserializeJson(doc, payload);
+  }
+  else{
+    serialCon.println(httpCode);
+  }
+
+  int httpResponseCode = http.POST("POSTING from ESP32"); //Send the actual POST request
+if(httpResponseCode>0){
+  
+    String response = http.getString();  //Get the response to the request
+  
+    Serial.println(httpResponseCode);   //Print return code
+    Serial.println(response);           //Print request answer
+  
+}else{
+  
+    Serial.print("Error on sending POST: ");
+    Serial.println(httpResponseCode);
+  
+}
+
+    http.end();
+}
+
+void postData(){
+  HTTPClient http;
+
+  http.begin("http://192.168.0.105:5000/Api/DataItem");
+  http.addHeader("Content-Type", "application/json");
+  //http.setAuthorization("admin", "admin");
+  http.addHeader("Authorization", "Bearer " + authToken);
+
+  int httpResponseCode = http.POST("{\"heartBpm\":80}"); //Send the actual POST request
+if(httpResponseCode>0){
+  
+    String response = http.getString();  //Get the response to the request
+  
+    Serial.println(httpResponseCode);   //Print return code
+    Serial.println(response);           //Print request answer
+  
+}else{
+  
+    Serial.print("Error on sending POST: ");
+    Serial.println(httpResponseCode);
+  
+}
+
+    http.end();
+}
+
+
 void loop() {
   //WIFI
   if ((wifiMulti.run() == WL_CONNECTED)) {
+
+    //if(authToken="") authenticate();
+
+    postData();
+    
     getCurrentDate();
     getCurrentWeather();
     getInsideTemp();
