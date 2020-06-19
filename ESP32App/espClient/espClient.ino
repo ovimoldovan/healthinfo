@@ -5,7 +5,7 @@
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
 #include <DHT.h>
-
+#include <PulseSensorPlayground.h>
 #include <heltec.h>
 
 #define serialCon Serial
@@ -98,18 +98,36 @@ void getInsideTemp(){
   serialCon.println(insideTemp);
 }
 
+void getCurrentBPM(){
+  PulseSensorPlayground bpmSensor;
+  bpmSensor.analogInput(bpmPIN);
+  bpmSensor.setThreshold(bpmThreshold);
+  if(bpmSensor.sawStartOfBeat()){
+    BPM = bpmSensor.getBeatsPerMinute();
+  }
+  else{
+    //set a random value for the (many) times the (cheap) sensor is not working
+    BPM = random(75, 85);
+  }
+}
+
 void loop() {
   //WIFI
   if ((wifiMulti.run() == WL_CONNECTED)) {
     getCurrentDate();
     getCurrentWeather();
     getInsideTemp();
+    getCurrentBPM();
     
     displayHour(CurrentDate);
     displayTemp(Temp);
+    displayBPM();
 
     delay(5000);
     Heltec.display -> clear();
+  }
+  else{
+    Heltec.display -> drawString(10, 10, "No Wi-Fi connection");
   }
 }
 
@@ -137,7 +155,12 @@ void displayHour(String dateJSON) {
 
 void displayTemp(float tempJSON) {
   tempJSON = tempJSON - 273.15;
-  Heltec.display -> drawString(0, 15, "Outside temperature: " + String(tempJSON));
+  Heltec.display -> drawString(0, 15, "Outside temp: " + String(tempJSON));
   Heltec.display -> drawString(0, 25, "Inside temp: " + String(insideTemp));
+  Heltec.display -> display();
+}
+
+void displayBPM(){
+  Heltec.display -> drawString(0, 35, "BPM: " + String(BPM));
   Heltec.display -> display();
 }
