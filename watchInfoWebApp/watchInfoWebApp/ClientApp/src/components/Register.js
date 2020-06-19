@@ -9,6 +9,7 @@ export class Register extends Component {
       username: "",
       password: "",
       name: "",
+      location: "",
       errors: {},
       validForm: false,
       status: "",
@@ -56,7 +57,7 @@ export class Register extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { username, password, name } = this.state;
+    const { username, password, name, location } = this.state;
     const requestOptions = {
       withCredentials: true,
       credentials: "include",
@@ -68,6 +69,7 @@ export class Register extends Component {
         username: username,
         password: password,
         name: name,
+        location: location
       }),
     };
 
@@ -84,7 +86,7 @@ export class Register extends Component {
 
   render() {
     console.log(authHeader().token);
-    const { username, password, name, errors, status } = this.state;
+    const { username, password, name, location, errors, status } = this.state;
     return (
       <div>
         <center>
@@ -125,6 +127,17 @@ export class Register extends Component {
                   placeholder="Name"
                 />
                 <span style={{ color: "red" }}>{errors["name"]}</span>
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="location"
+                  value={location}
+                  onChange={this.handleChange}
+                  placeholder="Location"
+                />
+                <span style={{ color: "red" }}>{errors["location"]}</span>
               </div>
               <br />
               <input
