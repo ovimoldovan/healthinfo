@@ -8,13 +8,15 @@
 
 #include <heltec.h>
 
-#define USE_SERIAL Serial
+#define serialCon Serial
 #define DHTTYPE DHT11
 #define DHTPIN 32
+#define bpmPIN 34
+#define bpmThreshold 550
 
 int BPM;
 float Temp;
-float insideTemp;
+float insideTemp = 22;
 double Latitute, Longitude;
 String CurrentDate;
 
@@ -22,14 +24,11 @@ WiFiMulti wifiMulti;
 
 void setup() {
   //WIFI Setup
-  USE_SERIAL.begin(115200);
-  USE_SERIAL.println();
-  USE_SERIAL.println();
-  USE_SERIAL.println();
+  serialCon.begin(115200);
 
-  for (uint8_t t = 4; t > 0; t--) {
-    USE_SERIAL.printf("[SETUP] WAIT %d...\n", t);
-    USE_SERIAL.flush();
+  for (uint8_t t = 5; t > 0; t--) {
+    serialCon.printf("Booting up in %d...\n", t);
+    serialCon.flush();
     delay(1000);
   }
 
@@ -41,80 +40,74 @@ void setup() {
 
 }
 
-void loop() {
-  //WIFI
-  if ((wifiMulti.run() == WL_CONNECTED)) {
-
+void getCurrentDate(){
     HTTPClient http;
 
-    //USE_SERIAL.print("Connection begins \n");
+    http.begin("http://192.168.0.105:5000/api/general/hour"); //My API
 
-    http.begin("http://192.168.0.105:5000/api/general/hour"); //HTTP
-
-    USE_SERIAL.print("[HTTP] GET...\n");
-    // start connection and send HTTP header
+    serialCon.print("Getting current date \n");
     int httpCode = http.GET();
-
-    // httpCode will be negative on error
+    
     if (httpCode > 0) {
 
-      USE_SERIAL.printf("[HTTP] GET... code: %d\n", httpCode);
+      serialCon.printf("Connection established with code: %d\n", httpCode);
 
       if (httpCode == HTTP_CODE_OK) {
         String payload = http.getString();
-        USE_SERIAL.println(payload);
-
-        //displayHour(payload);
+        serialCon.println(payload);
         CurrentDate = payload;
-
       }
     } else {
-      USE_SERIAL.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+      serialCon.printf("HTTP error: %s\n", http.errorToString(httpCode).c_str());
     }
 
     http.end();
+}
 
-    HTTPClient httpWeather;
-    String apiKey = "f65d02a4bdad0702b4c84d294712d3a7";
-    String cityName = "Cluj-Napoca";
+void getCurrentWeather(){
+  HTTPClient httpWeather;
+  String apiKey = "f65d02a4bdad0702b4c84d294712d3a7";
+  String cityName = "Cluj-Napoca";
 
-    httpWeather.begin("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey);
+  httpWeather.begin("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey);
 
-    httpCode = httpWeather.GET();
-    if (httpCode == HTTP_CODE_OK) {
-      String payload = httpWeather.getString();
-      USE_SERIAL.println(payload);
+  int httpCode = httpWeather.GET();
+  if (httpCode == HTTP_CODE_OK) {
+    String payload = httpWeather.getString();
+    serialCon.println(payload);
 
-      const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
+    const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
     DynamicJsonDocument doc(capacity);
     deserializeJson(doc, payload);
 
     float weatherTemperature = doc["main"]["temp"].as<float>();
-//    USE_SERIAL.println("Weather: " + weatherTemperature);
-      //displayTemp(weatherTemperature);
-      Temp = weatherTemperature;
-
+    Temp = weatherTemperature;
     }
     else{
-      USE_SERIAL.println(httpCode);
+      serialCon.println(httpCode);
     }
 
-
     httpWeather.end();
+}
 
-      //Temp sensor
+void getInsideTemp(){
   DHT dht(DHTPIN, DHTTYPE);
   if(!isnan(dht.readTemperature())) {
     insideTemp = dht.readTemperature();
   }
-  USE_SERIAL.println(insideTemp);
+  serialCon.println(insideTemp);
+}
+
+void loop() {
+  //WIFI
+  if ((wifiMulti.run() == WL_CONNECTED)) {
+    getCurrentDate();
+    getCurrentWeather();
+    getInsideTemp();
+    
     displayHour(CurrentDate);
     displayTemp(Temp);
 
-
-
-
-    
     delay(5000);
     Heltec.display -> clear();
   }
