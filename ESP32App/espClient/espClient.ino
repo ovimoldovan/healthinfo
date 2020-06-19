@@ -4,13 +4,17 @@
 #include <WiFiMulti.h>
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
+#include <DHT.h>
 
 #include <heltec.h>
 
 #define USE_SERIAL Serial
+#define DHTTYPE DHT11
+#define DHTPIN 32
 
 int BPM;
 float Temp;
+float insideTemp;
 double Latitute, Longitude;
 String CurrentDate;
 
@@ -95,9 +99,22 @@ void loop() {
       USE_SERIAL.println(httpCode);
     }
 
+
     httpWeather.end();
+
+      //Temp sensor
+  DHT dht(DHTPIN, DHTTYPE);
+  if(!isnan(dht.readTemperature())) {
+    insideTemp = dht.readTemperature();
+  }
+  USE_SERIAL.println(insideTemp);
     displayHour(CurrentDate);
     displayTemp(Temp);
+
+
+
+
+    
     delay(5000);
     Heltec.display -> clear();
   }
@@ -127,6 +144,7 @@ void displayHour(String dateJSON) {
 
 void displayTemp(float tempJSON) {
   tempJSON = tempJSON - 273.15;
-  Heltec.display -> drawString(0, 20, "Outside temperature: " + String(tempJSON));
+  Heltec.display -> drawString(0, 15, "Outside temperature: " + String(tempJSON));
+  Heltec.display -> drawString(0, 25, "Inside temp: " + String(insideTemp));
   Heltec.display -> display();
 }
