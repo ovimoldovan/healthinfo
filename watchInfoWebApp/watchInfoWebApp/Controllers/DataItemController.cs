@@ -103,6 +103,7 @@ namespace watchInfoWebApp.Controllers
             return NoContent();
         }
 
+
         [Authorize(Roles = "Admin")]
         [HttpGet("getAllData")]
         public async Task<ActionResult<List<DataItem>>> GetAllDataItems()

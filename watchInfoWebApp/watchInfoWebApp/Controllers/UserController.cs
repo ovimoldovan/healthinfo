@@ -67,6 +67,7 @@ namespace watchInfoWebApp.Controllers
             user.Password = ComputeSha256Hash(user.Password);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+            user.Password = null;
 
             return CreatedAtAction(nameof(GetUser), new { username = user.Username }, user);
         }
@@ -124,6 +125,7 @@ namespace watchInfoWebApp.Controllers
             return Ok(users);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("changeProject/{newProjectId}")]
         public async Task<IActionResult> ChangeMyProject(int newProjectId)
         {

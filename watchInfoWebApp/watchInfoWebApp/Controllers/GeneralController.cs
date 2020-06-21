@@ -9,7 +9,7 @@ namespace watchInfoWebApp.Controllers
     public class GeneralController
     {
         [HttpGet("hour")]
-        public async Task<ActionResult<DateTime>> GetTime()
+        public ActionResult<DateTime> GetTime()
         {
             return DateTime.Now;
         }
