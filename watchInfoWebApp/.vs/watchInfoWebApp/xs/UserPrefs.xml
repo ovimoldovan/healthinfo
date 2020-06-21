@@ -1,17 +1,20 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/Home.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Models/Project.cs">
     <Files>
       <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="14" Column="46" IsPinned="True" />
-      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="65" Column="56" />
+      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="112" Column="49" />
       <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" />
       <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" />
       <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="39" Column="9" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" Line="49" Column="30" />
-      <File FileName="watchInfoWebApp/Models/User.cs" Line="14" Column="45" />
+      <File FileName="watchInfoWebApp/Models/User.cs" Line="7" Column="18" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/Register.js" Line="136" Column="30" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="44" Column="12" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/AdminPanel.js" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="74" Column="19" />
+      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" Line="15" Column="45" />
+      <File FileName="watchInfoWebApp/Services/UserService.cs" Line="43" Column="33" />
+      <File FileName="watchInfoWebApp/Models/Project.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,16 +26,17 @@
               </Node>
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
-                  <Node name="components" expanded="True">
-                    <Node name="Home.js" selected="True" />
-                  </Node>
+                  <Node name="components" expanded="True" />
                   <Node name="services" expanded="True" />
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
-              <Node name="Models" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Project.cs" selected="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
               <Node name="Tools" expanded="True" />
               <Node name="ViewModels" expanded="True" />
             </Node>

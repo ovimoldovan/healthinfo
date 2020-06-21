@@ -51,7 +51,8 @@ namespace watchInfoWebApp.Services
                     Token = token,
                     Username = user.Username,
                     Name = user.Name,
-                    Role = user.Role                    
+                    Role = user.Role,
+                    Location = user.Location
                 };
             }
             catch

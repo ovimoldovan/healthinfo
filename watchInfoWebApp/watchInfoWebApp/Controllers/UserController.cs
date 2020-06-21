@@ -98,7 +98,8 @@ namespace watchInfoWebApp.Controllers
             LoginViewModel loginViewModel = new LoginViewModel
             {
                 Username = foundUser.Username,
-                Name = foundUser.Name
+                Name = foundUser.Name,
+                Location = foundUser.Location
             };
 
             return Ok(loginViewModel);

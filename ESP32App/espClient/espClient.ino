@@ -21,6 +21,7 @@ float Latitude, Longitude;
 String CurrentDate;
 String authToken = "";
 String cityName = "Cluj-Napoca";
+String Name = "";
 
 //Obviously not a secure way
 String user = "espUser2";
@@ -126,31 +127,27 @@ void authenticate(){
   http.begin("http://192.168.0.105:5000/Api/User/login");
   http.addHeader("Content-Type", "application/json");
   
- 
-  //int httpResponseCode = http.POST("{\"username\": \""+ user+"\", \"password\":"+password+"\"}"); //Send the actual POST request
   int httpResponseCode = http.POST("{\"username\": \"espUser2\", \"password\":\"espuser2\"}"); 
-if(httpResponseCode>0){
+  if(httpResponseCode>0){
   
-    String response = http.getString();  
+  String response = http.getString();  
   
-    Serial.println(httpResponseCode);   
-    Serial.println(response);           
+  Serial.println(httpResponseCode);   
+  Serial.println(response);           
+ 
+  const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
+  DynamicJsonDocument doc(capacity);
+  deserializeJson(doc, response);
 
-    
-    const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(0) + 2*JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + 2*JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(14) + 280;
-    DynamicJsonDocument doc(capacity);
-    deserializeJson(doc, response);
-
-    authToken = doc["token"].as<String>();
-    
-  
-}else{
-  
+  authToken = doc["token"].as<String>();
+  Name = doc["name"].as<String>();
+  cityName = doc["location"].as<String>();
+}
+else{
     Serial.print("AUTH ERROR: ");
     Serial.println(httpResponseCode);
   
 }
-
     http.end();
 }
 
@@ -163,18 +160,17 @@ void postData(){
   http.addHeader("Authorization", "Bearer " + authToken);
 
   int httpResponseCode = http.POST("{\"heartBpm\":" + String(BPM) + ",\"gpsCoordinates\": \"" + String(Latitude) + " " + String(Longitude) + "\", \"temperature\": " +  String(insideTemp) + ", \"device\": \"ESP32\"}"); 
-if(httpResponseCode>0){
+  if(httpResponseCode>0){
   
     String response = http.getString();  
   
     Serial.println(httpResponseCode);   
     Serial.println(response);           
-  
-}else{
-  
+    }
+  else
+  {
     Serial.print("Error on sending POST: ");
-    Serial.println(httpResponseCode);
-  
+    Serial.println(httpResponseCode); 
 }
 
     http.end();
@@ -182,20 +178,25 @@ if(httpResponseCode>0){
 
 
 void loop() {
-  //WIFI
+  //If Wi-Fi is connected
   if ((wifiMulti.run() == WL_CONNECTED)) {
 
+    //If there is no authentification token, ask the API for one
     if(authToken == "") authenticate();
 
+    //Gett data from API and sensors
     getCurrentDate();
     getCurrentWeather();
     getInsideTemp();
     getCurrentBPM();
-    
+
+    //Display the data
     displayHour(CurrentDate);
     displayTemp(Temp);
     displayBPM();
+    displayDetails();
 
+    //If there is an authentification token, post the data to the API
     if(authToken != "") postData();
 
     delay(5000);
@@ -203,6 +204,7 @@ void loop() {
   }
   else{
     Heltec.display -> drawString(10, 10, "No Wi-Fi connection");
+    Heltec.display -> display();
   }
 }
 
@@ -211,7 +213,7 @@ void displayHour(String dateJSON) {
   int i;
   int dateLengthJSON = 11;
   int hourLengthJSON = 6;
-  char date[11];
+  char date[10];
   char hour[5];
 
   for (i = 1; i < dateLengthJSON; i++) {
@@ -230,12 +232,17 @@ void displayHour(String dateJSON) {
 
 void displayTemp(float tempJSON) {
   tempJSON = tempJSON - 273.15;
-  Heltec.display -> drawString(0, 15, "Outside temp: " + String(tempJSON));
+  Heltec.display -> drawString(0, 15, cityName + " temp: " + String(tempJSON));
   Heltec.display -> drawString(0, 25, "Inside temp: " + String(insideTemp));
   Heltec.display -> display();
 }
 
 void displayBPM(){
   Heltec.display -> drawString(0, 35, "BPM: " + String(BPM));
+  Heltec.display -> display();
+}
+
+void displayDetails(){
+  Heltec.display -> drawString(0, 45, "User: " + Name);
   Heltec.display -> display();
 }
