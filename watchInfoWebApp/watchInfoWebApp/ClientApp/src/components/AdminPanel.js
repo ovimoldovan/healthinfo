@@ -15,10 +15,13 @@ export class AdminPanel extends Component {
       projectId: 0,
       dataItems: [],
       selectedUser: [],
+      affectedUsername: "",
+      affectedUsernameProjectId: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSubmitProject = this.handleSubmitProject.bind(this);
+    this.handleChangeProjectByUser = this.handleChangeProjectByUser.bind(this);
   }
 
   handleChange(e) {
@@ -76,6 +79,41 @@ export class AdminPanel extends Component {
     );
   }
 
+  handleChangeProjectByUser(event) {
+    event.preventDefault();
+    const { affectedUsername, affectedUsernameProjectId } = this.state;
+    let user = JSON.parse(localStorage.getItem("user"));
+    const requestOptions = {
+      withCredentials: true,
+      credentials: "include",
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + user.token,
+      },
+      body: JSON.stringify({
+        username: affectedUsername,
+        projectId: affectedUsernameProjectId,
+      }),
+    };
+
+    console.log(requestOptions);
+
+    return fetch(
+      `Api/User/changeProjectByUser/` +
+        affectedUsername +
+        `/` +
+        affectedUsernameProjectId,
+      requestOptions
+    ).then(
+      userService
+        .getCurrentProject()
+        .then((project) =>
+          this.setState({ project }, () => console.log(this.state.project))
+        )
+    );
+  }
+
   toogleUpdate() {
     userService
       .getCurrentProject()
@@ -123,6 +161,8 @@ export class AdminPanel extends Component {
       projectId,
       dataItems,
       selectedUser,
+      affectedUsername,
+      affectedUsernameProjectId,
     } = this.state;
     const popover = (
       <Popover id="popover-basic">
@@ -162,70 +202,72 @@ export class AdminPanel extends Component {
         </form>
         <div className="grayTwo col-md-12">
           <table className="col-md-12">
-            <tr>
-              <td>
-                <div className="adminTable col-md-12">
-                  <h4>List of projects</h4>
-                  {projects.loading && <em>Loading data...</em>}
-                  {projects.length && (
-                    <ul>
-                      {projects.map((project, index) => (
-                        <li key={project.id}>
-                          <button
-                            onClick={() => this.selectProject(project.id)}
-                            className="projectButton"
-                          >
-                            {"Name: " + project.name + ", id: " + project.id}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </td>
+            <tbody>
+              <tr>
+                <td>
+                  <div className="adminTable col-md-12">
+                    <h4>List of projects</h4>
+                    {projects.loading && <em>Loading data...</em>}
+                    {projects.length && (
+                      <ul>
+                        {projects.map((project, index) => (
+                          <li key={project.id}>
+                            <button
+                              onClick={() => this.selectProject(project.id)}
+                              className="projectButton"
+                            >
+                              {"Name: " + project.name + ", id: " + project.id}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </td>
 
-              <td>
-                <div className="adminTable col-md-12">
-                  <table
-                    className="table table-striped"
-                    aria-labelledby="tabelLabel"
-                  >
-                    <thead>
-                      <tr>
-                        <th>BPM</th>
-                        <th>Date</th>
-                        <th>Position</th>
-                        <th>Steps</th>
-                        <th>Distance</th>
-                        <th>Device</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {dataItems.map((dataItems, index) => (
-                        <OverlayTrigger
-                          trigger="click"
-                          placement="top"
-                          overlay={popover}
-                          rootClose="mousedown"
-                        >
-                          <tr
-                            key={dataItems.id}
-                            onClick={() => this.selectDataItem(dataItems.id)}
+                <td>
+                  <div className="adminTable col-md-12">
+                    <table
+                      className="table table-striped"
+                      aria-labelledby="tabelLabel"
+                    >
+                      <thead>
+                        <tr>
+                          <th>BPM</th>
+                          <th>Date</th>
+                          <th>Position</th>
+                          <th>Steps</th>
+                          <th>Distance</th>
+                          <th>Device</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {dataItems.map((dataItems, index) => (
+                          <OverlayTrigger
+                            trigger="click"
+                            placement="top"
+                            overlay={popover}
+                            rootClose="mousedown"
                           >
-                            <td>{dataItems.heartBpm}</td>
-                            <td>{this.formatDate(dataItems.sentDate)}</td>
-                            <td>{dataItems.gpsCoordinates}</td>
-                            <td>{dataItems.steps}</td>
-                            <td>{dataItems.distance}</td>
-                            <td>{dataItems.device}</td>
-                          </tr>
-                        </OverlayTrigger>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </td>
-            </tr>
+                            <tr
+                              key={dataItems.id}
+                              onClick={() => this.selectDataItem(dataItems.id)}
+                            >
+                              <td>{dataItems.heartBpm}</td>
+                              <td>{this.formatDate(dataItems.sentDate)}</td>
+                              <td>{dataItems.gpsCoordinates}</td>
+                              <td>{dataItems.steps}</td>
+                              <td>{dataItems.distance}</td>
+                              <td>{dataItems.device}</td>
+                            </tr>
+                          </OverlayTrigger>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div className="grayOne col-md-12">
@@ -242,6 +284,35 @@ export class AdminPanel extends Component {
             <button
               type="submit"
               onClick={this.handleSubmitProject}
+              className="btn btn-primary"
+            >
+              {" "}
+              Change project{" "}
+            </button>
+          </form>
+        </div>
+
+        <div className="grayTwo col-md-12">
+          <h4>Asign user to a project </h4>
+
+          <form name="form2" onSubmit={this.handleChangeProjectByUser}>
+            <input
+              type="text"
+              className="form-control"
+              name="affectedUsername"
+              value={affectedUsername}
+              onChange={this.handleChange}
+            />
+            <input
+              type="text"
+              className="form-control"
+              name="affectedUsernameProjectId"
+              value={affectedUsernameProjectId}
+              onChange={this.handleChange}
+            />
+            <button
+              type="submit"
+              onClick={this.handleChangeProjectByUser}
               className="btn btn-primary"
             >
               {" "}

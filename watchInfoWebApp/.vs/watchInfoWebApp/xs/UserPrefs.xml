@@ -1,23 +1,23 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Controllers/DataItemController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Controllers/UserController.cs">
     <Files>
       <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="14" Column="46" IsPinned="True" />
-      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="140" Column="2" />
-      <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" Line="18" Column="1" />
+      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="144" Column="84" />
+      <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" />
       <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="179" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" Line="49" Column="30" />
-      <File FileName="watchInfoWebApp/Models/User.cs" Line="23" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Register.js" Line="136" Column="30" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="44" Column="12" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/AdminPanel.js" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="70" Column="19" />
-      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" Line="15" Column="45" />
-      <File FileName="watchInfoWebApp/Services/UserService.cs" Line="74" Column="59" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" />
+      <File FileName="watchInfoWebApp/Models/User.cs" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Register.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/AdminPanel.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" />
+      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" />
+      <File FileName="watchInfoWebApp/Services/UserService.cs" />
       <File FileName="watchInfoWebApp/Models/Project.cs" Line="19" Column="1" />
-      <File FileName="watchInfoWebApp/Migrations/20200619170916_AddTemperature.cs" Line="24" Column="1" />
-      <File FileName="watchInfoWebApp/Migrations/20200411081742_InitialMigration.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/Migrations/20200411123527_AddDateToDataItem.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/Migrations/20200619170916_AddTemperature.cs" />
+      <File FileName="watchInfoWebApp/Migrations/20200411081742_InitialMigration.cs" />
+      <File FileName="watchInfoWebApp/Migrations/20200411123527_AddDateToDataItem.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -34,7 +34,7 @@
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True">
-                <Node name="DataItemController.cs" selected="True" />
+                <Node name="UserController.cs" selected="True" />
               </Node>
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
@@ -50,7 +50,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

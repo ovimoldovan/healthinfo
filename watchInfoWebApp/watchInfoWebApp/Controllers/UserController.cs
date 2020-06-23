@@ -136,5 +136,15 @@ namespace watchInfoWebApp.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("changeProjectByUser/{username}/{newProjectId}")]
+        public async Task<IActionResult> ChangeMyProjectByUser(string username, int newProjectId)
+        {
+            var user = await _context.Users.SingleAsync(x => x.Username == username);
+            user.ProjectId = newProjectId;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
