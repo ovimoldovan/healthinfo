@@ -12,6 +12,7 @@ import WatchConnectivity
 
 class UserSettings: ObservableObject {
     @Published var token = ""
+    @Published var name = "anonymous"
 }
 
 var fileContents: String = "empty"
@@ -22,9 +23,8 @@ struct ContentView: View {
     @EnvironmentObject var wcProvider: WatchConnectivityProvider
     @EnvironmentObject var userSettings: UserSettings
     
-    @State var status = "not received"
+    @State var status = "Not received"
     @State var fileContents = "empty file"
-    @State var name = "anonymous"
     //@State var token = "token"
     
     
@@ -34,13 +34,13 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
         VStack{
-            Text("Logged in as: " + self.name)
-            Text("Status: " + self.status)
-            Text("Token: " + self.userSettings.token)
+            Text("Logged in as: " + self.userSettings.name)
+            Text("File status: " + self.status)
+            Text("Token status: " + ( self.userSettings.token != "" ? "Received" : "Not Received"))
             
             NavigationLink(destination: Post())
             {
-              Text("post")
+              Text("Post Data Item")
             }
             
             Button(action: {
@@ -70,14 +70,14 @@ struct ContentView: View {
             }
             
             NavigationLink(destination: Login().environmentObject(self.userSettings)){
-                Text("Login")
+                Text(self.userSettings.token == "" ? "Login" : "Login as a different user")
                 .bold()
             }
             Button(action:{
                 self.wcProvider.token = self.userSettings.token
                 self.wcProvider.sendTokenToWatch()
             }){
-                Text("send token to watch")
+                Text("Send token to watch")
             }
             
             List{

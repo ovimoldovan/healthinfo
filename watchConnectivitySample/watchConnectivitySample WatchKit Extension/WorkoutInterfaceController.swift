@@ -28,7 +28,9 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         guard let currentLocation = locations.first else { return }
 
         self.gpsCoords = String(currentLocation.coordinate.latitude) + " " + String(currentLocation.coordinate.longitude)
-        gpsLabel.setText(gpsCoords)
+        
+        
+        gpsLabel.setText("GPS: " + gpsCoords)
         print(gpsCoords)
 
         
@@ -45,8 +47,10 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     @IBOutlet var heartRateLabel: WKInterfaceLabel!
     @IBOutlet var stepsLabel: WKInterfaceLabel!
     @IBOutlet var gpsLabel: WKInterfaceLabel!
+    
     @IBOutlet var statusLabel: WKInterfaceLabel!
     private var status: String = ""
+    
     private var lastHeartRate: Int = 0
     let session = WCSession.default
     private var distance: String = "0"
@@ -83,6 +87,8 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         
         setupLocation()
     }
+    
+    
     @IBAction func endLogging() {
         pauseWorkout()
         
@@ -108,6 +114,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         session.transferFile(self.filePath, metadata: nil)
     }
     
+    
     var healthStore = HKHealthStore()
     var configuration = HKWorkoutConfiguration()
     
@@ -118,16 +125,16 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     
     //Pedometer and distance
     private let activityManager = CMMotionActivityManager()
-    private let pedometer = CMPedometer()
     
+    private let pedometer = CMPedometer()
     private func countSteps() {
       pedometer.startUpdates(from: Date()) {
           [weak self] pedometerData, error in
           guard let pedometerData = pedometerData, error == nil else { return }
 
           DispatchQueue.main.async {
-            self?.stepsLabel.setText(pedometerData.numberOfSteps.stringValue)
-            //print(pedometerData.numberOfSteps.stringValue)
+            self?.stepsLabel.setText("Steps and distance: " + pedometerData.numberOfSteps.stringValue)
+            print(pedometerData.numberOfSteps.stringValue)
             self?.distanceLabel.setText(pedometerData.distance?.stringValue)
             self?.distance = pedometerData.distance?.stringValue ?? "0"
             self?.steps = pedometerData.numberOfSteps.stringValue
@@ -167,6 +174,8 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
             dismiss()
             return
         }
+        
+        
         workoutSession.delegate = self
         builder.delegate = self
         
@@ -258,6 +267,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         } else if state == .paused {
             addMenuItem(with: .resume, title: "Resume", action: #selector(resumeWorkoutAction))
         }
+        
         addMenuItem(with: .decline, title: "End", action: #selector(endWorkoutAction))
     }
     
@@ -341,7 +351,8 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                         "heartBpm": lastHeartRate as NSNumber,
                         "gpsCoordinates": (self.gpsCoords) as NSString,
                         "steps": (steps as NSString).integerValue as NSNumber,
-                        "distance": (distance as NSString).integerValue as NSNumber
+                        "distance": (distance as NSString).integerValue as NSNumber,
+                        "device": WKInterfaceDevice.current().model
                         ] as [String : Any]
                     
                     if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
@@ -360,8 +371,9 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         DispatchQueue.main.async {
             switch statistics.quantityType {
             case HKQuantityType.quantityType(forIdentifier: .heartRate):
-                /// - Tag: SetLabel
+                
                 let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
+                
                 let value = statistics.mostRecentQuantity()?.doubleValue(for: heartRateUnit)
                 let roundedValue = Int( round( 1 * value! ) / 1 )
                 label.setText("\(roundedValue) BPM")
@@ -429,9 +441,8 @@ func session(_ session: WCSession, activationDidCompleteWith activationState: WC
 }
 func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
     print("received message: \(message)")
-    DispatchQueue.main.async { //6
+    DispatchQueue.main.async {
       if let value = message["Bearer "] as? String {
-        //self.label.text = value
         print(value)
         self.token = value
       }

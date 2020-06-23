@@ -48,6 +48,7 @@ struct Login: View {
                                     let post = JSON(value)
                                     self.name = "Welcome, " + (post["name"].stringValue)
                                     self.userSettings.token = post["token"].stringValue
+                                    self.userSettings.name = post["name"].stringValue
                                     print(self.userSettings.token)
                                 }
                             }
