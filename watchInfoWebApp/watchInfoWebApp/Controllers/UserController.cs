@@ -30,16 +30,14 @@ namespace watchInfoWebApp.Controllers
 
         private ClaimsGetter claimsGetter = new ClaimsGetter();
 
-        public UserController(ILogger<UserController> logger, ApplicationDbContext context, IConfiguration config, IUserService userService)
+        public UserController(ApplicationDbContext context, IUserService userService)
         {
-            _logger = logger;
             _context = context;
             if (_context.Users.Count() == 0)
             {
                 _context.Users.Add(new User { Username = "admin", Password =  ComputeSha256Hash("admin") });
                 _context.SaveChanges();
             }
-            _config = config;
             _userService = userService;
         }
 

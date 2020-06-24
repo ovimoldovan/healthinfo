@@ -23,9 +23,8 @@ namespace watchInfoWebApp.Controllers
 
         private ClaimsGetter claimsGetter = new ClaimsGetter();
 
-        public ProjectController(ILogger<DataItemController> logger, ApplicationDbContext context)
+        public ProjectController(ApplicationDbContext context)
         {
-            _logger = logger;
             _context = context;
             if (_context.Projects.Count() == 0)
             {

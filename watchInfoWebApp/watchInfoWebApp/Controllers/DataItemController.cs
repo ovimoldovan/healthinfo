@@ -22,9 +22,8 @@ namespace watchInfoWebApp.Controllers
 
         private ClaimsGetter claimsGetter = new ClaimsGetter();
 
-        public DataItemController(ILogger<DataItemController> logger, ApplicationDbContext context)
+        public DataItemController(ApplicationDbContext context)
         {
-            _logger = logger;
             _context = context;
             if (_context.DataItems.Count() == 0)
             {
@@ -48,8 +47,6 @@ namespace watchInfoWebApp.Controllers
             healthDataItem.ProjectId = projectId;
             _context.DataItems.Add(healthDataItem);
             await _context.SaveChangesAsync();
-
-            
 
             return CreatedAtAction(nameof(GetDataItem), new
             {
@@ -109,7 +106,6 @@ namespace watchInfoWebApp.Controllers
         public async Task<ActionResult<List<DataItem>>> GetAllDataItems()
         {
             var healthDataItems = new List<DataItem>();
-            //var userId = claimsGetter.UserId(User?.Claims);
 
             healthDataItems = await _context.DataItems.ToListAsync();
 

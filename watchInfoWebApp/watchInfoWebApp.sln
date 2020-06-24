@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "watchInfoWebApp", "watchInfoWebApp\watchInfoWebApp.csproj", "{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "watchInfoWebAppTests", "watchInfoWebAppTests\watchInfoWebAppTests.csproj", "{547DA066-2FFF-4E11-B982-066F4E8F15A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,9 @@ Global
 		{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547DA066-2FFF-4E11-B982-066F4E8F15A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547DA066-2FFF-4E11-B982-066F4E8F15A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547DA066-2FFF-4E11-B982-066F4E8F15A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547DA066-2FFF-4E11-B982-066F4E8F15A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
