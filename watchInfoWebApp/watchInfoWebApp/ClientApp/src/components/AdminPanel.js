@@ -293,7 +293,7 @@ export class AdminPanel extends Component {
         </div>
 
         <div className="grayTwo col-md-12">
-          <h4>Asign user to a project </h4>
+          <h4>Assign user to a project </h4>
 
           <form name="form2" onSubmit={this.handleChangeProjectByUser}>
             <input
@@ -302,6 +302,7 @@ export class AdminPanel extends Component {
               name="affectedUsername"
               value={affectedUsername}
               onChange={this.handleChange}
+              placeholder="Username"
             />
             <input
               type="text"
@@ -309,6 +310,7 @@ export class AdminPanel extends Component {
               name="affectedUsernameProjectId"
               value={affectedUsernameProjectId}
               onChange={this.handleChange}
+              placeholder="Project id"
             />
             <button
               type="submit"

@@ -1,44 +1,37 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebAppTests/UserControllerTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/AdminPanel.js">
     <Files>
       <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" Line="17" Column="1" />
       <File FileName="watchInfoWebAppTests/BaseTests.cs" />
       <File FileName="watchInfoWebApp/Controllers/UserController.cs" />
       <File FileName="watchInfoWebApp/Services/UserService.cs" />
       <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" />
-      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="27" Column="17" />
+      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" />
       <File FileName="watchInfoWebApp/Models/User.cs" />
-      <File FileName="watchInfoWebAppTests/DataItemControllerTests.cs" Line="50" Column="51" />
+      <File FileName="watchInfoWebAppTests/DataItemControllerTests.cs" />
       <File FileName="watchInfoWebApp/Models/DataItem.cs" />
-      <File FileName="watchInfoWebAppTests/ProjectControllerTests.cs" Line="54" Column="21" />
+      <File FileName="watchInfoWebAppTests/ProjectControllerTests.cs" />
       <File FileName="watchInfoWebAppTests/UserControllerTests.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/AdminPanel.js" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="watchInfoWebApp" expanded="True">
             <Node name="watchInfoWebApp" expanded="True">
+              <Node name="ClientApp" expanded="True">
+                <Node name="src" expanded="True">
+                  <Node name="components" expanded="True">
+                    <Node name="AdminPanel.js" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>
-            <Node name="watchInfoWebAppTests" expanded="True">
-              <Node name="UserControllerTests.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="watchInfoWebApp" expanded="True" selected="True">
-            <Node name="watchInfoWebAppTests" expanded="True">
-              <Node name="watchInfoWebAppTests" expanded="True">
-                <Node name="DataItemControllerTests" expanded="True" />
-                <Node name="ProjectControllerTests" expanded="True" />
-                <Node name="UserControllerTests" expanded="True" />
-              </Node>
-            </Node>
+            <Node name="watchInfoWebAppTests" expanded="True" />
           </Node>
         </State>
       </Pad>

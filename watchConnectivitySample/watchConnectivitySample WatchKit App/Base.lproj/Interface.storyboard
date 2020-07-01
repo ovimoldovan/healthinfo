@@ -13,7 +13,9 @@
                     <items>
                         <label height="20" alignment="left" text="bpm" id="WUE-12-FEP"/>
                         <timer alignment="left" id="HDp-GN-Z2W"/>
+                        <label alignment="left" text="Steps:" id="qkd-mz-k9c"/>
                         <label alignment="left" text="steps" id="NkD-iM-Ubm"/>
+                        <label alignment="left" text="Distance:" id="phw-e5-MdQ"/>
                         <label alignment="left" text="distance" id="a1E-a3-lfr"/>
                         <label alignment="left" text="gps" id="lRy-h3-cWy"/>
                         <label alignment="left" text="status" id="bP8-IK-QVJ"/>

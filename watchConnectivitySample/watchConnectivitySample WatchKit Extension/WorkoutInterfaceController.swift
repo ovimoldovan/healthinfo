@@ -72,7 +72,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         do{
             if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
                 fileUpdater.seekToEndOfFile()
-                let string = "\n\nStart sesiune noua"
+                let string = "\n\nStart sesiune noua, device: " + getWatchModel()
                 print(string)
                 fileUpdater.write(string.data(using: .utf8)!)
                 fileUpdater.write("\n".data(using: .utf8)!)
@@ -101,7 +101,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         do{
             if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
                 fileUpdater.seekToEndOfFile()
-                let string = "\n\nTotal pasi in sesiunea curenta: " + steps + "\nTotal distanta parcursa (m) in sesiunea curenta: " + distance
+                let string = "\n\nTotal pasi in sesiunea curenta: " + steps + "\nTotal distanta parcursa (m) in sesiunea curenta: " + distance + " recorded on " + getWatchModel()
                 print(string)
                 fileUpdater.write(string.data(using: .utf8)!)
                 fileUpdater.write("\n".data(using: .utf8)!)
@@ -133,7 +133,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
           guard let pedometerData = pedometerData, error == nil else { return }
 
           DispatchQueue.main.async {
-            self?.stepsLabel.setText("Steps and distance: " + pedometerData.numberOfSteps.stringValue)
+            self?.stepsLabel.setText(pedometerData.numberOfSteps.stringValue)
             print(pedometerData.numberOfSteps.stringValue)
             self?.distanceLabel.setText(pedometerData.distance?.stringValue)
             self?.distance = pedometerData.distance?.stringValue ?? "0"
@@ -352,7 +352,8 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                         "gpsCoordinates": (self.gpsCoords) as NSString,
                         "steps": (steps as NSString).integerValue as NSNumber,
                         "distance": (distance as NSString).integerValue as NSNumber,
-                        "device": WKInterfaceDevice.current().model
+                        //"device": WKInterfaceDevice.current().model
+                        "device": getWatchModel()
                         ] as [String : Any]
                     
                     if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
@@ -383,6 +384,54 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
             }
         }
     }
+    func getWatchModel() -> String {
+    var size: size_t = 0
+    sysctlbyname("hw.machine", nil, &size, nil, 0)
+    var machine = CChar()
+    sysctlbyname("hw.machine", &machine, &size, nil, 0)
+    let model = String(cString: &machine, encoding: String.Encoding.utf8)
+    switch model {
+    case "Watch1,1":
+        return "Apple Watch 28mm"
+    case "Watch1,2":
+        return"Apple Watch 42mm"
+    case "Watch2,3":
+        return "Apple Watch Series 2 38mm"
+    case "Watch2,4":
+        return "Apple Watch Series 2 42mmm"
+    case "Watch2,6":
+        return "Apple Watch Series 1 38mm"
+    case "Watch2,7":
+        return "Apple Watch Series 1 42mm"
+    case "Watch3,1":
+        return "Apple Watch Series 3 38mm Cellular"
+    case "Watch3,2":
+        return "Apple Watch Series 3 42mm Cellular"
+    case "Watch3,3":
+        return "Apple Watch Series 3 38mm"
+    case "Watch3,4":
+        return "Apple Watch Series 3 42mm"
+    case "Watch4,1":
+        return "Apple Watch Series 4 40mm"
+    case "Watch4,2":
+        return "Apple Watch Series 4 44mm"
+    case "Watch4,3":
+        return "Apple Watch Series 4 40mm Cellular"
+    case "Watch4,4":
+        return "Apple Watch Series 4 44mm Cellular"
+    case "Watch5,1":
+        return "Apple Watch Series 5 40mm"
+    case "Watch5,2":
+        return "Apple Watch Series 5 44mm"
+    case "Watch5,3":
+        return "Apple Watch Series 5 40mm Cellular"
+    case "Watch5,4":
+        return "Apple Watch Series 5 44mm Cellular"
+    default:
+        return "unknown"
+    }
+}
+
             
         override func didAppear() {
             super.didAppear()
