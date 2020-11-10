@@ -54,7 +54,8 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchConnectivitySample_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <label alignment="left" text="Welcoming page" id="UBP-5B-BeI"/>
+                        <label alignment="left" text="Welcome!" id="UBP-5B-BeI"/>
+                        <label alignment="left" text="Swipe right to begin" id="wSh-Dn-BUk"/>
                     </items>
                     <connections>
                         <outlet property="label" destination="UBP-5B-BeI" id="6tf-ek-6oq"/>

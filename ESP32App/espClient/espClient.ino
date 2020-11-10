@@ -23,9 +23,8 @@ String authToken = "";
 String cityName = "Cluj-Napoca";
 String Name = "";
 
-//Obviously not a secure way
-String user = "espUser2";
-String password = "espuser2";
+String user = "testEmbedded";
+String password = "testEmbedded";
 
 WiFiMulti wifiMulti;
 
@@ -50,7 +49,7 @@ void setup() {
 void getCurrentDate(){
     HTTPClient http;
 
-    http.begin("http://192.168.0.105:5000/api/general/hour"); //My API
+    http.begin("http://192.168.0.107:5000/api/general/hour"); //My API
 
     serialCon.print("Getting current date \n");
     int httpCode = http.GET();
@@ -124,10 +123,10 @@ void getCurrentBPM(){
 void authenticate(){
   HTTPClient http;
 
-  http.begin("http://192.168.0.105:5000/Api/User/login");
+  http.begin("http://192.168.0.107:5000/Api/User/login");
   http.addHeader("Content-Type", "application/json");
   
-  int httpResponseCode = http.POST("{\"username\": \"espUser2\", \"password\":\"espuser2\"}"); 
+  int httpResponseCode = http.POST("{\"username\": \"testEmbedded\", \"password\":\"testEmbedded\"}"); 
   if(httpResponseCode>0){
   
   String response = http.getString();  
@@ -154,7 +153,7 @@ else{
 void postData(){
   HTTPClient http;
 
-  http.begin("http://192.168.0.105:5000/Api/DataItem");
+  http.begin("http://192.168.0.107:5000/Api/DataItem");
   http.addHeader("Content-Type", "application/json");
   //http.setAuthorization("admin", "admin");
   http.addHeader("Authorization", "Bearer " + authToken);
