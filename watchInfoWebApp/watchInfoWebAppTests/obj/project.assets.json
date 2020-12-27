@@ -7501,23 +7501,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/ovi/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/Users/ovidiumoldovan/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ovi/Documents/Licenta/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
+      "projectUniqueName": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
       "projectName": "watchInfoWebAppTests",
-      "projectPath": "/Users/ovi/Documents/Licenta/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
-      "packagesPath": "/Users/ovi/.nuget/packages/",
-      "outputPath": "/Users/ovi/Documents/Licenta/watchInfoWebApp/watchInfoWebAppTests/obj/",
+      "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
+      "packagesPath": "/Users/ovidiumoldovan/.nuget/packages/",
+      "outputPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "/Users/ovi/.config/NuGet/NuGet.Config"
+        "/Users/ovidiumoldovan/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7527,9 +7523,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "/Users/ovi/Documents/Licenta/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
-              "projectPath": "/Users/ovi/Documents/Licenta/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj"
+            "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
+              "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj"
             }
           }
         }
@@ -7542,6 +7539,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
@@ -7579,7 +7577,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
       }
     }
   },

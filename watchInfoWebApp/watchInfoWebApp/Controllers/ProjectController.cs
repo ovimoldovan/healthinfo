@@ -44,7 +44,7 @@ namespace watchInfoWebApp.Controllers
             var userId = claimsGetter.UserId(User?.Claims);
             project.CreatedByUserId = userId;
             project.StartTime = DateTime.Now;
-            _context.Projects.Add(project);
+            await _context.Projects.AddAsync(project);
             await _context.SaveChangesAsync();
 
 
