@@ -58,6 +58,9 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     @IBOutlet weak var distanceLabel: WKInterfaceLabel!
     var token: String = ""
     
+    //FileWriting
+    var fileTimer: Timer?
+    
     
     @IBAction func startLogging() {
         if(status == "stopped") {
@@ -318,26 +321,26 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         
         do {
             if self.status=="running"{
-                let date = Date()
-                let formatter = DateFormatter()
-                formatter.dateFormat = "HH:mm:ss"
-                self.dateString = formatter.string(from: date)
-                self.hourLabel.setText(self.dateString)
+//                let date = Date()
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "HH:mm:ss"
+//                self.dateString = formatter.string(from: date)
+//                self.hourLabel.setText(self.dateString)
                 do{
-                    if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
-                        fileUpdater.seekToEndOfFile()
-                        fileUpdater.write("\nTimer:".data(using: .utf8)!)
-                        fileUpdater.write(dateString.data(using: .utf8)!)
-                        fileUpdater.write("\nBPM:".data(using: .utf8)!)
-                        fileUpdater.write(String(lastHeartRate).data(using: .utf8)!)
-                        fileUpdater.write("\nGPS:".data(using: .utf8)!)
-                        fileUpdater.write(self.gpsCoords.data(using: .utf8)!)
-                        let string = "\nPasi: " + steps + "\nDistanta parcursa (m): " + distance
-                        fileUpdater.write(string.data(using: .utf8)!)
-                        fileUpdater.write("\n".data(using: .utf8)!)
-                        fileUpdater.write("\n".data(using: .utf8)!)
-                        fileUpdater.closeFile()
-                    }
+//                    if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
+//                        fileUpdater.seekToEndOfFile()
+//                        fileUpdater.write("\nTime:".data(using: .utf8)!)
+//                        fileUpdater.write(dateString.data(using: .utf8)!)
+//                        fileUpdater.write("\nBPM:".data(using: .utf8)!)
+//                        fileUpdater.write(String(lastHeartRate).data(using: .utf8)!)
+//                        fileUpdater.write("\nGPS:".data(using: .utf8)!)
+//                        fileUpdater.write(self.gpsCoords.data(using: .utf8)!)
+//                        let string = "\nPasi: " + steps + "\nDistanta parcursa (m): " + distance
+//                        fileUpdater.write(string.data(using: .utf8)!)
+//                        fileUpdater.write("\n".data(using: .utf8)!)
+//                        fileUpdater.write("\n".data(using: .utf8)!)
+//                        fileUpdater.closeFile()
+//                    }
                     print(String(lastHeartRate) + ", " + dateString)
                     
                     //SENDING DATA TO SERVER
@@ -437,10 +440,54 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
             super.didAppear()
             
             do{
-                try "START\n".write(to: self.filePath, atomically: false, encoding: String.Encoding.utf8)
+                try "START\nTime,BPM,GPS,Steps,Distance".write(to: self.filePath, atomically: false, encoding: String.Encoding.utf8)
             }
             catch{
                 print("File write error")
+            }
+            
+            
+            //Write in file at 1 second intervals
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                
+                let date = Date()
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm:ss"
+                self.dateString = formatter.string(from: date)
+                self.hourLabel.setText(self.dateString)
+                
+//                if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
+//                    fileUpdater.seekToEndOfFile()
+//                    fileUpdater.write("\nTime:".data(using: .utf8)!)
+//                    fileUpdater.write(self.dateString.data(using: .utf8)!)
+//                    fileUpdater.write("\nBPM:".data(using: .utf8)!)
+//                    fileUpdater.write(String(self.lastHeartRate).data(using: .utf8)!)
+//                    fileUpdater.write("\nGPS:".data(using: .utf8)!)
+//                    fileUpdater.write(self.gpsCoords.data(using: .utf8)!)
+//                    let string = "\nPasi: " + self.steps + "\nDistanta parcursa (m): " + self.distance
+//                    fileUpdater.write(string.data(using: .utf8)!)
+//                    fileUpdater.write("\n".data(using: .utf8)!)
+//                    fileUpdater.write("\n".data(using: .utf8)!)
+//                    fileUpdater.closeFile()
+//                }
+                
+                //CSV:
+                if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
+                    fileUpdater.seekToEndOfFile()
+                    fileUpdater.write("\n".data(using: .utf8)!)
+                    fileUpdater.write(self.dateString.data(using: .utf8)!)
+                    fileUpdater.write(",".data(using: .utf8)!)
+                    fileUpdater.write(String(self.lastHeartRate).data(using: .utf8)!)
+                    fileUpdater.write(",".data(using: .utf8)!)
+                    fileUpdater.write(self.gpsCoords.data(using: .utf8)!)
+                    let string = "," + self.steps + "," + self.distance + " m";
+                    fileUpdater.write(string.data(using: .utf8)!)
+                    fileUpdater.closeFile()
+                }
+
+                if self.status == "stopped" {
+                    timer.invalidate()
+                }
             }
             
             let typesToShare: Set = [
