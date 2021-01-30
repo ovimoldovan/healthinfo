@@ -446,7 +446,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                 print("File write error")
             }
             
-            
+            DispatchQueue.main.async{
             //Write in file at 1 second intervals
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 
@@ -489,7 +489,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                     timer.invalidate()
                 }
             }
-            
+            }
             let typesToShare: Set = [
                 HKQuantityType.workoutType()
             ]
