@@ -65,3 +65,9 @@
 /Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro-14.5/optimized/xamarin_logo@2x.png
 /Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro-14.5/optimized/xamarin_logo@3x.png
 /Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/obj/iPhoneSimulator/Debug/device-builds/iphone 11 pro-14.5/optimized/
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/bin/iPhoneSimulator/Debug/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/bin/iPhoneSimulator/Debug/System.Buffers.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/bin/iPhoneSimulator/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/bin/iPhoneSimulator/Debug/System.Text.Encodings.Web.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/bin/iPhoneSimulator/Debug/System.Text.Json.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.iOS/bin/iPhoneSimulator/Debug/Newtonsoft.Json.dll

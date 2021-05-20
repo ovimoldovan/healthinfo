@@ -575,3 +575,11 @@
 /Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/stamp/_GenerateJavaStubs.stamp
 /Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/stamp/_GeneratePackageManagerJava.stamp
 /Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/stamp/_ResolveLibraryProjectImports.stamp
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/System.Buffers.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/System.Memory.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/System.Runtime.CompilerServices.Unsafe.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/System.Text.Encodings.Web.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/System.Text.Json.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/System.Threading.Tasks.Extensions.dll
+/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp.Android/obj/Debug/android/assets/Newtonsoft.Json.dll

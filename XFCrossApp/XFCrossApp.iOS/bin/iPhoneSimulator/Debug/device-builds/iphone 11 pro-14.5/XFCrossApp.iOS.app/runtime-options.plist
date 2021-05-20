@@ -3,6 +3,6 @@
 <plist version=\"1.0\">
 <dict>
 <key>HttpMessageHandler</key>
-<string>NSUrlSessionHandler</string>
+<string>HttpClientHandler</string>
 </dict>
 </plist>

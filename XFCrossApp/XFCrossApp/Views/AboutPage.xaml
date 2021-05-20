@@ -35,42 +35,36 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="AppName" FontAttributes="Bold" FontSize="22" />
-                                <Span Text=" " />
-                                <Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
+                                <Span Text="Login" FontAttributes="Bold" FontSize="22" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="This app is written in C# and native APIs using the" />
-                                <Span Text=" " />
-                                <Span Text="Xamarin Platform" FontAttributes="Bold" />
-                                <Span Text="." />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
+
+
+                <Label FontSize="12" Text="{Binding TimeLabel}">
                 </Label>
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="It shares code with its" />
-                                <Span Text=" " />
-                                <Span Text="iOS, Android, and Windows" FontAttributes="Bold" />
-                                <Span Text=" " />
-                                <Span Text="versions." />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button Margin="0,10,0,0" Text="Learn more"
-                        Command="{Binding OpenWebCommand}"
+                <Button Margin="0,10,0,0" Text="Get Date"
+                        Clicked="GetDate_Clicked"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
+
+
+               <Entry Text="{Binding Username}"
+                       x:Name="Username"
+                       FontSize="Medium"
+                       Placeholder="Username"/>
+               <Entry Text="{Binding Password}"
+                       x:Name="Password"
+                       IsPassword="True"
+                       FontSize="Medium"
+                       Placeholder="Password"/>
+                <Button Margin="0,10,0,0" Text="Login"
+                        Clicked="Login_Clicked"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
+                <Label FontSize="12" Text="{Binding DisplayName}" />
+
             </StackLayout>
         </ScrollView>
     </Grid>
