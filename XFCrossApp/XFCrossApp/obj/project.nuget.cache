@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "H1mqUiSC0VoHb+4fHspXnbNpck8t0FLLFAvmiSuaC1Wa4jQGJhhKIm2fhfQrU38IJ9npCC1CbM/4s3gcnjDu2w==",
+  "success": true,
+  "projectFilePath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/XFCrossApp/XFCrossApp/XFCrossApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/ovidiumoldovan/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/Users/ovidiumoldovan/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
+    "/Users/ovidiumoldovan/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/Users/ovidiumoldovan/.nuget/packages/xamarin.essentials/1.6.1/xamarin.essentials.1.6.1.nupkg.sha512",
+    "/Users/ovidiumoldovan/.nuget/packages/xamarin.forms/5.0.0.2012/xamarin.forms.5.0.0.2012.nupkg.sha512"
+  ],
+  "logs": []
+}

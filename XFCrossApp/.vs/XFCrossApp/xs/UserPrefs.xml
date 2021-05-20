@@ -1,0 +1,56 @@
+﻿<Properties StartupConfiguration="{320BD98C-22FB-49CF-9677-C4D56CDCE304}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="XFCrossApp/ViewModels/AboutViewModel.cs">
+    <Files>
+      <File FileName="XFCrossApp.Android/MainActivity.cs" Line="3" Column="11" />
+      <File FileName="XFCrossApp/Views/ItemDetailPage.xaml.cs" Line="36" Column="1" />
+      <File FileName="XFCrossApp/Views/ItemDetailPage.xaml" Line="12" Column="42" />
+      <File FileName="XFCrossApp/ViewModels/ItemDetailViewModel.cs" Line="28" Column="1" />
+      <File FileName="XFCrossApp/ViewModels/BaseViewModel.cs" Line="17" Column="127" />
+      <File FileName="XFCrossApp/Services/IPluralsightDataStore.cs" Line="1" Column="1" />
+      <File FileName="XFCrossApp/Services/MockPluralsightDataStore.cs" Line="1" Column="1" />
+      <File FileName="XFCrossApp/ViewModels/ItemsViewModel.cs" Line="35" Column="20" />
+      <File FileName="XFCrossApp/Views/ItemsPage.xaml.cs" Line="32" Column="114" />
+      <File FileName="XFCrossApp/Views/ItemsPage.xaml" Line="10" Column="23" />
+      <File FileName="XFCrossApp/Views/MainPage.xaml" Line="6" Column="1" />
+      <File FileName="XFCrossApp/Views/MainPage.xaml.cs" Line="8" Column="26" />
+      <File FileName="XFCrossApp/Views/NewItemPage.xaml" Line="1" Column="1" />
+      <File FileName="XFCrossApp/Views/NewItemPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="XFCrossApp/Views/AboutPage.xaml" Line="44" Column="48" />
+      <File FileName="XFCrossApp/Views/AboutPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="XFCrossApp/ViewModels/AboutViewModel.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="XFCrossApp" expanded="True">
+            <Node name="XFCrossApp" expanded="True">
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="ViewModels" expanded="True">
+                <Node name="AboutViewModel.cs" selected="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="AboutPage.xaml" expanded="True" />
+                <Node name="ItemDetailPage.xaml" expanded="True" />
+                <Node name="ItemsPage.xaml" expanded="True" />
+                <Node name="MainPage.xaml" expanded="True" />
+                <Node name="NewItemPage.xaml" expanded="True" />
+              </Node>
+              <Node name="App.xaml" expanded="True" />
+            </Node>
+            <Node name="XFCrossApp.Android" expanded="True" />
+            <Node name="XFCrossApp.iOS" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.XFCrossApp.Android PreferredExecutionTarget="Android.pixel_2_pie_9_0_-_api_28" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.XFCrossApp.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.908D16B5-B8EA-4BEC-A4E2-839BBF304EBA" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
