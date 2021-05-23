@@ -2,10 +2,12 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using Moq;
 using watchInfoWebApp.Controllers;
 using watchInfoWebApp.Models;
 using watchInfoWebApp.Services;
+using watchInfoWebApp.ViewModels;
 using Xunit;
 
 namespace watchInfoWebAppTests
@@ -14,12 +16,21 @@ namespace watchInfoWebAppTests
     {
 
         protected UserController userController;
-        protected Mock<IUserService> userService;
+        protected Mock<IUserService> userServiceMock;
+        protected LoginViewModel loginViewModel = new LoginViewModel
+        {
+            Token = "token",
+            Username = "user",
+            Name = "userName",
+            Role = "admin",
+            Location = "City",
+        };
 
         public UserControllerTests()
         {
-            userService = new Mock<IUserService>();
-            userController = new UserController(dbContext, userService.Object);
+            userServiceMock = new Mock<IUserService>();
+            userServiceMock.Setup(us => us.Authenticate("user", "pass")).Returns(Task.FromResult(loginViewModel));
+            userController = new UserController(dbContext, userServiceMock.Object);
         }
 
         [Fact]
@@ -98,6 +109,57 @@ namespace watchInfoWebAppTests
 
             //Assert
             Assert.True(result == ComputeSha256HashTest(user.Password));
+        }
+
+        [Fact]
+        public void UserService_AuthWithWrongData_ReturnsNull()
+        {
+            //Arrange
+            User user = new User
+            {
+                Username = "Non-Existant-User",
+                Password = "test",
+            };
+
+            //Act
+            var result = userServiceMock.Object.Authenticate(user.Username, user.Password).Result;
+
+            //Assert
+            Assert.True(result == null);
+        }
+        
+        [Fact]
+        public void UserService_AuthWithGoodData_Works()
+        {
+            //Arrange
+            User user = new User
+            {
+                Username = "user",
+                Password = "pass",
+            };
+
+            //Act
+            var result = userServiceMock.Object.Authenticate(user.Username, user.Password).Result;
+
+            //Assert
+            Assert.True(result != null);
+        }   
+        
+        [Fact]
+        public void UserService_AuthWithGoodData_ReturnsToken()
+        {
+            //Arrange
+            User user = new User
+            {
+                Username = "user",
+                Password = "pass",
+            };
+
+            //Act
+            var result = userServiceMock.Object.Authenticate(user.Username, user.Password).Result;
+
+            //Assert
+            Assert.True(result.Token == loginViewModel.Token);
         }
 
         public static string ComputeSha256HashTest(string rawData)

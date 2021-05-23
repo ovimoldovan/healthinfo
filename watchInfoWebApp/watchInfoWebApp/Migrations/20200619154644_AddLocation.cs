@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace watchInfoWebApp.Migrations
 {
+
+    [ExcludeFromCodeCoverage]
     public partial class AddLocation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

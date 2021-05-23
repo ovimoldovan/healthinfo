@@ -1,25 +1,117 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj": {}
+    "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebAppTests\\watchInfoWebAppTests.csproj": {}
   },
   "projects": {
-    "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
+    "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebAppTests\\watchInfoWebAppTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj",
-        "projectName": "watchInfoWebApp",
-        "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj",
-        "packagesPath": "/Users/ovidiumoldovan/.nuget/packages/",
-        "outputPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/obj/",
+        "projectUniqueName": "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebAppTests\\watchInfoWebAppTests.csproj",
+        "projectName": "watchInfoWebAppTests",
+        "projectPath": "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebAppTests\\watchInfoWebAppTests.csproj",
+        "packagesPath": "C:\\Users\\Ovi\\.nuget\\packages\\",
+        "outputPath": "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebAppTests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/ovidiumoldovan/.config/NuGet/NuGet.Config"
+          "C:\\Users\\Ovi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebApp\\watchInfoWebApp.csproj": {
+                "projectPath": "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebApp\\watchInfoWebApp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.5.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.14.3, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebApp\\watchInfoWebApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebApp\\watchInfoWebApp.csproj",
+        "projectName": "watchInfoWebApp",
+        "projectPath": "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebApp\\watchInfoWebApp.csproj",
+        "packagesPath": "C:\\Users\\Ovi\\.nuget\\packages\\",
+        "outputPath": "D:\\MSc\\watchKitSensors\\watchInfoWebApp\\watchInfoWebApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Ovi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -83,85 +175,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
-        "projectName": "watchInfoWebAppTests",
-        "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
-        "packagesPath": "/Users/ovidiumoldovan/.nuget/packages/",
-        "outputPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/Users/ovidiumoldovan/.config/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
-            "projectReferences": {
-              "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
-                "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[16.5.0, )"
-            },
-            "Moq": {
-              "target": "Package",
-              "version": "[4.14.3, )"
-            },
-            "coverlet.collector": {
-              "target": "Package",
-              "version": "[1.2.0, )"
-            },
-            "xunit": {
-              "target": "Package",
-              "version": "[2.4.0, )"
-            },
-            "xunit.runner.visualstudio": {
-              "target": "Package",
-              "version": "[2.4.0, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
