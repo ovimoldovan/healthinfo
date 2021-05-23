@@ -19,7 +19,7 @@
       <File FileName="watchInfoWebApp/ClientApp/src/components/FetchData.js" Line="44" Column="40" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="38" Column="19" />
       <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" Line="15" Column="10" />
-      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" Line="6" Column="18" />
+      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" Line="15" Column="45" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
