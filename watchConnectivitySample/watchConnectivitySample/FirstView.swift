@@ -2,15 +2,33 @@
 //  FirstView.swift
 //  watchConnectivitySample
 //
-//  Created by Ovidiu Moldovan on 21/03/2020.
-//  Copyright © 2020 Ovidiu Moldovan. All rights reserved.
+//  Created by Ovidiu Moldovan on 29.07.2022.
+//  Copyright © 2022 Ovidiu Moldovan. All rights reserved.
 //
 
 import SwiftUI
 
 struct FirstView: View {
+    let viewController = WatchConnectivityProvider()
+    @EnvironmentObject var userSettings: UserSettings
+    var contentView = ContentView()
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack{
+                Text("Logged in as: " + self.userSettings.name)
+                NavigationLink(destination: contentView){
+                    Text("Watch app")
+                }
+                NavigationLink(destination: Login().environmentObject(self.userSettings)){
+                    Text(self.userSettings.token == "" ? "Login" : "Login as a different user")
+                    .bold()
+                }
+            }
+        }
+        .environmentObject(viewController)
+        .environmentObject(userSettings)
     }
 }
 

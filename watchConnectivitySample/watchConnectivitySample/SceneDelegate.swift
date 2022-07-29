@@ -22,13 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let viewController = WatchConnectivityProvider()
         let userSettings = UserSettings()
-        let contentView = ContentView()
+        //let contentView = ContentView()
+        let firstView = FirstView()
             .environmentObject(viewController)
             .environmentObject(userSettings)
         
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
+            window.rootViewController = UIHostingController(rootView: firstView)
             self.window = window
             window.makeKeyAndVisible()
         }

@@ -25,24 +25,24 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>com.tutorial1.watchConnectivitySample.watchkitapp</string>
+			<string>com.licentaOvi.watchConnectivitySample.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
-	<key>WKExtensionDelegateClassName</key>
-	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
-	<key>WKRunsIndependentlyOfCompanionApp</key>
-	<true/>
 	<key>NSHealthShareUsageDescription</key>
 	<string>This app uses heart beat rate data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>This app uses heart beat rate data.</string>
-	<key>NSMotionUsageDescription</key>
-	<string>We need this to get step count.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses location data.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app uses location data.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses location data.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>We need this to get step count.</string>
+	<key>WKExtensionDelegateClassName</key>
+	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
+	<true/>
 </dict>
 </plist>

@@ -22,7 +22,7 @@ struct Login: View {
     @State var username = ""
     @State var password = ""
     @State var name = "not logged in"
-    let url = URL(string: "http://192.168.0.107:5000/Api/User/login")
+    let url = URL(string: "http://healthinfo.azurewebsites.net/Api/User/login")
     var body: some View {
         NavigationView{
             Form{
@@ -65,6 +65,7 @@ struct Login: View {
             
         }
         .navigationBarTitle("Login")
+        .environmentObject(userSettings)
     }
 }
 
