@@ -41,6 +41,58 @@ struct FirstView: View {
         }
     }
     
+    //CMAltimeter data
+    private let altimeter = CMAltimeter()
+    private let motionManager = CMMotionManager()
+    let queue = OperationQueue()
+    
+    @State private var relativeAltitude = 0.0
+    @State private var absoluteAltitude = 0.0
+    @State private var pressure = 0.0
+    
+    func initAltimeter(){
+        if #available(iOS 15.0, *) {
+            if(CMAltimeter.isRelativeAltitudeAvailable()){
+                switch(CMAltimeter.authorizationStatus()){
+                    
+                case .notDetermined:
+                    print("waiting approval for altimeter")
+                case .restricted, .denied:
+                    print("altimeter restricted or denied")
+                case .authorized:
+                    self.altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) {(data,error) in DispatchQueue.main.async {
+                        relativeAltitude = Double(data?.relativeAltitude ?? 0.0)
+                        pressure = Double(data?.pressure ?? 0.0)
+                        //print("\(relativeAltitude)")
+                    }
+                    }
+                @unknown default:
+                    break
+                    
+                    
+                    if(CMAltimeter.isAbsoluteAltitudeAvailable()){
+                        switch(CMAltimeter.authorizationStatus()){
+                            
+                        case .notDetermined:
+                            print("waiting approval for altimeter")
+                        case .restricted, .denied:
+                            print("altimeter restricted or denied")
+                        case .authorized:
+                            self.altimeter.startAbsoluteAltitudeUpdates(to: OperationQueue.main) {(data,error) in DispatchQueue.main.async {
+                                absoluteAltitude = Double(data?.altitude ?? 0.0)
+                                //print("\(absoluteAltitude)")
+                            }}
+                        @unknown default:
+                            break
+                        }
+                    }
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+    }
+    
     private func sendToServer(){
         //Check for the latest lat + long
         locationModel.updateLatLong()
@@ -55,9 +107,11 @@ struct FirstView: View {
             "gpsCoordinates": (String(locationModel.latitude) + " " + String(locationModel.longitude)) as NSString,
             "steps": steps != nil ? steps! : 0 as NSNumber,
             "distance": distance != nil ? distance! : 0 as NSNumber,
-            //"device": WKInterfaceDevice.current().model
+            "relativeAltitude": relativeAltitude as NSNumber,
+            "absoluteAltitude": absoluteAltitude as NSNumber,
+            "pressure": pressure as NSNumber,
             "device": UIDevice.modelName
-            ] as [String : Any]
+        ] as [String : Any]
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
             URLSession.shared.uploadTask(with: request, from: jsonData){ data, response, error in
@@ -78,42 +132,46 @@ struct FirstView: View {
         NavigationView{
             GeometryReader
             { proxy in
-                    VStack(spacing: 0.0){
-                        ZStack{
-                            Map(coordinateRegion: $locationModel.region, showsUserLocation: true)
-                        }
-                        .frame(height: proxy.size.height/3)
-                        .navigationTitle("Health Info")
-                        .onAppear{
-                            locationModel.checkIfLocationIsEnabled()
-                        }
-                        ZStack{
-                            VStack{
-                                Text("Logged in as: " + self.userSettings.name)
-                                    .padding()
-                                NavigationLink(destination: contentView){
-                                    Text("Watch app")
-                                }
+                VStack(spacing: 0.0){
+                    ZStack{
+                        Map(coordinateRegion: $locationModel.region, showsUserLocation: true)
+                    }
+                    .frame(height: proxy.size.height/3)
+                    .navigationTitle("Health Info")
+                    .onAppear{
+                        locationModel.checkIfLocationIsEnabled()
+                    }
+                    ZStack{
+                        VStack{
+                            Text("Logged in as: " + self.userSettings.name)
                                 .padding()
-                                NavigationLink(destination: Login().environmentObject(self.userSettings)){
-                                    Text(self.userSettings.token == "" ? "Login" : "Login as a different user")
-                                        .bold()
-                                        .padding()
-                                }
-                                    Text(steps != nil ? "Steps: \(steps!)" : "No steps available").padding()
-                                        .onChange(of: steps){ steps in
-                                            sendToServer()
-                                        }
-                                Text(distance != nil ? "Distance: \(distance!) (m)" : "No distance available").padding()
+                            NavigationLink(destination: contentView){
+                                Text("Watch app")
                             }
+                            .padding()
+                            NavigationLink(destination: Login().environmentObject(self.userSettings)){
+                                Text(self.userSettings.token == "" ? "Login" : "Login as a different user")
+                                    .bold()
+                                    .padding()
+                            }
+                            Text(steps != nil ? "Steps: \(steps!)" : "No steps available").padding()
+                                .onChange(of: steps){ steps in
+                                    sendToServer()
+                                }
+                            Text(distance != nil ? "Distance: \(distance!) (m)" : "No distance available").padding()
+                            Text("Relative Altitude: " + String(relativeAltitude) + "(m)")
+                            Text("Absolute Altitude: " + String(absoluteAltitude) + "(m)")
+                            Text("Pressure: " + String(pressure) + "(kPa)")
                         }
                     }
+                }
             }
         }
         .environmentObject(viewController)
         .environmentObject(userSettings)
         .onAppear{
             initPedometer()
+            initAltimeter()
         }
         .ignoresSafeArea()
     }

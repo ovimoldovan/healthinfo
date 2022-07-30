@@ -194,7 +194,6 @@
 		71F5372028951CF0003470A7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		71F5372528951DFC003470A7 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		71F5372728954877003470A7 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
-		71F5372928955632003470A7 /* CustomCodeSigning.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CustomCodeSigning.entitlements; sourceTree = "<group>"; };
 		8C3551562428108000B4F937 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		8C63DF0724290F0E00B0F35E /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		8C63DF3A24290F2900B0F35E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -270,6 +269,7 @@
 		71F5372328951D44003470A7 /* Page */ = {
 			isa = PBXGroup;
 			children = (
+				8CB6A4B723DE333600A14F9D /* ViewController.swift */,
 				8C3551562428108000B4F937 /* Login.swift */,
 				8CDA0A1D240C576500D3D134 /* ContentView.swift */,
 				8CEF01A72426831300E8FF04 /* Post.swift */,
@@ -354,12 +354,10 @@
 				71F5372228951D23003470A7 /* Delegate */,
 				71F5371028951CBC003470A7 /* Model */,
 				8CB6A50B23DE42E200A14F9D /* watchConnectivitySample.entitlements */,
-				8CB6A4B723DE333600A14F9D /* ViewController.swift */,
 				8CB6A4B923DE333600A14F9D /* Main.storyboard */,
 				8CB6A4BC23DE333900A14F9D /* Assets.xcassets */,
 				8CB6A4BE23DE333900A14F9D /* LaunchScreen.storyboard */,
 				8CB6A4C123DE333900A14F9D /* Info.plist */,
-				71F5372928955632003470A7 /* CustomCodeSigning.entitlements */,
 			);
 			path = watchConnectivitySample;
 			sourceTree = "<group>";

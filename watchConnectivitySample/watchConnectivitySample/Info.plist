@@ -33,8 +33,6 @@
 	<string>This apps needs location</string>
 	<key>NSMotionUsageDescription</key>
 	<string>We need this to get step count and distance.</string>
-	<key>NSSensorKitUsageDescription</key>
-	<string>Sensors data</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
