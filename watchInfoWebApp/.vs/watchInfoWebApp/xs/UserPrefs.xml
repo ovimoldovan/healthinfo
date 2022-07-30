@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/Home.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/NavMenu.css">
     <Files>
       <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" Line="17" Column="1" />
       <File FileName="watchInfoWebAppTests/BaseTests.cs" />
@@ -17,11 +17,16 @@
       <File FileName="watchInfoWebApp/Program.cs" Line="10" Column="51" />
       <File FileName="watchInfoWebApp/ClientApp/webpack.config.js" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/FetchData.js" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="30" Column="27" />
       <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" />
       <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" />
       <File FileName="watchInfoWebApp/Migrations/20220730164037_AltitudeAndPressureData.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="19" Column="8" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="49" Column="29" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/index.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Layout.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/public/index.html" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/App.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/NavMenu.css" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -29,9 +34,10 @@
           <Node name="watchInfoWebApp" expanded="True">
             <Node name="watchInfoWebApp" expanded="True">
               <Node name="ClientApp" expanded="True">
+                <Node name="public" expanded="True" />
                 <Node name="src" expanded="True">
                   <Node name="components" expanded="True">
-                    <Node name="Home.js" selected="True" />
+                    <Node name="Register.js" selected="True" />
                   </Node>
                 </Node>
               </Node>

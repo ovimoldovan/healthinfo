@@ -40,13 +40,13 @@ export class Home extends Component {
 
   render() {
     const { user, dataItems } = this.state;
-    return (
-      <div className="col-md-12 col-md-offset-6">
+      return (
+        <div className="col-md-12 col-md-offset-6">
         <h1>Hi, {user.name}!</h1>
         <h4>My data:</h4>
         {dataItems.loading && <em>Loading data...</em>}
         {dataItems.length && (
-          <table className="table table-striped" aria-labelledby="tabelLabel">
+          <center><table className="table table-striped" aria-labelledby="tabelLabel">
             <thead>
               <tr>
                 <th>BPM</th>
@@ -86,7 +86,8 @@ export class Home extends Component {
                 </tr>
               ))}
             </tbody>
-          </table>
+                  </table>
+                      </center>
         )}
         <p>© 2020-2022 Ovidiu Moldovan</p>
       </div>
