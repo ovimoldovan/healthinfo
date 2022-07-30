@@ -30,7 +30,7 @@
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>We need access to your health data to write your heart rate.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>We need this to get step count</string>
+	<string>We need this to get step count and distance.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

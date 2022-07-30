@@ -11,7 +11,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     
     var filePath = InterfaceController.returnDocumentsDirectoryUrl().appendingPathComponent("output.txt")
     
-    let url = URL(string: "http://192.168.0.105:5000/Api/DataItem")
+    let url = URL(string: "http://healthinfo.azurewebsites.net/Api/DataItem")
     
     //Location related
     let locationManager = CLLocationManager()
