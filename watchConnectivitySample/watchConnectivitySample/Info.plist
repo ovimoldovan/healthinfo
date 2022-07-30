@@ -35,6 +35,16 @@
 	<string>We need this to get step count and distance.</string>
 	<key>NSSensorKitUsageDescription</key>
 	<string>Sensors data</string>
+	<key>NSSensorKitPrivacyPolicyURL</key>
+	<string>https://healthinfo.azurewebsites.net/about</string>
+<key>NSSensorKitUsageDetail</key>
+<dict> 
+    <key>SRSensorUsageMotion</key>
+    <dict> 
+        <key>Description</key> 
+        <string>This app uses motion data for research purposes.</string>
+    </dict> 
+</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -10,5 +10,19 @@
 	<array>
 		<string>group.watchConnectivitySample</string>
 	</array>
+
+<key>com.apple.developer.sensorkit.reader.allow</key>
+    <array> 
+        <string>on-wrist</string>
+        <string>ambient-light-sensor</string>
+        <string>motion-accelerometer</string>
+        <string>motion-rotation-rate</string>
+        <string>visits</string>
+        <string>pedometer</string>
+        <string>device-usage</string>
+        <string>messages-usage</string>
+        <string>phone-usage</string>
+        <string>keyboard-metrics</string> 
+</array>
 </dict>
 </plist>

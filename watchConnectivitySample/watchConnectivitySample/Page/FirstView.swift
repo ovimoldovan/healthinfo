@@ -74,6 +74,9 @@ struct FirstView: View {
     
     @StateObject private var locationModel: LocationModel = LocationModel()
     
+    //Ambient light
+    @StateObject private var ambientLightModel: AmbientLightModel = AmbientLightModel()
+    
     var body: some View {
         NavigationView{
             GeometryReader
@@ -105,6 +108,22 @@ struct FirstView: View {
                                             sendToServer()
                                         }
                                 Text(distance != nil ? "Distance: \(distance!) (m)" : "No distance available").padding()
+                                Text(" ")
+                            }
+                            VStack{
+                                            Button("Start Recording") {
+                                                ambientLightModel.requestAuthorization()
+                                            }
+                                            Text(" ")
+                                            Button("Stop Recording") {
+                                                ambientLightModel.stopRecording()
+                                            }
+                                            Text(" ")
+                                            Button("Fetch") {
+                                                ambientLightModel.fetch()
+                                            }
+                                Text(" ")
+                                //Text("Ambient light reading: \(ambientLightModel)")
                             }
                         }
                     }
