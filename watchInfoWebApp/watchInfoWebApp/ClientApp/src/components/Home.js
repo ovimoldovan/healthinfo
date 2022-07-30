@@ -53,8 +53,11 @@ export class Home extends Component {
                 <th>Date</th>
                 <th>Position</th>
                 <th>Steps</th>
-                <th>Distance</th>
-                <th>Temperature </th>
+                <th>Distance (m)</th>
+                <th>Temperature (C)</th>
+                <th>Rel. Altitude (m)</th>
+                <th>Abs. Altitude (m)</th>
+                <th>Pressure (kPa)</th>
                 <th>Device</th>
                 <th>Controls</th>
               </tr>
@@ -68,6 +71,9 @@ export class Home extends Component {
                   <td>{dataItems.steps}</td>
                   <td>{dataItems.distance}</td>
                   <td>{dataItems.temperature}</td>
+                  <td>{dataItems.relativeAltitude}</td>
+                  <td>{dataItems.absoluteAltitude}</td>
+                  <td>{dataItems.pressure}</td>
                   <td>{dataItems.device}</td>
                   <td>
                     <button
@@ -82,7 +88,7 @@ export class Home extends Component {
             </tbody>
           </table>
         )}
-        <p>© 2020 Ovidiu Moldovan</p>
+        <p>© 2020-2022 Ovidiu Moldovan</p>
       </div>
     );
   }

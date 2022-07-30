@@ -1,25 +1,27 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ViewModels/LoginViewModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/Home.js">
     <Files>
       <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" Line="17" Column="1" />
       <File FileName="watchInfoWebAppTests/BaseTests.cs" />
-      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="111" Column="15" />
-      <File FileName="watchInfoWebApp/Services/UserService.cs" />
+      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/Services/UserService.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" />
-      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" />
+      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="40" Column="70" />
       <File FileName="watchInfoWebApp/Models/User.cs" />
       <File FileName="watchInfoWebAppTests/DataItemControllerTests.cs" />
-      <File FileName="watchInfoWebApp/Models/DataItem.cs" />
+      <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="6" Column="18" />
       <File FileName="watchInfoWebAppTests/ProjectControllerTests.cs" />
       <File FileName="watchInfoWebAppTests/UserControllerTests.cs" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/AdminPanel.js" />
-      <File FileName="watchInfoWebApp/Startup.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/Program.cs" Line="18" Column="86" />
+      <File FileName="watchInfoWebApp/Startup.cs" />
+      <File FileName="watchInfoWebApp/Program.cs" Line="10" Column="51" />
       <File FileName="watchInfoWebApp/ClientApp/webpack.config.js" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/FetchData.js" Line="44" Column="40" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="38" Column="19" />
-      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" Line="15" Column="10" />
-      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" Line="15" Column="45" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/FetchData.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" />
+      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" />
+      <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" />
+      <File FileName="watchInfoWebApp/Migrations/20220730164037_AltitudeAndPressureData.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="19" Column="8" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -28,14 +30,15 @@
             <Node name="watchInfoWebApp" expanded="True">
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
-                  <Node name="components" expanded="True" />
-                  <Node name="services" expanded="True" />
+                  <Node name="components" expanded="True">
+                    <Node name="Home.js" selected="True" />
+                  </Node>
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />
-              <Node name="ViewModels" expanded="True">
-                <Node name="LoginViewModel.cs" selected="True" />
-              </Node>
+              <Node name="Migrations" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="ViewModels" expanded="True" />
             </Node>
           </Node>
         </State>
