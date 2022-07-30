@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/NavMenu.css">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/custom.css">
     <Files>
       <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" Line="17" Column="1" />
       <File FileName="watchInfoWebAppTests/BaseTests.cs" />
@@ -21,12 +21,15 @@
       <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" />
       <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" />
       <File FileName="watchInfoWebApp/Migrations/20220730164037_AltitudeAndPressureData.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="49" Column="29" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="56" Column="16" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/index.js" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Layout.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Layout.js" Line="12" Column="38" />
       <File FileName="watchInfoWebApp/ClientApp/public/index.html" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/App.js" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/NavMenu.css" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/App.js" Line="10" Column="15" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/NavMenu.css" Line="19" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/MapComponent.js" Line="22" Column="55" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/PositionData.js" Line="134" Column="112" />
+      <File FileName="watchInfoWebApp/ClientApp/src/custom.css" Line="27" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -36,9 +39,8 @@
               <Node name="ClientApp" expanded="True">
                 <Node name="public" expanded="True" />
                 <Node name="src" expanded="True">
-                  <Node name="components" expanded="True">
-                    <Node name="Register.js" selected="True" />
-                  </Node>
+                  <Node name="components" expanded="True" />
+                  <Node name="custom.css" selected="True" />
                 </Node>
               </Node>
               <Node name="Controllers" expanded="True" />

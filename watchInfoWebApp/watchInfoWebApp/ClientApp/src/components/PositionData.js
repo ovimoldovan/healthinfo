@@ -130,8 +130,8 @@ export class PositionData extends Component {
                       <th>Device</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {this.state.currentDataItem.heartBpm && (
+                                <tbody>
+                                    {(this.state.currentDataItem.heartBpm || this.state.currentDataItem.device) && (
                       <tr>
                         <td>{this.state.currentDataItem.heartBpm}</td>
                         <td>
