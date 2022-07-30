@@ -11,7 +11,7 @@ import SwiftUI
 struct Post: View {
     @State var bpm = ""
     @State var token = ""
-    let url = URL(string: "http://192.168.0.111:5000/Api/DataItem")
+    let url = URL(string: "http://healthinfo.azurewebsites.net/Api/DataItem")
     var body: some View {
         Form{
             TextField("token",text: $token)

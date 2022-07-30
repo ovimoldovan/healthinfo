@@ -9,14 +9,7 @@
 import SwiftUI
 import WatchConnectivity
 
-
-class UserSettings: ObservableObject {
-    @Published var token = ""
-    @Published var name = "anonymous"
-}
-
 var fileContents: String = "empty"
-
 
 struct ContentView: View {
     //@State var status: String = "not received"

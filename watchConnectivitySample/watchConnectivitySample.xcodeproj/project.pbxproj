@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		714855BA2503D8960095EC3E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C864DA123F05AA400BB6AD5 /* HealthKit.framework */; };
 		71F5370A2894771D003470A7 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F537092894771D003470A7 /* FirstView.swift */; };
+		71F5372128951CF0003470A7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5372028951CF0003470A7 /* UserSettings.swift */; };
+		71F5372628951DFC003470A7 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5372528951DFC003470A7 /* UIDevice.swift */; };
 		8C3551572428108000B4F937 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3551562428108000B4F937 /* Login.swift */; };
 		8C63DF5224290F4000B0F35E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C63DF4524290F2A00B0F35E /* Alamofire.framework */; };
 		8C63DF5324290F4000B0F35E /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C63DF4524290F2A00B0F35E /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -188,6 +190,8 @@
 
 /* Begin PBXFileReference section */
 		71F537092894771D003470A7 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
+		71F5372028951CF0003470A7 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		71F5372528951DFC003470A7 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		8C3551562428108000B4F937 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		8C63DF0724290F0E00B0F35E /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		8C63DF3A24290F2900B0F35E /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
@@ -242,6 +246,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		71F5371028951CBC003470A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				71F5372028951CF0003470A7 /* UserSettings.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		71F5372228951D23003470A7 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8CB6A4B323DE333600A14F9D /* AppDelegate.swift */,
+				8CB6A4B523DE333600A14F9D /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		71F5372328951D44003470A7 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				8C3551562428108000B4F937 /* Login.swift */,
+				8CDA0A1D240C576500D3D134 /* ContentView.swift */,
+				8CEF01A72426831300E8FF04 /* Post.swift */,
+				71F537092894771D003470A7 /* FirstView.swift */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		71F5372428951DE6003470A7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				71F5372528951DFC003470A7 /* UIDevice.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8C63DF0824290F0E00B0F35E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,18 +345,16 @@
 		8CB6A4B223DE333600A14F9D /* watchConnectivitySample */ = {
 			isa = PBXGroup;
 			children = (
-				8C3551562428108000B4F937 /* Login.swift */,
+				71F5372428951DE6003470A7 /* Helpers */,
+				71F5372328951D44003470A7 /* Page */,
+				71F5372228951D23003470A7 /* Delegate */,
+				71F5371028951CBC003470A7 /* Model */,
 				8CB6A50B23DE42E200A14F9D /* watchConnectivitySample.entitlements */,
-				8CB6A4B323DE333600A14F9D /* AppDelegate.swift */,
-				8CB6A4B523DE333600A14F9D /* SceneDelegate.swift */,
 				8CB6A4B723DE333600A14F9D /* ViewController.swift */,
-				8CDA0A1D240C576500D3D134 /* ContentView.swift */,
-				8CEF01A72426831300E8FF04 /* Post.swift */,
 				8CB6A4B923DE333600A14F9D /* Main.storyboard */,
 				8CB6A4BC23DE333900A14F9D /* Assets.xcassets */,
 				8CB6A4BE23DE333900A14F9D /* LaunchScreen.storyboard */,
 				8CB6A4C123DE333900A14F9D /* Info.plist */,
-				71F537092894771D003470A7 /* FirstView.swift */,
 			);
 			path = watchConnectivitySample;
 			sourceTree = "<group>";
@@ -594,10 +632,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				71F5370A2894771D003470A7 /* FirstView.swift in Sources */,
+				71F5372628951DFC003470A7 /* UIDevice.swift in Sources */,
 				8C3551572428108000B4F937 /* Login.swift in Sources */,
 				8CB6A4B823DE333600A14F9D /* ViewController.swift in Sources */,
 				8CB6A4B423DE333600A14F9D /* AppDelegate.swift in Sources */,
 				8CDA0A1E240C576500D3D134 /* ContentView.swift in Sources */,
+				71F5372128951CF0003470A7 /* UserSettings.swift in Sources */,
 				8CB6A4B623DE333600A14F9D /* SceneDelegate.swift in Sources */,
 				8CEF01A82426831300E8FF04 /* Post.swift in Sources */,
 			);

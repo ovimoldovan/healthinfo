@@ -38,6 +38,33 @@ struct FirstView: View {
         }
     }
     
+    private func sendToServer(){
+        //SENDING DATA TO SERVER
+        var request = URLRequest(url: userSettings.postUrl!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+        request.setValue("Bearer " + userSettings.token, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        
+        let json = [
+            //"gpsCoordinates": (self.gpsCoords) as NSString,
+            "steps": steps != nil ? steps! : 0 as NSNumber,
+            "distance": distance != nil ? distance! : 0 as NSNumber,
+            //"device": WKInterfaceDevice.current().model
+            "device": UIDevice.modelName
+            ] as [String : Any]
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
+            URLSession.shared.uploadTask(with: request, from: jsonData){ data, response, error in
+                print("print action")
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    print(httpResponse.allHeaderFields)
+                }
+            }.resume()
+        }
+    }
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -52,7 +79,14 @@ struct FirstView: View {
                     .bold()
                     .padding()
                 }
-                Text(steps != nil ? "\(steps!)" : "No steps available").padding()
+                if #available(iOS 14.0, *) {
+                    Text(steps != nil ? "\(steps!)" : "No steps available").padding()
+                        .onChange(of: steps){ steps in
+                            sendToServer()
+                        }
+                } else {
+                    // Fallback on earlier versions
+                }
                 Text(distance != nil ? "\(distance!)" : "No distance available").padding()
             }
         }
