@@ -22,17 +22,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let viewController = WatchConnectivityProvider()
         let userSettings = UserSettings()
-        //let contentView = ContentView()
-        let firstView = FirstView()
-            .environmentObject(viewController)
-            .environmentObject(userSettings)
-        
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: firstView)
-            self.window = window
-            window.makeKeyAndVisible()
+        if #available(iOS 14.0, *) {
+            let firstView = FirstView()
+                .environmentObject(viewController)
+                .environmentObject(userSettings)
+            
+            if let windowScene = scene as? UIWindowScene {
+                let window = UIWindow(windowScene: windowScene)
+                window.rootViewController = UIHostingController(rootView: firstView)
+                self.window = window
+                window.makeKeyAndVisible()
+            }
+        } else {
+            // Fallback on earlier versions
+            let contentView = ContentView()
+                .environmentObject(viewController)
+                .environmentObject(userSettings)
+            if let windowScene = scene as? UIWindowScene {
+                let window = UIWindow(windowScene: windowScene)
+                window.rootViewController = UIHostingController(rootView: contentView)
+                self.window = window
+                window.makeKeyAndVisible()
+            }
         }
+        
+        
+        
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

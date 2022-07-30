@@ -8,7 +8,10 @@
 
 import SwiftUI
 import CoreMotion
+import MapKit
+import SensorKit
 
+@available(iOS 14.0, *)
 struct FirstView: View {
     //Environment variables
     let viewController = WatchConnectivityProvider()
@@ -39,6 +42,8 @@ struct FirstView: View {
     }
     
     private func sendToServer(){
+        //Check for the latest lat + long
+        locationModel.updateLatLong()
         //SENDING DATA TO SERVER
         var request = URLRequest(url: userSettings.postUrl!)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -47,7 +52,7 @@ struct FirstView: View {
         request.httpMethod = "POST"
         
         let json = [
-            //"gpsCoordinates": (self.gpsCoords) as NSString,
+            "gpsCoordinates": (String(locationModel.latitude) + " " + String(locationModel.longitude)) as NSString,
             "steps": steps != nil ? steps! : 0 as NSNumber,
             "distance": distance != nil ? distance! : 0 as NSNumber,
             //"device": WKInterfaceDevice.current().model
@@ -65,29 +70,44 @@ struct FirstView: View {
         }
     }
     
+    //Map Data
+    
+    @StateObject private var locationModel: LocationModel = LocationModel()
+    
     var body: some View {
         NavigationView{
-            VStack{
-                Text("Logged in as: " + self.userSettings.name)
-                    .padding()
-                NavigationLink(destination: contentView){
-                    Text("Watch app")
-                }
-                .padding()
-                NavigationLink(destination: Login().environmentObject(self.userSettings)){
-                    Text(self.userSettings.token == "" ? "Login" : "Login as a different user")
-                    .bold()
-                    .padding()
-                }
-                if #available(iOS 14.0, *) {
-                    Text(steps != nil ? "\(steps!)" : "No steps available").padding()
-                        .onChange(of: steps){ steps in
-                            sendToServer()
+            GeometryReader
+            { proxy in
+                    VStack(spacing: 0.0){
+                        ZStack{
+                            Map(coordinateRegion: $locationModel.region, showsUserLocation: true)
                         }
-                } else {
-                    // Fallback on earlier versions
-                }
-                Text(distance != nil ? "\(distance!)" : "No distance available").padding()
+                        .frame(height: proxy.size.height/3)
+                        .navigationTitle("Health Info")
+                        .onAppear{
+                            locationModel.checkIfLocationIsEnabled()
+                        }
+                        ZStack{
+                            VStack{
+                                Text("Logged in as: " + self.userSettings.name)
+                                    .padding()
+                                NavigationLink(destination: contentView){
+                                    Text("Watch app")
+                                }
+                                .padding()
+                                NavigationLink(destination: Login().environmentObject(self.userSettings)){
+                                    Text(self.userSettings.token == "" ? "Login" : "Login as a different user")
+                                        .bold()
+                                        .padding()
+                                }
+                                    Text(steps != nil ? "Steps: \(steps!)" : "No steps available").padding()
+                                        .onChange(of: steps){ steps in
+                                            sendToServer()
+                                        }
+                                Text(distance != nil ? "Distance: \(distance!) (m)" : "No distance available").padding()
+                            }
+                        }
+                    }
             }
         }
         .environmentObject(viewController)
@@ -95,11 +115,16 @@ struct FirstView: View {
         .onAppear{
             initPedometer()
         }
+        .ignoresSafeArea()
     }
 }
 
 struct FirstView_Previews: PreviewProvider {
     static var previews: some View {
-        FirstView()
+        if #available(iOS 14.0, *) {
+            FirstView()
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
