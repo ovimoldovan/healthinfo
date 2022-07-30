@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { userService } from "../services/user.service";
+import { CSVLink } from "react-csv";
+
 export class Home extends Component {
   static displayName = Home.name;
 
@@ -43,7 +45,11 @@ export class Home extends Component {
       return (
         <div className="col-md-12 col-md-offset-6">
         <h1>Hi, {user.name}!</h1>
-        <h4>My data:</h4>
+              <table> <tr> <td > <h4>My data:</h4> </td>
+                  <td>
+                      {dataItems.length && (<CSVLink data={dataItems} className="btn btn-info"> Download </CSVLink>)}
+                  </td> </tr>
+              </table>
         {dataItems.loading && <em>Loading data...</em>}
         {dataItems.length && (
           <center><table className="table table-striped" aria-labelledby="tabelLabel">
