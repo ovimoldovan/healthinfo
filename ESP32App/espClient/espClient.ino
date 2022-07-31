@@ -23,8 +23,9 @@ String authToken = "";
 String cityName = "Cluj-Napoca";
 String Name = "";
 
-String user = "testEmbedded";
-String password = "testEmbedded";
+String user = "espUser1";
+String password = "espUser1";
+String apiUrl = "https://healthinfo.azurewebsites.net/api";
 
 WiFiMulti wifiMulti;
 
@@ -38,7 +39,7 @@ void setup() {
     delay(1000);
   }
 
-  wifiMulti.addAP("Martin Router King (2.4GHz)", "kebfr85256"); //if you ever come by my house this is the wifi password
+  wifiMulti.addAP("Ovi's (2.4GHz)", "Cata sigur intarzie"); //if you ever come by my house this is the wifi password
 
   //Display Setup
   Heltec.begin(true, false, true);
@@ -49,7 +50,7 @@ void setup() {
 void getCurrentDate(){
     HTTPClient http;
 
-    http.begin("http://192.168.0.107:5000/api/general/hour"); //My API
+    http.begin(apiUrl + "/general/hour"); //My API
 
     serialCon.print("Getting current date \n");
     int httpCode = http.GET();
@@ -123,10 +124,13 @@ void getCurrentBPM(){
 void authenticate(){
   HTTPClient http;
 
-  http.begin("http://192.168.0.107:5000/Api/User/login");
+  http.begin(apiUrl + "/User/login");
   http.addHeader("Content-Type", "application/json");
+
+  String request = "{\"username\": \"" + user + "\", \"password\":\""+ password + "\"}";
+  Serial.println(request);
   
-  int httpResponseCode = http.POST("{\"username\": \"testEmbedded\", \"password\":\"testEmbedded\"}"); 
+  int httpResponseCode = http.POST(request); 
   if(httpResponseCode>0){
   
   String response = http.getString();  
@@ -153,7 +157,7 @@ else{
 void postData(){
   HTTPClient http;
 
-  http.begin("http://192.168.0.107:5000/Api/DataItem");
+  http.begin(apiUrl + "/DataItem");
   http.addHeader("Content-Type", "application/json");
   //http.setAuthorization("admin", "admin");
   http.addHeader("Authorization", "Bearer " + authToken);
