@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/Data/ApplicationDbContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/About.js">
     <Files>
-      <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" Line="17" Column="1" />
+      <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" Line="14" Column="15" />
       <File FileName="watchInfoWebAppTests/BaseTests.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/Services/UserService.cs" Line="1" Column="1" />
@@ -30,12 +30,24 @@
       <File FileName="watchInfoWebApp/ClientApp/src/components/MapComponent.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/PositionData.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/custom.css" Line="17" Column="16" />
+      <File FileName="watchInfoWebApp/ClientApp/src/index.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/NavMenu.js" Line="60" Column="16" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/About.js" Line="32" Column="27" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="watchInfoWebApp" expanded="True">
-            <Node name="watchInfoWebApp" expanded="True" />
+            <Node name="watchInfoWebApp" expanded="True">
+              <Node name="ClientApp" expanded="True">
+                <Node name="src" expanded="True">
+                  <Node name="components" expanded="True">
+                    <Node name="img" expanded="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="Data" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
@@ -54,6 +66,6 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Safari.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
