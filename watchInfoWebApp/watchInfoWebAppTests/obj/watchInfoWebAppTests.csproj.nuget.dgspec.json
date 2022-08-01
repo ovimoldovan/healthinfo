@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj": {}
+    "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj": {}
   },
   "projects": {
-    "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
+    "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj",
+        "projectUniqueName": "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj",
         "projectName": "watchInfoWebApp",
-        "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj",
-        "packagesPath": "/Users/ovidiumoldovan/.nuget/packages/",
-        "outputPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/obj/",
+        "projectPath": "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj",
+        "packagesPath": "/Users/Ale/.nuget/packages/",
+        "outputPath": "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebApp/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/ovidiumoldovan/.config/NuGet/NuGet.Config"
+          "/Users/Ale/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -83,21 +86,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj": {
+    "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
+        "projectUniqueName": "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
         "projectName": "watchInfoWebAppTests",
-        "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
-        "packagesPath": "/Users/ovidiumoldovan/.nuget/packages/",
-        "outputPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/obj/",
+        "projectPath": "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/watchInfoWebAppTests.csproj",
+        "packagesPath": "/Users/Ale/.nuget/packages/",
+        "outputPath": "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebAppTests/obj/",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/Users/ovidiumoldovan/.config/NuGet/NuGet.Config"
+          "/Users/Ale/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -109,8 +115,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
-                "projectPath": "/Users/ovidiumoldovan/Desktop/MscProj/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj"
+              "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj": {
+                "projectPath": "/Users/Ale/Desktop/watchKitSensors/watchInfoWebApp/watchInfoWebApp/watchInfoWebApp.csproj"
               }
             }
           }
@@ -161,7 +167,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.408/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

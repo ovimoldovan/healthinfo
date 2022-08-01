@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
 import { userService } from "../services/user.service";
+import logo from "./img/logo.png";
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -59,8 +60,11 @@ export class NavMenu extends Component {
           light
         >
           <Container>
-            <NavbarBrand tag={Link} to="/">
-              watchInfoWebApp
+                    <NavbarBrand tag={Link} to="/" >
+                        <div>
+                            <img src={logo} height="50" />
+                            <div style={{marginBottom: '0'}} >Health Info </div>
+                        </div>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse
