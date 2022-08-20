@@ -66,6 +66,11 @@ struct FirstView: View {
                         //print("\(relativeAltitude)")
                     }
                     }
+                    self.altimeter.startAbsoluteAltitudeUpdates(to: OperationQueue.main){
+                        (data,error) in DispatchQueue.main.async {
+                            absoluteAltitude = Double(data?.altitude ?? 0.0)
+                    }
+                    }
                 @unknown default:
                     break
                     
