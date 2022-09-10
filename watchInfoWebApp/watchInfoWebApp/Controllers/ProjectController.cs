@@ -91,10 +91,7 @@ namespace watchInfoWebApp.Controllers
         [HttpGet("getAllData")]
         public async Task<ActionResult<List<Project>>> GetAllProjects()
         {
-            var projects = new List<Project>();
-            //var userId = claimsGetter.UserId(User?.Claims);
-
-            projects = await _context.Projects.ToListAsync();
+            var projects = await _context.Projects.ToListAsync();
 
             return projects;
         }
