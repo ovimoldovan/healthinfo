@@ -141,7 +141,7 @@ void getCurrentDate(void * parameters){
 void getCurrentWeather(void * parameters){
   for(;;){
   HTTPClient httpWeather;
-  String apiKey = "f65d02a4bdad0702b4c84d294712d3a7";
+  String apiKey = "";
 
   httpWeather.begin("https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey);
 
