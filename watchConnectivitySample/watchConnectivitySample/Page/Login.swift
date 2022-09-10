@@ -10,13 +10,6 @@ import SwiftUI
 import Alamofire
 import SwiftyJSON
 
-//struct UserStruct: Codable {
-//    let username: String
-//    let name: String
-//    let token: String
-//}
-
-
 struct Login: View {
     @EnvironmentObject var userSettings: UserSettings
     @State var username = ""
@@ -34,12 +27,11 @@ struct Login: View {
                         "password" : self.password
                     ]
                     let header: HTTPHeaders = [
-                    "Content-Type": "application/json"
+                        "Content-Type": "application/json"
                     ]
                     AF.request(self.url!, method: .post, parameters: loginRequest, encoding: JSONEncoding.default, headers: header)
                         .responseJSON{
                             response in
-                                //debugPrint(response)
                             if(response.response?.statusCode != 200) {
                                 self.name = "login failed"
                             }
@@ -52,14 +44,14 @@ struct Login: View {
                                     print(self.userSettings.token)
                                 }
                             }
-                    }
+                        }
                 }){
-                Text("Login")
+                    Text("Login")
                 }
                 Text(self.name)
                 NavigationLink(destination: Post(token: self.userSettings.token))
                 {
-                     Text("post")
+                    Text("post")
                 }
             }
             

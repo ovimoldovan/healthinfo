@@ -61,15 +61,14 @@ struct FirstView: View {
                     print("altimeter restricted or denied")
                 case .authorized:
                     self.altimeter.startRelativeAltitudeUpdates(to: OperationQueue.main) {(data,error) in DispatchQueue.main.async {
-                        relativeAltitude = Double(data?.relativeAltitude ?? 0.0)
-                        pressure = Double(data?.pressure ?? 0.0)
-                        //print("\(relativeAltitude)")
-                    }
+                        relativeAltitude = Double(truncating: data?.relativeAltitude ?? 0.0)
+                        pressure = Double(truncating: data?.pressure ?? 0.0)
+                        }
                     }
                     self.altimeter.startAbsoluteAltitudeUpdates(to: OperationQueue.main){
                         (data,error) in DispatchQueue.main.async {
                             absoluteAltitude = Double(data?.altitude ?? 0.0)
-                    }
+                        }
                     }
                 @unknown default:
                     break
@@ -101,7 +100,7 @@ struct FirstView: View {
     private func sendToServer(){
         //Check for the latest lat + long
         locationModel.updateLatLong()
-        //SENDING DATA TO SERVER
+        
         var request = URLRequest(url: userSettings.postUrl!)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
