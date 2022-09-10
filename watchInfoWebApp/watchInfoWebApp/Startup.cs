@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -68,8 +67,6 @@ namespace watchInfoWebApp
 
             services.AddDbContext<ApplicationDbContext>();
             services.AddScoped<IUserService, UserService>();
-            //services.AddAuthentication("BasicAuthentication")
-            //    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>

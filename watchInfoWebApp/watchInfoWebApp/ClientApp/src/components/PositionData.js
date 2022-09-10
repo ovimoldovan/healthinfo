@@ -33,7 +33,6 @@ export class PositionData extends Component {
   }
 
   handleMarkerClick(payload, anchor) {
-    //console.log(`Marker #${payload} clicked at: `, anchor);
     var currentDataItem = userService
       .getCurrentDataItem(payload)
       .then((currentDataItem) => this.setState({ currentDataItem }));
@@ -58,16 +57,11 @@ export class PositionData extends Component {
     var gpsDataSplit = [];
 
     if (gpsData[0] != null && gpsData[0][0] != null) {
-      //console.log(gpsData[0].split(" "));
-      for (var i = 0; i < gpsData.length; i++) {
-        if (gpsData[i][0] != null) {
           gpsDataSplit[i] = gpsData[i].split(" ");
           gpsDataSplit[i].push(gpsData[i + 1]);
         }
       }
     }
-
-    //var gpsDataSplit = gpsData[0].toString().split(" ");
 
     console.log(gpsDataSplit);
 

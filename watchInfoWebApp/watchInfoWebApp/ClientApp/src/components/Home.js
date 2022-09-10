@@ -35,9 +35,6 @@ export class Home extends Component {
     this.setState({ dataItems });
 
     userService.deleteDataItemById(id);
-    /*.then(
-        userService.getAll().then((dataItems) => this.setState({ dataItems }))
-      ); */
   }
 
   render() {

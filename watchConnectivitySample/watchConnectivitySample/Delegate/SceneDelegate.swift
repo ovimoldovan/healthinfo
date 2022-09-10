@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let viewController = WatchConnectivityProvider()
         let userSettings = UserSettings()
-        if #available(iOS 14.0, *) {
+        if #available(iOS 15.0, *) {
             let firstView = FirstView()
                 .environmentObject(viewController)
                 .environmentObject(userSettings)

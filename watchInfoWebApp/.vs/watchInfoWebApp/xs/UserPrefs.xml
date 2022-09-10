@@ -1,12 +1,14 @@
 ﻿<Properties StartupConfiguration="{D64DC2C9-2D41-42EA-BD4C-16A8231AFDEF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/components/About.js">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="watchInfoWebApp/ClientApp/src/registerServiceWorker.js">
     <Files>
       <File FileName="watchInfoWebApp/Data/ApplicationDbContext.cs" Line="14" Column="15" />
       <File FileName="watchInfoWebAppTests/BaseTests.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/Services/UserService.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/Controllers/UserController.cs" Line="55" Column="61" />
+      <File FileName="watchInfoWebApp/Services/UserService.cs" Line="44" Column="41" />
+      <File FileName="watchInfoWebApp/Controllers/ProjectController.cs" Line="93" Column="10" />
+      <File FileName="watchInfoWebApp/Controllers/DataItemController.cs" Line="98" Column="14" />
       <File FileName="watchInfoWebApp/Models/User.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebAppTests/DataItemControllerTests.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/Models/DataItem.cs" Line="1" Column="1" />
@@ -14,25 +16,36 @@
       <File FileName="watchInfoWebAppTests/UserControllerTests.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/AdminPanel.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/Startup.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/Program.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/Program.cs" Line="17" Column="54" />
       <File FileName="watchInfoWebApp/ClientApp/webpack.config.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/FetchData.js" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Login.js" Line="31" Column="58" />
+      <File FileName="watchInfoWebApp/ClientApp/src/services/user.service.js" Line="123" Column="18" />
       <File FileName="watchInfoWebApp/ViewModels/LoginViewModel.cs" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/Migrations/20220730164037_AltitudeAndPressureData.cs" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Home.js" Line="37" Column="40" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/index.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/Layout.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/public/index.html" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/App.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/NavMenu.css" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/MapComponent.js" Line="1" Column="1" />
-      <File FileName="watchInfoWebApp/ClientApp/src/components/PositionData.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/PositionData.js" Line="64" Column="6" />
       <File FileName="watchInfoWebApp/ClientApp/src/custom.css" Line="17" Column="16" />
       <File FileName="watchInfoWebApp/ClientApp/src/index.js" Line="1" Column="1" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/NavMenu.js" Line="60" Column="16" />
       <File FileName="watchInfoWebApp/ClientApp/src/components/About.js" Line="32" Column="27" />
+      <File FileName="watchInfoWebApp/Controllers/GeneralController.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/Tools/ClaimsGetter.cs" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/PostItemData.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/PrivateRoute.jsx" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/components/Register.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/helper/auth-header.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/helper/index.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/services/index.js" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/mainStyle.css" Line="1" Column="1" />
+      <File FileName="watchInfoWebApp/ClientApp/src/registerServiceWorker.js" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -41,12 +54,19 @@
             <Node name="watchInfoWebApp" expanded="True">
               <Node name="ClientApp" expanded="True">
                 <Node name="src" expanded="True">
-                  <Node name="components" expanded="True">
-                    <Node name="img" expanded="True" />
-                  </Node>
+                  <Node name="components" expanded="True" />
+                  <Node name="helper" expanded="True" />
+                  <Node name="services" expanded="True" />
+                  <Node name="registerServiceWorker.js" selected="True" />
                 </Node>
               </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="Tools" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -61,11 +81,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.watchInfoWebApp PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

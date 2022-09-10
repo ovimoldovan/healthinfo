@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using watchInfoWebApp.Data;
@@ -42,7 +41,13 @@ namespace watchInfoWebApp.Services
                 if (user == null)
                     return null;
 
-                var userData = new User { Id = user.Id, Username = user.Username, Name = user.Name, ProjectId = user.ProjectId, Role = user.Role };
+                var userData = new User {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Name = user.Name,
+                    ProjectId = user.ProjectId,
+                    Role = user.Role
+                };
 
                 var token = GenerateJSONWebToken(userData);
 
@@ -85,7 +90,8 @@ namespace watchInfoWebApp.Services
 
         public async Task<IEnumerable<User>> GetAll()
         {
-            return await Task.Run(() => _users.Select(x => {
+            return await Task.Run(() => _users.Select(x =>
+            {
                 x.Password = null;
                 return x;
             }));

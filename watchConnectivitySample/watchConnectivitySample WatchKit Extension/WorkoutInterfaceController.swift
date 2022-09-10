@@ -26,14 +26,11 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.first else { return }
-
-        self.gpsCoords = String(currentLocation.coordinate.latitude) + " " + String(currentLocation.coordinate.longitude)
         
+        self.gpsCoords = String(currentLocation.coordinate.latitude) + " " + String(currentLocation.coordinate.longitude)
         
         gpsLabel.setText("GPS: " + gpsCoords)
         print(gpsCoords)
-
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -58,7 +55,6 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     @IBOutlet weak var distanceLabel: WKInterfaceLabel!
     var token: String = ""
     
-    
     @IBAction func startLogging() {
         if(status == "stopped") {
             resumeWorkout()
@@ -72,7 +68,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         do{
             if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
                 fileUpdater.seekToEndOfFile()
-                let string = "\n\nStart sesiune noua, device: " + getWatchModel()
+                let string = "\n\nStart new session, device: " + getWatchModel()
                 print(string)
                 fileUpdater.write(string.data(using: .utf8)!)
                 fileUpdater.write("\n".data(using: .utf8)!)
@@ -101,7 +97,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         do{
             if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
                 fileUpdater.seekToEndOfFile()
-                let string = "\n\nTotal pasi in sesiunea curenta: " + steps + "\nTotal distanta parcursa (m) in sesiunea curenta: " + distance + " recorded on " + getWatchModel()
+                let string = "\n\nTotal steps: " + steps + "\nTotal distance (m):  " + distance + " recorded on " + getWatchModel()
                 print(string)
                 fileUpdater.write(string.data(using: .utf8)!)
                 fileUpdater.write("\n".data(using: .utf8)!)
@@ -128,18 +124,18 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
     
     private let pedometer = CMPedometer()
     private func countSteps() {
-      pedometer.startUpdates(from: Date()) {
-          [weak self] pedometerData, error in
-          guard let pedometerData = pedometerData, error == nil else { return }
-
-          DispatchQueue.main.async {
-            self?.stepsLabel.setText(pedometerData.numberOfSteps.stringValue)
-            print(pedometerData.numberOfSteps.stringValue)
-            self?.distanceLabel.setText(pedometerData.distance?.stringValue)
-            self?.distance = pedometerData.distance?.stringValue ?? "0"
-            self?.steps = pedometerData.numberOfSteps.stringValue
-          }
-      }
+        pedometer.startUpdates(from: Date()) {
+            [weak self] pedometerData, error in
+            guard let pedometerData = pedometerData, error == nil else { return }
+            
+            DispatchQueue.main.async {
+                self?.stepsLabel.setText(pedometerData.numberOfSteps.stringValue)
+                print(pedometerData.numberOfSteps.stringValue)
+                self?.distanceLabel.setText(pedometerData.distance?.stringValue)
+                self?.distance = pedometerData.distance?.stringValue ?? "0"
+                self?.steps = pedometerData.numberOfSteps.stringValue
+            }
+        }
     }
     
     private func startPedometerUpdating(){
@@ -156,7 +152,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         pedometer.stopUpdates()
         pedometer.stopEventUpdates()
     }
-
+    
     
     
     override func awake(withContext context: Any?) {
@@ -165,7 +161,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         
         session.delegate = self
         session.activate()
-
+        
         //Workout session
         do {
             workoutSession = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
@@ -186,7 +182,7 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         builder.beginCollection(withStart: Date()) { (success, error) in
             self.setDurationTimerDate(.running)
         }
-
+        
     }
     
     
@@ -221,10 +217,10 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
             guard let quantityType = type as? HKQuantityType else {
                 return
             }
-
+            
             let statistics = workoutBuilder.statistics(for: quantityType)
             let label = labelForQuantityType(quantityType)
-
+            
             updateLabel(label, withStatistics: statistics)
         }
     }
@@ -311,7 +307,52 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         }
     }
     
-    func updateLabel(_ label: WKInterfaceLabel?, withStatistics statistics: HKStatistics?) {
+    fileprivate func writeRunningDataToFile() {
+        if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
+            fileUpdater.seekToEndOfFile()
+            fileUpdater.write("\nTimer:".data(using: .utf8)!)
+            fileUpdater.write(dateString.data(using: .utf8)!)
+            fileUpdater.write("\nBPM:".data(using: .utf8)!)
+            fileUpdater.write(String(lastHeartRate).data(using: .utf8)!)
+            fileUpdater.write("\nGPS:".data(using: .utf8)!)
+            fileUpdater.write(self.gpsCoords.data(using: .utf8)!)
+            let string = "\nSteps: " + steps + "\nDistance (m): " + distance
+            fileUpdater.write(string.data(using: .utf8)!)
+            fileUpdater.write("\n".data(using: .utf8)!)
+            fileUpdater.write("\n".data(using: .utf8)!)
+            fileUpdater.closeFile()
+        }
+        print(String(lastHeartRate) + ", " + dateString)
+    }
+
+    fileprivate func sendDataToApi() {
+        var request = URLRequest(url: self.url!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+        request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "POST"
+        
+        let json = [
+            "heartBpm": lastHeartRate as NSNumber,
+            "gpsCoordinates": (self.gpsCoords) as NSString,
+            "steps": (steps as NSString).integerValue as NSNumber,
+            "distance": (distance as NSString).integerValue as NSNumber,
+            //"device": WKInterfaceDevice.current().model
+            "device": getWatchModel()
+        ] as [String : Any]
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
+            URLSession.shared.uploadTask(with: request, from: jsonData){ data, response, error in
+                print("print action")
+                if let httpResponse = response as? HTTPURLResponse{
+                    print(httpResponse.statusCode)
+                    print(httpResponse.allHeaderFields)
+                }
+            }.resume()
+        }
+    }
+
+func updateLabel(_ label: WKInterfaceLabel?, withStatistics statistics: HKStatistics?) {
         guard let label = label, let statistics = statistics else {
             return
         }
@@ -324,47 +365,9 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
                 self.dateString = formatter.string(from: date)
                 self.hourLabel.setText(self.dateString)
                 do{
-                    if let fileUpdater = try? FileHandle(forUpdating: self.filePath){
-                        fileUpdater.seekToEndOfFile()
-                        fileUpdater.write("\nTimer:".data(using: .utf8)!)
-                        fileUpdater.write(dateString.data(using: .utf8)!)
-                        fileUpdater.write("\nBPM:".data(using: .utf8)!)
-                        fileUpdater.write(String(lastHeartRate).data(using: .utf8)!)
-                        fileUpdater.write("\nGPS:".data(using: .utf8)!)
-                        fileUpdater.write(self.gpsCoords.data(using: .utf8)!)
-                        let string = "\nPasi: " + steps + "\nDistanta parcursa (m): " + distance
-                        fileUpdater.write(string.data(using: .utf8)!)
-                        fileUpdater.write("\n".data(using: .utf8)!)
-                        fileUpdater.write("\n".data(using: .utf8)!)
-                        fileUpdater.closeFile()
-                    }
-                    print(String(lastHeartRate) + ", " + dateString)
+                    writeRunningDataToFile()
                     
-                    //SENDING DATA TO SERVER
-                    var request = URLRequest(url: self.url!)
-                    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-                    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-                    request.setValue("Bearer " + self.token, forHTTPHeaderField: "Authorization")
-                    request.httpMethod = "POST"
-                    
-                    let json = [
-                        "heartBpm": lastHeartRate as NSNumber,
-                        "gpsCoordinates": (self.gpsCoords) as NSString,
-                        "steps": (steps as NSString).integerValue as NSNumber,
-                        "distance": (distance as NSString).integerValue as NSNumber,
-                        //"device": WKInterfaceDevice.current().model
-                        "device": getWatchModel()
-                        ] as [String : Any]
-                    
-                    if let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []){
-                        URLSession.shared.uploadTask(with: request, from: jsonData){ data, response, error in
-                            print("print action")
-                            if let httpResponse = response as? HTTPURLResponse{
-                                print(httpResponse.statusCode)
-                                print(httpResponse.allHeaderFields)
-                            }
-                        }.resume()
-                    }
+                    sendDataToApi()
                 }
             }
         }
@@ -385,90 +388,90 @@ class WorkoutInterfaceController: WKInterfaceController, HKWorkoutSessionDelegat
         }
     }
     func getWatchModel() -> String {
-    var size: size_t = 0
-    sysctlbyname("hw.machine", nil, &size, nil, 0)
-    var machine = CChar()
-    sysctlbyname("hw.machine", &machine, &size, nil, 0)
-    let model = String(cString: &machine, encoding: String.Encoding.utf8)
-    switch model {
-    case "Watch1,1":
-        return "Apple Watch 28mm"
-    case "Watch1,2":
-        return"Apple Watch 42mm"
-    case "Watch2,3":
-        return "Apple Watch Series 2 38mm"
-    case "Watch2,4":
-        return "Apple Watch Series 2 42mmm"
-    case "Watch2,6":
-        return "Apple Watch Series 1 38mm"
-    case "Watch2,7":
-        return "Apple Watch Series 1 42mm"
-    case "Watch3,1":
-        return "Apple Watch Series 3 38mm Cellular"
-    case "Watch3,2":
-        return "Apple Watch Series 3 42mm Cellular"
-    case "Watch3,3":
-        return "Apple Watch Series 3 38mm"
-    case "Watch3,4":
-        return "Apple Watch Series 3 42mm"
-    case "Watch4,1":
-        return "Apple Watch Series 4 40mm"
-    case "Watch4,2":
-        return "Apple Watch Series 4 44mm"
-    case "Watch4,3":
-        return "Apple Watch Series 4 40mm Cellular"
-    case "Watch4,4":
-        return "Apple Watch Series 4 44mm Cellular"
-    case "Watch5,1":
-        return "Apple Watch Series 5 40mm"
-    case "Watch5,2":
-        return "Apple Watch Series 5 44mm"
-    case "Watch5,3":
-        return "Apple Watch Series 5 40mm Cellular"
-    case "Watch5,4":
-        return "Apple Watch Series 5 44mm Cellular"
-    default:
-        return "unknown"
+        var size: size_t = 0
+        sysctlbyname("hw.machine", nil, &size, nil, 0)
+        var machine = CChar()
+        sysctlbyname("hw.machine", &machine, &size, nil, 0)
+        let model = String(cString: &machine, encoding: String.Encoding.utf8)
+        switch model {
+        case "Watch1,1":
+            return "Apple Watch 28mm"
+        case "Watch1,2":
+            return"Apple Watch 42mm"
+        case "Watch2,3":
+            return "Apple Watch Series 2 38mm"
+        case "Watch2,4":
+            return "Apple Watch Series 2 42mmm"
+        case "Watch2,6":
+            return "Apple Watch Series 1 38mm"
+        case "Watch2,7":
+            return "Apple Watch Series 1 42mm"
+        case "Watch3,1":
+            return "Apple Watch Series 3 38mm Cellular"
+        case "Watch3,2":
+            return "Apple Watch Series 3 42mm Cellular"
+        case "Watch3,3":
+            return "Apple Watch Series 3 38mm"
+        case "Watch3,4":
+            return "Apple Watch Series 3 42mm"
+        case "Watch4,1":
+            return "Apple Watch Series 4 40mm"
+        case "Watch4,2":
+            return "Apple Watch Series 4 44mm"
+        case "Watch4,3":
+            return "Apple Watch Series 4 40mm Cellular"
+        case "Watch4,4":
+            return "Apple Watch Series 4 44mm Cellular"
+        case "Watch5,1":
+            return "Apple Watch Series 5 40mm"
+        case "Watch5,2":
+            return "Apple Watch Series 5 44mm"
+        case "Watch5,3":
+            return "Apple Watch Series 5 40mm Cellular"
+        case "Watch5,4":
+            return "Apple Watch Series 5 44mm Cellular"
+        default:
+            return "unknown"
+        }
     }
-}
-
-            
-        override func didAppear() {
-            super.didAppear()
-            
-            do{
-                try "START\n".write(to: self.filePath, atomically: false, encoding: String.Encoding.utf8)
-            }
-            catch{
-                print("File write error")
-            }
-            
-            let typesToShare: Set = [
-                HKQuantityType.workoutType()
-            ]
-            
-            let typesToRead: Set = [
-                HKQuantityType.quantityType(forIdentifier: .heartRate)!
-            ]
-            
-            healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
-                //TODO
-                //Error handling
-            }
+    
+    
+    override func didAppear() {
+        super.didAppear()
+        
+        do{
+            try "START\n".write(to: self.filePath, atomically: false, encoding: String.Encoding.utf8)
+        }
+        catch{
+            print("File write error")
         }
         
-        override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
-            if segueIdentifier == "startWorkout" {
-                let configuration = HKWorkoutConfiguration()
-                configuration.activityType = .running
-                configuration.locationType = .outdoor
-                
-                return WorkoutSessionContext(healthStore: healthStore, configuration: configuration)
-            }
-            
-            return nil
+        let typesToShare: Set = [
+            HKQuantityType.workoutType()
+        ]
+        
+        let typesToRead: Set = [
+            HKQuantityType.quantityType(forIdentifier: .heartRate)!
+        ]
+        
+        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
+            //TODO
+            //Error handling
         }
-
+    }
+    
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        if segueIdentifier == "startWorkout" {
+            let configuration = HKWorkoutConfiguration()
+            configuration.activityType = .running
+            configuration.locationType = .outdoor
+            
+            return WorkoutSessionContext(healthStore: healthStore, configuration: configuration)
+        }
+        
+        return nil
+    }
+    
 }
 
 class WorkoutSessionContext {
@@ -484,19 +487,19 @@ class WorkoutSessionContext {
 }
 
 extension WorkoutInterfaceController: WCSessionDelegate {
-
-func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
     
-}
-func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-    print("received message: \(message)")
-    DispatchQueue.main.async {
-      if let value = message["Bearer "] as? String {
-        print(value)
-        self.token = value
-      }
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
     }
-  }
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("received message: \(message)")
+        DispatchQueue.main.async {
+            if let value = message["Bearer "] as? String {
+                print(value)
+                self.token = value
+            }
+        }
+    }
 }
 
 

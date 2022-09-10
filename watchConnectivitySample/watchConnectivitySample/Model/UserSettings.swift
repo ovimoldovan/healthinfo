@@ -2,7 +2,7 @@
 //  UserSettings.swift
 //  watchConnectivitySample
 //
-//  Created by Crisan Alexandra on 30.07.2022.
+//  Created by Ovidiu Moldovan on 30.07.2022.
 //  Copyright © 2022 Ovidiu Moldovan. All rights reserved.
 //
 
