@@ -36,3 +36,4 @@ This project contains 3 basic mobile applications (iPhone and Apple Watch - Swif
 
 ##### Additional info
 This project represented a learning process of a few technologies. It is not a perfect project by any means and it will probably never be, but I still enjoyed working on it.
+Complete documentation can be found [here](/Documentation.pdf).
